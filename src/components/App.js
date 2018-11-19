@@ -1,8 +1,5 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import { BrowserRouter as Router } from 'react-router-dom'
-import { library } from '@fortawesome/fontawesome-svg-core'
-import uid from 'uid'
 
 import FestCard from './FestCard'
 import festData from '../data/ef_data.json'
@@ -17,6 +14,13 @@ export default class App extends Component {
     return <DisplayContent>{this.createFestivalListItems()}</DisplayContent>
   }
 
+  createFestivalListItems() {
+    const festivalsArr = festData.festivals
+    return festivalsArr.map((festival, index) => {
+      return this.renderSingleFestCard(festival, index)
+    })
+  }
+
   renderSingleFestCard(festival, index) {
     return (
       <FestCard
@@ -29,12 +33,5 @@ export default class App extends Component {
         festCity={festival.festCity}
       />
     )
-  }
-
-  createFestivalListItems() {
-    const festivalsArr = festData.festivals
-    return festivalsArr.map((festival, index) => {
-      return this.renderSingleFestCard(festival, index)
-    })
   }
 }

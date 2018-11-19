@@ -6,48 +6,49 @@ import { faStar } from '@fortawesome/free-solid-svg-icons'
 const starIcon = <FontAwesomeIcon className="filter-button" icon={faStar} />
 
 export const Wrapper = styled.section`
-  display: grid;
-  grid-gap: 6px;
-  grid-template-columns: 1fr 60px;
-  grid-auto-rows: minmax(5px, auto);
-  grid-auto-flow: row;
-  width: 100%;
-  border-bottom: 2px solid #0e2a3f;
-  padding: 20px 15px;
   background: rgba(255, 255, 255, 0.8);
+  border-bottom: 2px solid #0e2a3f;
+  display: grid;
+  grid-auto-flow: row;
+  grid-auto-rows: auto;
+  grid-gap: 5px;
+  grid-template-columns: 1fr;
+  padding: 20px 15px;
+  width: 100%;
 `
 
 export const FestDate = styled.time`
-  color: var(--purple);
-  font-size: 19px;
+  align-self: end;
+  color: var(--teal);
   font-family: DINWeb-CondBold, sans-serif;
-  grid-row: 1/2;
+  font-size: 19px;
   grid-column: 1;
+  grid-row: 1/2;
 `
 export const FestName = styled.time`
+  align-self: start;
   color: var(--dark);
-  color: #0b161f;
-  grid-row: 2;
-  grid-column: 1;
-  font-size: 24px;
-  line-height: 24px;
   font-family: FestivoLettersNo1;
+  font-size: 24px;
+  grid-column: 1;
+  grid-row: 2;
+  line-height: 24px;
 `
 export const FestLocation = styled.section`
-  color: var(--teal);
-  font-size: 17px;
-  font-family: DINWeb-CondBold, sans-serif;
-  grid-row: 3;
-  grid-column: 1;
-  height: 10px;
-  display: flex;
   align-items: center;
+  color: var(--teal);
+  display: flex;
+  font-family: DINWeb-CondBold, sans-serif;
+  font-size: 17px;
+  grid-column: 1;
+  grid-row: 3;
+  height: 10px;
+  margin-top: 3px;
 `
-
 export const StarSmall = styled.div`
   display: inline;
   font-size: 8px;
-  margin: 0px 10px 0 10px;
+  margin: 0px 7px 0 7px;
 `
 
 export default class FestCard extends Component {

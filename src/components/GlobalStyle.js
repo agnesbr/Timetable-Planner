@@ -7,27 +7,27 @@ export default createGlobalStyle`
 }
 
 body {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-family: DINWeb-Cond, sans-serif;
+  height: 100vh;
   margin: 0;
   padding: 0;
   width: 100vw;
-  height: 100vh;
-  font-family: DINWeb-Cond, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
   body::after {
   content: "";
-  min-height: 100vh;
-  background-image: url('../../images/BG_EF.png');
-  background-repeat: repeat-y;
   background-attachment: fixed;
-  opacity: 0.2;
-  top: 0;
-  left: 0;
+  background-image: url('../../images/BG_EF.png');
+  background-repeat: repeat;
   bottom: 0;
-  right: 0;
+  left: 0;
+  min-height: 100vh;
+  opacity: 0.2;
   position: absolute;
+  right: 0;
+  top: 0;
   z-index: -1;   
 }
 
