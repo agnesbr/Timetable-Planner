@@ -1,27 +1,21 @@
 import React from 'react'
 
 import { storiesOf } from '@storybook/react'
-import { action } from '@storybook/addon-actions'
-import { text, boolean } from '@storybook/addon-knobs'
+import { number, text, boolean } from '@storybook/addon-knobs'
 
-import Todo from '../components/Todo'
+import FestCard from '../components/FestCard'
 
 import StyleBox from './StyleBox'
 
-storiesOf('Todo', module).add('default', () => (
+storiesOf('FestCard', module).add('default', () => (
   <React.Fragment>
-    <Todo
-      text={text('Todo 1: text', 'Hello world')}
-      done={boolean('Todo 1: done', false)}
-      onToggle={action('Todo 1: onToggle')}
-      onDelete={action('Todo 1: onDelete')}
-    />
-    <StyleBox h={40} />
-    <Todo
-      text={text('Todo 2: text', 'Lorem ipsum dolor sit')}
-      done={boolean('Todo 2: done', false)}
-      onToggle={action('Todo 2: onToggle')}
-      onDelete={action('Todo 2: onDelete')}
+    <FestCard
+      festId={number('festival id', 12345)}
+      festName={text('festival name', 'Festivalname')}
+      festStartDate={text('festival start date', '01.12.2018')}
+      festEndDate={text('festival end date', '12/01/2018')}
+      festCountry={text('country', 'Country')}
+      festCity={text('city', 'City')}
     />
   </React.Fragment>
 ))
