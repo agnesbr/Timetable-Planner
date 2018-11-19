@@ -40,13 +40,14 @@ export const FestLocation = styled.section`
   grid-row: 3;
   grid-column: 1;
   height: 10px;
+  display: flex;
+  align-items: center;
 `
 
 export const StarSmall = styled.div`
   display: inline;
   font-size: 8px;
-  margin: 0px 10px 10px 10px;
-  padding-bottom: 10px;
+  margin: 0px 10px 0 10px;
 `
 
 export default class FestCard extends Component {
