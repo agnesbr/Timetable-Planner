@@ -4,6 +4,7 @@ import { BrowserRouter as Router } from 'react-router-dom'
 import { library } from '@fortawesome/fontawesome-svg-core'
 
 import FestCard from './FestCard'
+import festData from '../data/ef_data.json'
 
 export const DisplayContent = styled.section`
   display: flex;
@@ -12,55 +13,18 @@ export const DisplayContent = styled.section`
 
 export default class App extends Component {
   render() {
-    const festId = '23345'
-    const festName = 'COACHELLA VALLEY MUSIC AND ARTS FESTIVAL'
-    const festStartDate = '1995/12/17'
-    const festEndDate = '1995/12/17'
-    const festCountry = 'Musterland'
-    const festCity = 'Musterstadt'
+    const { festivalsArr } = festData
+    console.log(festivalsArr)
+    // .map(entry => ({
+    const festId = festData.festivals[0].festId
+    const festName = festData.festivals[0].festName
+    const festStartDate = festData.festivals[0].festStartDate
+    const festEndDate = festData.festivals[0].festEndDate
+    const festCountry = festData.festivals[0].festCountry
+    const festCity = festData.festivals[0].festCity
 
     return (
       <DisplayContent>
-        <FestCard
-          festId={festId}
-          festName={festName}
-          festStartDate={festStartDate}
-          festEndDate={festEndDate}
-          festCountry={festCountry}
-          festCity={festCity}
-        />
-        <FestCard
-          festId={festId}
-          festName={festName}
-          festStartDate={festStartDate}
-          festEndDate={festEndDate}
-          festCountry={festCountry}
-          festCity={festCity}
-        />
-        <FestCard
-          festId={festId}
-          festName={festName}
-          festStartDate={festStartDate}
-          festEndDate={festEndDate}
-          festCountry={festCountry}
-          festCity={festCity}
-        />
-        <FestCard
-          festId={festId}
-          festName={festName}
-          festStartDate={festStartDate}
-          festEndDate={festEndDate}
-          festCountry={festCountry}
-          festCity={festCity}
-        />
-        <FestCard
-          festId={festId}
-          festName={festName}
-          festStartDate={festStartDate}
-          festEndDate={festEndDate}
-          festCountry={festCountry}
-          festCity={festCity}
-        />{' '}
         <FestCard
           festId={festId}
           festName={festName}

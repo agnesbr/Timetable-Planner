@@ -2,7 +2,7 @@
   "festivals": [
     {
       "festId": "23345",
-      "festName": "FestName",
+      "festName": "foo",
       "festStartDate": "13.10.2019",
       "festEndDate": "23.10.2019",
       "festCountry": "Musterland",
