@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import Fest from './Fest'
+import uid from 'uid'
+
 import festData from '../data/ef_data.json'
 
 export const DisplayContent = styled.section`
@@ -23,7 +25,7 @@ export default class App extends Component {
   renderSingleFest(festival, index) {
     return (
       <Fest
-        key={festival.festId + index}
+        key={uid()}
         festId={festival.festId}
         festName={festival.festName}
         festStartDate={festival.festStartDate}

@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
+import Bookmark from './Bookmark'
 
 const starIcon = <FontAwesomeIcon className="filter-button" icon={faStar} />
 
@@ -12,7 +14,7 @@ export const Wrapper = styled.section`
   grid-auto-flow: row;
   grid-auto-rows: auto;
   grid-gap: 5px;
-  grid-template-columns: 1fr;
+  grid-template-columns: 1fr 30px;
   padding: 20px 15px;
   width: 100%;
 `
@@ -73,6 +75,7 @@ export default class Fest extends Component {
           <StarSmall> {starIcon}</StarSmall>
           {festCity}
         </FestLocation>
+        <Bookmark />
       </Wrapper>
     )
   }

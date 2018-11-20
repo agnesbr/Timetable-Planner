@@ -1,9 +1,10 @@
 import React from 'react'
 
 import { storiesOf } from '@storybook/react'
-import { number, text } from '@storybook/addon-knobs'
+import { number, text, boolean } from '@storybook/addon-knobs'
 
 import Fest from '../components/Fest'
+import Bookmark from '../components/Bookmark'
 
 storiesOf('Fest', module).add('Festival list item', () => (
   <React.Fragment>
@@ -15,5 +16,12 @@ storiesOf('Fest', module).add('Festival list item', () => (
       festCountry={text('country', 'Country')}
       festCity={text('city', 'City')}
     />
+  </React.Fragment>
+))
+
+storiesOf('Bookmark', module).add('Bookamrk Icon', () => (
+  <React.Fragment>
+    <Bookmark isBookmarked={boolean('Icon 1: isBookmarked', false)} />
+    <Bookmark isBookmarked={boolean('Icon 2: isBookmarked', true)} />
   </React.Fragment>
 ))
