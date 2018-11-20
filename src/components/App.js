@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import Fest from './Fest'
+
 import festData from '../data/ef_data.json'
 
 export const DisplayContent = styled.section`
@@ -9,27 +10,58 @@ export const DisplayContent = styled.section`
 `
 
 export default class App extends Component {
+  state = {
+    festivals: festData
+  }
+
+  toggleBookmark = id => {
+    console.log(id)
+    const { festivals } = this.state
+    const index = festivals.findIndex(f => f.festId === id)
+    const festival = festivals[index]
+    this.setState({
+      festivals: [
+        ...festivals.slice(0, index),
+        {
+          ...festival,
+          isBookmarked:
+            festival.isBookmarked == null ? true : !festival.isBookmarked
+        },
+        ...festivals.slice(index + 1)
+      ]
+    })
+  }
+
   render() {
     return <DisplayContent>{this.createFestList()}</DisplayContent>
   }
 
   createFestList() {
-    const festivalsArr = festData.festivals
-    return festivalsArr.map((festival, index) => {
-      return this.renderSingleFest(festival, index)
-    })
+    return this.state.festivals.map(this.renderSingleFest)
   }
 
-  renderSingleFest(festival, index) {
+  renderSingleFest = festival => {
+    const {
+      festId,
+      festName,
+      festStartDate,
+      festEndDate,
+      festCountry,
+      festCity,
+      isBookmarked
+    } = festival
+
     return (
       <Fest
-        key={festival.festId + index}
-        festId={festival.festId}
-        festName={festival.festName}
-        festStartDate={festival.festStartDate}
-        festEndDate={festival.festEndDate}
-        festCountry={festival.festCountry}
-        festCity={festival.festCity}
+        key={festId}
+        festId={festId}
+        festName={festName}
+        festStartDate={festStartDate}
+        festEndDate={festEndDate}
+        festCountry={festCountry}
+        festCity={festCity}
+        isBookmarked={isBookmarked}
+        toggleBookmark={() => this.toggleBookmark(festId)}
       />
     )
   }
