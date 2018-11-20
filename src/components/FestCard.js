@@ -54,7 +54,6 @@ export const StarSmall = styled.div`
 export default class FestCard extends Component {
   render() {
     const {
-      festId,
       festName,
       festStartDate,
       festEndDate,
@@ -64,7 +63,10 @@ export default class FestCard extends Component {
     return (
       <Wrapper>
         <FestDate>
-          {festStartDate} – {festEndDate}
+          {' '}
+          {festEndDate === ''
+            ? festStartDate
+            : festStartDate + '–' + festEndDate}
         </FestDate>
         <FestName>{festName}</FestName>
         <FestLocation>
