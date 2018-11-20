@@ -1,15 +1,13 @@
 import React from 'react'
 
 import { storiesOf } from '@storybook/react'
-import { number, text, boolean } from '@storybook/addon-knobs'
+import { number, text } from '@storybook/addon-knobs'
 
-import FestCard from '../components/FestCard'
+import Fest from '../components/Fest'
 
-import StyleBox from './StyleBox'
-
-storiesOf('FestCard', module).add('default', () => (
+storiesOf('Fest', module).add('Festival list item', () => (
   <React.Fragment>
-    <FestCard
+    <Fest
       festId={number('festival id', 12345)}
       festName={text('festival name', 'Festivalname')}
       festStartDate={text('festival start date', '01.12.2018')}

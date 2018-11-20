@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-
-import FestCard from './FestCard'
+import Fest from './Fest'
 import festData from '../data/ef_data.json'
 
 export const DisplayContent = styled.section`
@@ -11,19 +10,19 @@ export const DisplayContent = styled.section`
 
 export default class App extends Component {
   render() {
-    return <DisplayContent>{this.createFestivalListItems()}</DisplayContent>
+    return <DisplayContent>{this.createFestList()}</DisplayContent>
   }
 
-  createFestivalListItems() {
+  createFestList() {
     const festivalsArr = festData.festivals
     return festivalsArr.map((festival, index) => {
-      return this.renderSingleFestCard(festival, index)
+      return this.renderSingleFest(festival, index)
     })
   }
 
-  renderSingleFestCard(festival, index) {
+  renderSingleFest(festival, index) {
     return (
-      <FestCard
+      <Fest
         key={festival.festId + index}
         festId={festival.festId}
         festName={festival.festName}
