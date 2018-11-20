@@ -17,21 +17,31 @@ export default class App extends Component {
 
   createFestList() {
     const festivalsArr = festData.festivals
-    return festivalsArr.map((festival, index) => {
-      return this.renderSingleFest(festival, index)
+    return festivalsArr.map(festival => {
+      return this.renderSingleFest(festival)
     })
   }
 
-  renderSingleFest(festival, index) {
+  renderSingleFest(festival) {
+    const {
+      festId,
+      festName,
+      festStartDate,
+      festEndDate,
+      festCountry,
+      festCity,
+      isBookmarked
+    } = festival
     return (
       <Fest
-        key={uid()}
-        festId={festival.festId}
-        festName={festival.festName}
-        festStartDate={festival.festStartDate}
-        festEndDate={festival.festEndDate}
-        festCountry={festival.festCountry}
-        festCity={festival.festCity}
+        key={festId}
+        festId={festId}
+        festName={festName}
+        festStartDate={festStartDate}
+        festEndDate={festEndDate}
+        festCountry={festCountry}
+        festCity={festCity}
+        isBookmarked={isBookmarked}
       />
     )
   }

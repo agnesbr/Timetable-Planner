@@ -60,7 +60,8 @@ export default class Fest extends Component {
       festStartDate,
       festEndDate,
       festCountry,
-      festCity
+      festCity,
+      isBookmarked
     } = this.props
     return (
       <Wrapper>
@@ -75,7 +76,7 @@ export default class Fest extends Component {
           <StarSmall> {starIcon}</StarSmall>
           {festCity}
         </FestLocation>
-        <Bookmark />
+        <Bookmark isBookmarked={isBookmarked} />
       </Wrapper>
     )
   }

@@ -21,7 +21,7 @@ storiesOf('Fest', module).add('Festival list item', () => (
 
 storiesOf('Bookmark', module).add('Bookamrk Icon', () => (
   <React.Fragment>
-    <Bookmark isBookmarked={boolean('Icon 1: isBookmarked', false)} />
-    <Bookmark isBookmarked={boolean('Icon 2: isBookmarked', true)} />
+    <Bookmark isBookmarked={boolean('Icon 1: isBookmarked', true)} />
+    <Bookmark isBookmarked={boolean('Icon 2: isBookmarked', false)} />
   </React.Fragment>
 ))
