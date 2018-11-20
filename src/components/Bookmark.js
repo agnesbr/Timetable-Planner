@@ -33,7 +33,7 @@ export default class Bookmark extends Component {
     return (
       <Wrapper
         className={isBookmarked ? 'bookmark-active' : null}
-        onClick={this.onToggle}
+        onClick={onToggle}
       >
         {starIcon}
       </Wrapper>

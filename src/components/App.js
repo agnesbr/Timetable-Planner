@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import Fest from './Fest'
-import uid from 'uid'
 
 import festData from '../data/ef_data.json'
 
@@ -11,18 +10,37 @@ export const DisplayContent = styled.section`
 `
 
 export default class App extends Component {
+  state = {
+    festivals: festData
+  }
+
+  toggleBookmark = id => {
+    console.log(id)
+    const { festivals } = this.state
+    const index = festivals.findIndex(f => f.festId === id)
+    const festival = festivals[index]
+    this.setState({
+      festivals: [
+        ...festivals.slice(0, index),
+        {
+          ...festival,
+          isBookmarked:
+            festival.isBookmarked == null ? true : !festival.isBookmarked
+        },
+        ...festivals.slice(index + 1)
+      ]
+    })
+  }
+
   render() {
     return <DisplayContent>{this.createFestList()}</DisplayContent>
   }
 
   createFestList() {
-    const festivalsArr = festData.festivals
-    return festivalsArr.map(festival => {
-      return this.renderSingleFest(festival)
-    })
+    return this.state.festivals.map(this.renderSingleFest)
   }
 
-  renderSingleFest(festival) {
+  renderSingleFest = festival => {
     const {
       festId,
       festName,
@@ -32,6 +50,7 @@ export default class App extends Component {
       festCity,
       isBookmarked
     } = festival
+
     return (
       <Fest
         key={festId}
@@ -42,6 +61,7 @@ export default class App extends Component {
         festCountry={festCountry}
         festCity={festCity}
         isBookmarked={isBookmarked}
+        toggleBookmark={() => this.toggleBookmark(festId)}
       />
     )
   }
