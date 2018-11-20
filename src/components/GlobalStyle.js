@@ -6,30 +6,29 @@ export default createGlobalStyle`
   box-sizing: border-box;
 }
 
-body {
+html {
+  height: 100%; 
+}
+
+body, #root {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   font-family: DINWeb-Cond, sans-serif;
-  height: 100vh;
+  height: 100%; 
   margin: 0;
   padding: 0;
-  width: 100vw;
-}
-
-  body::after {
-  content: "";
+  position: relative;
   background-attachment: fixed;
   background-image: url('../../images/BG_EF.png');
   background-repeat: repeat;
   bottom: 0;
   left: 0;
-  min-height: 100vh;
-  opacity: 0.2;
   position: absolute;
   right: 0;
   top: 0;
-  z-index: -1;   
+  z-index: -1;
 }
+
 
 
 @font-face {

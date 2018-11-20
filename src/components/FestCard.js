@@ -6,7 +6,7 @@ import { faStar } from '@fortawesome/free-solid-svg-icons'
 const starIcon = <FontAwesomeIcon className="filter-button" icon={faStar} />
 
 export const Wrapper = styled.section`
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.95);
   border-bottom: 2px solid #0e2a3f;
   display: grid;
   grid-auto-flow: row;
@@ -66,7 +66,7 @@ export default class FestCard extends Component {
           {' '}
           {festEndDate === ''
             ? festStartDate
-            : festStartDate + '–' + festEndDate}
+            : festStartDate + ' – ' + festEndDate}
         </FestDate>
         <FestName>{festName}</FestName>
         <FestLocation>
