@@ -37,16 +37,17 @@ export const NavBarBottomWrapper = styled.nav`
 
 export default class App extends Component {
   state = {
-    isBookmarked: [{ festId: '65000145456' }],
+    //isBookmarked: [{ festId: '65000145456' }],
     festivals: this.addInitialKeys(),
     isDefault: true
     // this.load() || this. addInitialKeys()
   }
 
   addInitialKeys() {
+    const isBookmarked = [{ festId: '65000145456' }, { festId: '23345adfb' }]
     const newFestData = festData.map(festival => {
-      return festival.isBookmarked
-        ? festival
+      return isBookmarked.find(el => el.festId === festival.festId)
+        ? { ...festival, isBookmarked: true }
         : { ...festival, isBookmarked: false }
     })
     return newFestData
