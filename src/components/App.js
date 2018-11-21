@@ -1,8 +1,17 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import Fest from './Fest'
+import NavBarBottomIcon from './NavBarBottomIcon'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faStar, faAlignCenter } from '@fortawesome/free-solid-svg-icons'
+import uid from 'uid'
 
 import festData from '../data/ef_data.json'
+
+const starIcon = <FontAwesomeIcon className="filter-button" icon={faStar} />
+const listIcon = (
+  <FontAwesomeIcon className="filter-button" icon={faAlignCenter} />
+)
 
 export const Wrapper = styled.section`
   display: grid;
@@ -15,42 +24,47 @@ export const Wrapper = styled.section`
 export const DisplayContent = styled.section`
   display: flex;
   flex-direction: column;
+  overflow-y: scroll;
+`
+export const NavBarBottomWrapper = styled.nav`
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  background: rgba(11, 22, 31, 0.8);
+  font-size: 1.5em;
+  color: var(--teal);
 `
 
 export default class App extends Component {
   state = {
     festivals: festData,
-    isBookmarked:
-      this.props.isBookmarked == null ? true : this.props.isBookmarked
-
-    // festivals: this.load()
+    isDefault: true
   }
 
   toggleBookmark = id => {
     const { festivals } = this.state
     const index = festivals.findIndex(f => f.festId === id)
     const festival = festivals[index]
+    const newFest = [
+      ...festivals.slice(0, index),
+      { ...festival, isBookmarked: !festival.isBookmarked },
+      ...festivals.slice(index + 1)
+    ]
     this.setState({
-      festivals: [
-        ...festivals.slice(0, index),
-        {
-          ...festival,
-          isBookmarked:
-            festival.isBookmarked == null ? true : !festival.isBookmarked
-        },
-        ...festivals.slice(index + 1)
-      ]
+      festivals: newFest
     })
   }
 
   showBookmarkedFestivals() {
-    return this.state.festivals
-      .filter(festival => !festival.isBookmarked)
+    const { festivals } = this.state
+    return festivals
+      .filter(festival => festival.isBookmarked)
       .map(this.renderSingleFest)
   }
 
   createFestList() {
-    return this.state.festivals.map(this.renderSingleFest)
+    const { festivals } = this.state
+    return festivals.map(this.renderSingleFest)
   }
 
   renderSingleFest = festival => {
@@ -66,7 +80,7 @@ export default class App extends Component {
 
     return (
       <Fest
-        key={festId}
+        key={uid()}
         festId={festId}
         festName={festName}
         festStartDate={festStartDate}
@@ -74,33 +88,34 @@ export default class App extends Component {
         festCountry={festCountry}
         festCity={festCity}
         isBookmarked={isBookmarked}
-        toggleBookmark={() => this.toggleBookmark(festId)}
+        toggleBookmark={this.toggleBookmark}
       />
     )
   }
 
-  render() {
-    //this.save()
+  handleToggleButtonBookmarked = () => {
+    this.setState({
+      isDefault: !this.state.isDefault
+    })
+  }
 
+  render() {
     return (
       <Wrapper>
-        <DisplayContent>{this.createFestList()}</DisplayContent>
+        <DisplayContent>
+          {this.state.isDefault
+            ? this.createFestList()
+            : this.showBookmarkedFestivals()}
+        </DisplayContent>
+        <NavBarBottomWrapper>
+          <NavBarBottomIcon
+            defaultIcon={starIcon}
+            activeIcon={listIcon}
+            onClick={this.handleToggleButtonBookmarked}
+            isDefault={this.state.isDefault}
+          />
+        </NavBarBottomWrapper>
       </Wrapper>
     )
   }
-
-  // save() {
-  //   localStorage.setItem(
-  //     'TimeTable--isBookmarked',
-  //     JSON.stringify(this.state.isBookmarked)
-  //   )
-  // }
-
-  // load() {
-  //   try {
-  //     return JSON.parse(localStorage.getItem('TimeTable--isBookmarked')) || []
-  //   } catch (err) {
-  //     return []
-  //   }
-  // }
 }

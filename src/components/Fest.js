@@ -14,7 +14,7 @@ export const Wrapper = styled.section`
   grid-auto-flow: row;
   grid-auto-rows: auto;
   grid-gap: 5px;
-  grid-template-columns: 1fr 30px;
+  grid-template-columns: 1fr 60px;
   padding: 20px 15px;
   width: 100%;
 `
@@ -62,7 +62,8 @@ export default class Fest extends Component {
       festCountry,
       festCity,
       isBookmarked,
-      toggleBookmark
+      toggleBookmark,
+      festId
     } = this.props
     return (
       <Wrapper>
@@ -77,7 +78,11 @@ export default class Fest extends Component {
           <StarSmall> {starIcon}</StarSmall>
           {festCity}
         </FestLocation>
-        <Bookmark onToggle={toggleBookmark} isBookmarked={isBookmarked} />
+        <Bookmark
+          onToggle={toggleBookmark}
+          isBookmarked={isBookmarked}
+          festId={festId}
+        />
       </Wrapper>
     )
   }

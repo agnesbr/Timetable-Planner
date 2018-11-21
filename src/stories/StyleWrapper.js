@@ -9,13 +9,3 @@ export const StyleWrapper = styled.section`
   padding: 20px 15px;
   width: 100%;
 `
-
-// export default props => {
-//   const { children } = props
-
-//   } = shortcuts
-//   return (
-//     <div  >
-//       {children}
-//     </div>
-//   )

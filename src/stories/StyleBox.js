@@ -7,7 +7,7 @@ export default props => {
     h: height,
     p: padding,
     m: margin,
-    bg: background,
+    bg: background
   } = shortcuts
   return (
     <div style={{ width, height, padding, margin, background, ...style }}>
