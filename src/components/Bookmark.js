@@ -7,6 +7,7 @@ const starIcon = <FontAwesomeIcon className="filter-button" icon={faStar} />
 
 const Wrapper = styled.div`
   align-items: center;
+  align-self: center;
   background: none;
   border: none;
   color: var(--dark);
@@ -16,10 +17,9 @@ const Wrapper = styled.div`
   grid-row: 2;
   height: 24px;
   justify-content: center;
+  justify-self: center;
   padding: 0;
   width: 24px;
-  align-self: center;
-  justify-self: center;
 
   &.bookmark-active {
     color: var(--red);

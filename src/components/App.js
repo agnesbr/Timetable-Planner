@@ -4,6 +4,14 @@ import Fest from './Fest'
 
 import festData from '../data/ef_data.json'
 
+export const Wrapper = styled.section`
+  display: grid;
+  grid-auto-flow: row;
+  grid-template-rows: auto 50px;
+  grid-template-columns: 1fr;
+  height: 100vh;
+`
+
 export const DisplayContent = styled.section`
   display: flex;
   flex-direction: column;
@@ -11,11 +19,14 @@ export const DisplayContent = styled.section`
 
 export default class App extends Component {
   state = {
-    festivals: festData
+    festivals: festData,
+    isBookmarked:
+      this.props.isBookmarked == null ? true : this.props.isBookmarked
+
+    // festivals: this.load()
   }
 
   toggleBookmark = id => {
-    console.log(id)
     const { festivals } = this.state
     const index = festivals.findIndex(f => f.festId === id)
     const festival = festivals[index]
@@ -32,8 +43,10 @@ export default class App extends Component {
     })
   }
 
-  render() {
-    return <DisplayContent>{this.createFestList()}</DisplayContent>
+  showBookmarkedFestivals() {
+    return this.state.festivals
+      .filter(festival => !festival.isBookmarked)
+      .map(this.renderSingleFest)
   }
 
   createFestList() {
@@ -65,4 +78,29 @@ export default class App extends Component {
       />
     )
   }
+
+  render() {
+    //this.save()
+
+    return (
+      <Wrapper>
+        <DisplayContent>{this.createFestList()}</DisplayContent>
+      </Wrapper>
+    )
+  }
+
+  // save() {
+  //   localStorage.setItem(
+  //     'TimeTable--isBookmarked',
+  //     JSON.stringify(this.state.isBookmarked)
+  //   )
+  // }
+
+  // load() {
+  //   try {
+  //     return JSON.parse(localStorage.getItem('TimeTable--isBookmarked')) || []
+  //   } catch (err) {
+  //     return []
+  //   }
+  // }
 }

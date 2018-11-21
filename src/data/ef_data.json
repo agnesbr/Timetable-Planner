@@ -6,6 +6,7 @@
     "festEndDate": "23.10.2019",
     "festCountry": "Musterland",
     "festCity": "Musterstadt",
+    "isBookmarked": false,
     "timeTable": [
       {
         "areaName": "Area Name",
@@ -23,6 +24,7 @@
     "festEndDate": "15.04.2018",
     "festCountry": "United States",
     "festCity": "Indio",
+    "isBookmarked": false,
     "timeTable": [
       {
         "areaName": "COACHELLA STAGE",
@@ -138,6 +140,7 @@
     "festEndDate": "22.07.2018",
     "festCountry": "Belgium",
     "festCity": "Boom",
+    "isBookmarked": false,
     "timeTable": [
       {
         "actStartDate": "01:55 20.07.2018",
@@ -253,6 +256,7 @@
     "festEndDate": "22.07.2019",
     "festCountry": "Germany",
     "festCity": "Gräfchenshain",
+    "isBookmarked": false,
     "timeTable": [
       {
         "areaName": "Meltselektor",

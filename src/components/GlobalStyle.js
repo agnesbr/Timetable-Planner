@@ -13,17 +13,17 @@ html {
 body, #root {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
-  font-family: DINWeb-Cond, sans-serif;
-  height: 100%; 
-  margin: 0;
-  padding: 0;
-  position: relative;
   background-attachment: fixed;
   background-image: url('../../images/BG_EF.png');
   background-repeat: repeat;
   bottom: 0;
+  font-family: DINWeb-Cond, sans-serif;
+  height: 100%; 
   left: 0;
+  margin: 0;
+  padding: 0;
   position: absolute;
+  position: relative;
   right: 0;
   top: 0;
   z-index: -1;
@@ -70,7 +70,6 @@ body, #root {
   font-family: DINWeb-CondBold;
   src: url("../../webfonts/DINWeb-CondBold.woff") format("woff");
 }
-
 
 :root {
   --dark: #0B161F;

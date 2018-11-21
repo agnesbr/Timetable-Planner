@@ -1,10 +1,11 @@
 import React from 'react'
-
 import { storiesOf } from '@storybook/react'
 import { number, text, boolean } from '@storybook/addon-knobs'
 
 import Fest from '../components/Fest'
 import Bookmark from '../components/Bookmark'
+
+import { StyleWrapper } from './StyleWrapper'
 
 storiesOf('Fest', module).add('Festival list item', () => (
   <React.Fragment>
@@ -20,8 +21,8 @@ storiesOf('Fest', module).add('Festival list item', () => (
 ))
 
 storiesOf('Bookmark', module).add('Bookamrk Icon', () => (
-  <React.Fragment>
+  <StyleWrapper>
     <Bookmark isBookmarked={boolean('Icon 1: isBookmarked', true)} />
     <Bookmark isBookmarked={boolean('Icon 2: isBookmarked', false)} />
-  </React.Fragment>
+  </StyleWrapper>
 ))
