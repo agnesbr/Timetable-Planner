@@ -37,8 +37,19 @@ export const NavBarBottomWrapper = styled.nav`
 
 export default class App extends Component {
   state = {
-    festivals: festData,
+    isBookmarked: [{ festId: '65000145456' }],
+    festivals: this.addInitialKeys(),
     isDefault: true
+    // this.load() || this. addInitialKeys()
+  }
+
+  addInitialKeys() {
+    const newFestData = festData.map(festival => {
+      return festival.isBookmarked
+        ? festival
+        : { ...festival, isBookmarked: false }
+    })
+    return newFestData
   }
 
   toggleBookmark = id => {
@@ -100,6 +111,7 @@ export default class App extends Component {
   }
 
   render() {
+    // this.save()
     return (
       <Wrapper>
         <DisplayContent>
@@ -118,4 +130,19 @@ export default class App extends Component {
       </Wrapper>
     )
   }
+
+  //  save() {
+  //   localStorage.setItem(
+  //     'TimeTable--isBookmarked',
+  //     JSON.stringify(this.state.isBookmarked)
+  //   )
+  // }
+
+  // load() {
+  //   try {
+  //     return JSON.parse(localStorage.getItem('TimeTable--isBookmarked')) || []
+  //   } catch (err) {
+  //     return []
+  //   }
+  // }
 }

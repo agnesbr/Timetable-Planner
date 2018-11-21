@@ -6,7 +6,6 @@
     "festEndDate": "23.10.2019",
     "festCountry": "Musterland",
     "festCity": "Musterstadt",
-    "isBookmarked": false,
     "timeTable": [
       {
         "areaName": "Area Name",
@@ -24,7 +23,6 @@
     "festEndDate": "15.04.2018",
     "festCountry": "United States",
     "festCity": "Indio",
-    "isBookmarked": false,
     "timeTable": [
       {
         "areaName": "COACHELLA STAGE",
@@ -140,7 +138,6 @@
     "festEndDate": "22.07.2018",
     "festCountry": "Belgium",
     "festCity": "Boom",
-    "isBookmarked": false,
     "timeTable": [
       {
         "actStartDate": "01:55 20.07.2018",
@@ -256,7 +253,6 @@
     "festEndDate": "22.07.2019",
     "festCountry": "Germany",
     "festCity": "Gräfchenshain",
-    "isBookmarked": false,
     "timeTable": [
       {
         "areaName": "Meltselektor",
@@ -372,7 +368,6 @@
     "festEndDate": "",
     "festCountry": "Switzerland",
     "festCity": "Zurich",
-    "isBookmarked": false,
     "timeTable": [
       {
         "areaName": "Meltselektor",
@@ -488,7 +483,6 @@
     "festEndDate": "13.04.2019",
     "festCountry": "United States",
     "festCity": "Athens",
-    "isBookmarked": false,
     "timeTable": [
       {
         "areaName": "Meltselektor",
@@ -604,7 +598,6 @@
     "festEndDate": "13.10.2019",
     "festCountry": "United States",
     "festCity": "Austin",
-    "isBookmarked": false,
     "timeTable": [
       {
         "areaName": "Meltselektor",
@@ -720,7 +713,6 @@
     "festEndDate": "08.01.2019",
     "festCountry": "Vietnam",
     "festCity": "Doung Don",
-    "isBookmarked": false,
     "timeTable": [
       {
         "areaName": "Meltselektor",
@@ -836,7 +828,6 @@
     "festEndDate": "19.05.2019",
     "festCountry": "United States ",
     "festCity": "Las Vegas",
-    "isBookmarked": false,
     "timeTable": [
       {
         "areaName": "Meltselektor",
@@ -952,7 +943,6 @@
     "festEndDate": "20.05.2018",
     "festCountry": "Netherland",
     "festCity": "Amsterdam",
-    "isBookmarked": false,
     "timeTable": [
       {
         "areaName": "Meltselektor",
@@ -1068,7 +1058,6 @@
     "festEndDate": "29.03.2019",
     "festCountry": "United States",
     "festCity": "Mismi",
-    "isBookmarked": false,
     "timeTable": [
       {
         "areaName": "Meltselektor",
