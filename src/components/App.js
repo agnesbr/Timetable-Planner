@@ -37,10 +37,11 @@ export const NavBarBottomWrapper = styled.nav`
 
 export default class App extends Component {
   state = {
-    isBookmarked: [{ festId: '65000145456' }, { festId: '23345adfb' }],
+    //isBookmarked: [{ festId: '65000145456' }, { festId: '23345adfb' }],
+    isBookmarked: this.loadFavorites(),
     festivals: this.addInitialKeys(),
     isDefault: true
-    // this.load() || this. addInitialKeys()
+    // loadFavorites() || this. addInitialKeys()
   }
 
   addInitialKeys() {
@@ -136,7 +137,7 @@ export default class App extends Component {
   }
 
   render() {
-    // this.save()
+    this.saveFavorites()
     return (
       <Wrapper>
         <DisplayContent>
@@ -156,18 +157,18 @@ export default class App extends Component {
     )
   }
 
-  //  save() {
-  //   localStorage.setItem(
-  //     'TimeTable--isBookmarked',
-  //     JSON.stringify(this.state.isBookmarked)
-  //   )
-  // }
+  saveFavorites() {
+    localStorage.setItem(
+      'TimeTable--isBookmarked',
+      JSON.stringify(this.state.isBookmarked)
+    )
+  }
 
-  // load() {
-  //   try {
-  //     return JSON.parse(localStorage.getItem('TimeTable--isBookmarked')) || []
-  //   } catch (err) {
-  //     return []
-  //   }
-  // }
+  loadFavorites() {
+    try {
+      return JSON.parse(localStorage.getItem('TimeTable--isBookmarked')) || []
+    } catch (err) {
+      return []
+    }
+  }
 }
