@@ -64,34 +64,31 @@ export default class App extends Component {
       ...festivals.slice(index + 1)
     ]
 
-    // const bookmarkedIndex = isBookmarked.findIndex(
-    //   el => el.festId === festival.festId
-    // )
+    const bookmarkedIndex = isBookmarked.findIndex(
+      el => el.festId === festival.festId
+    )
 
-    // const newIsBookmarked =
-    //   bookmarkedIndex === -1
-    //     ? this.addItemToIsBookmarked(bookmarkedIndex)
-    //     : this.deleteItemFromIsBookmarked(bookmarkedIndex)
+    const newIsBookmarked =
+      bookmarkedIndex === -1
+        ? this.addItemToIsBookmarked(index)
+        : this.deleteItemFromIsBookmarked(bookmarkedIndex)
 
     this.setState({
-      festivals: newFest
-      // isBookmarked: newIsBookmarked
+      festivals: newFest,
+      isBookmarked: newIsBookmarked
     })
   }
 
   deleteItemFromIsBookmarked = bookmarkedIndex => {
-    // return [
-    //   ...this.state.isBookmarked.slice(0, bookmarkedIndex),
-    //   ...this.state.isBookmarked.slice(bookmarkedIndex + 1)
-    // ]
+    return [
+      ...this.state.isBookmarked.slice(0, bookmarkedIndex),
+      ...this.state.isBookmarked.slice(bookmarkedIndex + 1)
+    ]
   }
 
-  addItemToIsBookmarked = bookmarkedIndex => {
-    // const { festivals, isBookmarked } = this.state
-    // const festIndex = festivals.findIndex(
-    //   festival => festival.festId === bookmarkedIndex
-    // )
-    // return [...isBookmarked, { festId: festivals[festIndex].festId }]
+  addItemToIsBookmarked = index => {
+    const { festivals, isBookmarked } = this.state
+    return [...isBookmarked, { festId: festivals[index].festId }]
   }
 
   showBookmarkedFestivals() {
