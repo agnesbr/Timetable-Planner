@@ -37,7 +37,7 @@ export const NavBarBottomWrapper = styled.nav`
 
 export default class App extends Component {
   state = {
-    //isBookmarked: [{ festId: '65000145456' }],
+    isBookmarked: [{ festId: '65000145456' }, { festId: '23345adfb' }],
     festivals: this.addInitialKeys(),
     isDefault: true
     // this.load() || this. addInitialKeys()
@@ -45,6 +45,7 @@ export default class App extends Component {
 
   addInitialKeys() {
     const isBookmarked = [{ festId: '65000145456' }, { festId: '23345adfb' }]
+
     const newFestData = festData.map(festival => {
       return isBookmarked.find(el => el.festId === festival.festId)
         ? { ...festival, isBookmarked: true }
@@ -54,7 +55,7 @@ export default class App extends Component {
   }
 
   toggleBookmark = id => {
-    const { festivals } = this.state
+    const { festivals, isBookmarked } = this.state
     const index = festivals.findIndex(f => f.festId === id)
     const festival = festivals[index]
     const newFest = [
@@ -62,9 +63,35 @@ export default class App extends Component {
       { ...festival, isBookmarked: !festival.isBookmarked },
       ...festivals.slice(index + 1)
     ]
+
+    // const bookmarkedIndex = isBookmarked.findIndex(
+    //   el => el.festId === festival.festId
+    // )
+
+    // const newIsBookmarked =
+    //   bookmarkedIndex === -1
+    //     ? this.addItemToIsBookmarked(bookmarkedIndex)
+    //     : this.deleteItemFromIsBookmarked(bookmarkedIndex)
+
     this.setState({
       festivals: newFest
+      // isBookmarked: newIsBookmarked
     })
+  }
+
+  deleteItemFromIsBookmarked = bookmarkedIndex => {
+    // return [
+    //   ...this.state.isBookmarked.slice(0, bookmarkedIndex),
+    //   ...this.state.isBookmarked.slice(bookmarkedIndex + 1)
+    // ]
+  }
+
+  addItemToIsBookmarked = bookmarkedIndex => {
+    // const { festivals, isBookmarked } = this.state
+    // const festIndex = festivals.findIndex(
+    //   festival => festival.festId === bookmarkedIndex
+    // )
+    // return [...isBookmarked, { festId: festivals[festIndex].festId }]
   }
 
   showBookmarkedFestivals() {
