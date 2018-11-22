@@ -22,9 +22,8 @@ export const Wrapper = styled.section`
 `
 
 export const DisplayContent = styled.section`
-  display: flex;
-  flex-direction: column;
-  overflow-y: scroll;
+  display: block;
+  overflow: scroll;
 `
 export const NavBarBottomWrapper = styled.nav`
   display: flex;
@@ -37,16 +36,18 @@ export const NavBarBottomWrapper = styled.nav`
 
 export default class App extends Component {
   state = {
-    //isBookmarked: [{ festId: '65000145456' }, { festId: '23345adfb' }],
-    isBookmarked: this.loadFavorites(),
-    festivals: this.addInitialKeys(),
     isDefault: true
-    // loadFavorites() || this. addInitialKeys()
   }
 
-  addInitialKeys() {
-    const isBookmarked = [{ festId: '65000145456' }, { festId: '23345adfb' }]
+  componentWillMount() {
+    const isBookmarked = this.loadFavorites()
+    this.setState({
+      festivals: this.addInitialKeys(isBookmarked),
+      isBookmarked: isBookmarked
+    })
+  }
 
+  addInitialKeys = isBookmarked => {
     const newFestData = festData.map(festival => {
       return isBookmarked.find(el => el.festId === festival.festId)
         ? { ...festival, isBookmarked: true }
@@ -57,25 +58,24 @@ export default class App extends Component {
 
   toggleBookmark = id => {
     const { festivals, isBookmarked } = this.state
-    const index = festivals.findIndex(f => f.festId === id)
-    const festival = festivals[index]
-    const newFest = [
-      ...festivals.slice(0, index),
+    const festIndex = festivals.findIndex(festival => festival.festId === id)
+    const festival = festivals[festIndex]
+    const newFestivals = [
+      ...festivals.slice(0, festIndex),
       { ...festival, isBookmarked: !festival.isBookmarked },
-      ...festivals.slice(index + 1)
+      ...festivals.slice(festIndex + 1)
     ]
 
     const bookmarkedIndex = isBookmarked.findIndex(
-      el => el.festId === festival.festId
+      bookmark => bookmark.festId === festival.festId
     )
-
     const newIsBookmarked =
       bookmarkedIndex === -1
-        ? this.addItemToIsBookmarked(index)
+        ? this.addItemToIsBookmarked(festIndex)
         : this.deleteItemFromIsBookmarked(bookmarkedIndex)
 
     this.setState({
-      festivals: newFest,
+      festivals: newFestivals,
       isBookmarked: newIsBookmarked
     })
   }
@@ -156,6 +156,16 @@ export default class App extends Component {
       </Wrapper>
     )
   }
+
+  // saveFavorites() {
+  //  const  isBookmarkedArr = this.state.festivals.filter(festival => festival.isBookmarked)
+  //  isBookmarkedArr
+  //   localStorage.setItem(
+  //     'TimeTable--isBookmarked',
+  //     JSON.stringify(banaane)
+  //     )
+  //   )
+  // }
 
   saveFavorites() {
     localStorage.setItem(
