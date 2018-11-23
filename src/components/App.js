@@ -34,7 +34,7 @@ export default class App extends Component {
   state = {
     festivals: festData,
     isBookmarked: this.loadFavorites(),
-    isDefault: true
+    iconIsDefault: true
   }
 
   isFestBookmarked(festId) {
@@ -76,10 +76,10 @@ export default class App extends Component {
 
   showBookmarkedFestivals() {
     const { festivals } = this.state
-    return festivals.map(festival =>
-      this.isFestBookmarked(festival.festId)
-        ? this.renderSingleFest(festival)
-        : null
+    return festivals.map(
+      festival =>
+        this.isFestBookmarked(festival.festId) &&
+        this.renderSingleFest(festival)
     )
   }
 
@@ -115,16 +115,16 @@ export default class App extends Component {
 
   handleToggleButtonBookmarked = () => {
     this.setState({
-      isDefault: !this.state.isDefault
+      iconIsDefault: !this.state.iconIsDefault
     })
   }
 
   render() {
     this.saveFavorites()
     return (
-      <Wrapper>
+      <Wrapper data-cy="Fest">
         <DisplayContent>
-          {this.state.isDefault
+          {this.state.iconIsDefault
             ? this.createFestList()
             : this.showBookmarkedFestivals()}
         </DisplayContent>
@@ -133,7 +133,7 @@ export default class App extends Component {
             defaultIcon={starIcon}
             activeIcon={listIcon}
             onClick={() => this.handleToggleButtonBookmarked()}
-            isDefault={this.state.isDefault}
+            iconIsDefault={this.state.iconIsDefault}
           />
         </NavBarBottom>
       </Wrapper>

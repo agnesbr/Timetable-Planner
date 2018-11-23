@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 import Bookmark from './Bookmark'
+import PropTypes from 'prop-types'
 
 const starIcon = <FontAwesomeIcon className="filter-button" icon={faStar} />
 
@@ -55,6 +56,17 @@ export const StarSmall = styled.div`
 `
 
 export default class Fest extends Component {
+  static propTypes = {
+    festId: PropTypes.string.isRequired,
+    festName: PropTypes.string.isRequired,
+    festStartDate: PropTypes.string.isRequired,
+    festEndDate: PropTypes.string.isRequired,
+    festCountry: PropTypes.string.isRequired,
+    festCity: PropTypes.string.isRequired,
+    isBookmarked: PropTypes.bool,
+    toggleBookmark: PropTypes.func
+  }
+
   render() {
     const {
       festId,

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
 
 export const WrapperIconBottom = styled.div`
   color: var(--light);
@@ -9,15 +10,22 @@ export const WrapperIconBottom = styled.div`
 `
 
 export default class NavBarBottomIcon extends Component {
+  static propTypes = {
+    // defaultIcon: PropTypes.element,
+    // activeIcon: PropTypes.element,
+    // onClick: PropTypes.func,
+    // iconIsDefault: PropTypes.bool
+  }
+
   render() {
-    const { isDefault, defaultIcon, activeIcon, onClick } = this.props
+    const { iconIsDefault, defaultIcon, activeIcon, onClick } = this.props
 
     return (
       <WrapperIconBottom
-        className={isDefault ? null : 'active'}
+        className={iconIsDefault ? null : 'active'}
         onClick={onClick}
       >
-        {isDefault ? defaultIcon : activeIcon}
+        {iconIsDefault ? defaultIcon : activeIcon}
       </WrapperIconBottom>
     )
   }

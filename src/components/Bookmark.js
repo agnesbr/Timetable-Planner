@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
+import PropTypes from 'prop-types'
 
 const starIcon = <FontAwesomeIcon className="filter-button" icon={faStar} />
 
@@ -27,6 +28,16 @@ const Wrapper = styled.div`
 `
 
 export default class Bookmark extends Component {
+  static propTypes = {
+    festId: PropTypes.string,
+    isBookmarked: PropTypes.bool,
+    toggleBookmark: PropTypes.func.isRequired
+  }
+
+  static defaultProps = {
+    placeholder: ''
+  }
+
   render() {
     const { festId, isBookmarked, toggleBookmark } = this.props
 

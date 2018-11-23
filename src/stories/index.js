@@ -40,16 +40,16 @@ storiesOf('Bookmark', module).add('Bookamrk Icon', () => (
 
 storiesOf('NavBarBottomIcon', module).add('Icon', () => (
   <NavBarBottom>
-    {/* <NavBarBottomIcon
-      defaultIcon={starIcon}
-      activeIcon={listIcon}
-      onClick={action('onClick')}
-      isDefault={boolean('Icon 1: isDefault', true)}
-    /> */}
     <NavBarBottomIcon
       defaultIcon={starIcon}
       activeIcon={listIcon}
-      onClick={action('onClick')}
+      // onClick={action('onClick')}
+      isDefault={boolean('Icon 1: isDefault', true)}
+    />
+    <NavBarBottomIcon
+      defaultIcon={starIcon}
+      activeIcon={listIcon}
+      // onClick={action('onClick')}
       isDefault={boolean('Icon 2: isDefault', false)}
     />
   </NavBarBottom>
