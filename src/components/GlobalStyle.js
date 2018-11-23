@@ -11,18 +11,14 @@ html {
 }
 
 body, #root {
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
   background-attachment: fixed;
   background-image: url('../../images/BG_EF.png');
   background-repeat: repeat;
   bottom: 0;
-  font-family: DINWeb-Cond, sans-serif;
   height: 100%; 
   left: 0;
   margin: 0;
   padding: 0;
-  position: absolute;
   position: relative;
   right: 0;
   top: 0;

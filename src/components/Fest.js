@@ -27,7 +27,8 @@ export const FestDate = styled.time`
   grid-column: 1;
   grid-row: 1/2;
 `
-export const FestName = styled.time`
+
+export const FestName = styled.div`
   align-self: start;
   color: var(--dark);
   font-family: FestivoLettersNo1;
@@ -56,18 +57,18 @@ export const StarSmall = styled.div`
 export default class Fest extends Component {
   render() {
     const {
+      festId,
       festName,
       festStartDate,
       festEndDate,
       festCountry,
       festCity,
       isBookmarked,
-      toggleBookmark,
-      festId
+      toggleBookmark
     } = this.props
     return (
       <Wrapper>
-        <FestDate>
+        <FestDate dateTime={festEndDate}>
           {festEndDate === ''
             ? festStartDate
             : festStartDate + ' – ' + festEndDate}
@@ -79,9 +80,9 @@ export default class Fest extends Component {
           {festCity}
         </FestLocation>
         <Bookmark
-          onToggle={toggleBookmark}
-          isBookmarked={isBookmarked}
           festId={festId}
+          isBookmarked={isBookmarked}
+          toggleBookmark={toggleBookmark}
         />
       </Wrapper>
     )

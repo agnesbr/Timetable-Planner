@@ -1,7 +1,6 @@
-import React, { Component } from 'react'
 import styled from 'styled-components'
 
-export const NavBarBottomWrapper = styled.nav`
+export default styled.nav`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -9,9 +8,3 @@ export const NavBarBottomWrapper = styled.nav`
   font-size: 1.5em;
   color: var(--teal);
 `
-
-export default class NavBarBottom extends Component {
-  render() {
-    return <NavBarBottomWrapper />
-  }
-}

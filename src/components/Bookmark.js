@@ -28,12 +28,12 @@ const Wrapper = styled.div`
 
 export default class Bookmark extends Component {
   render() {
-    const { isBookmarked, onToggle, festId } = this.props
+    const { festId, isBookmarked, toggleBookmark } = this.props
 
     return (
       <Wrapper
         className={isBookmarked ? 'bookmark-active' : null}
-        onClick={() => onToggle(festId)}
+        onClick={() => toggleBookmark(festId)}
       >
         {starIcon}
       </Wrapper>
