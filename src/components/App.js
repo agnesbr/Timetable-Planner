@@ -122,8 +122,8 @@ export default class App extends Component {
   render() {
     this.saveFavorites()
     return (
-      <Wrapper data-cy="Fest">
-        <DisplayContent>
+      <Wrapper>
+        <DisplayContent data-cy="FestList">
           {this.state.iconIsDefault
             ? this.createFestList()
             : this.showBookmarkedFestivals()}

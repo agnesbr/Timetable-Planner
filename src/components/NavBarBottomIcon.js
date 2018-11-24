@@ -11,10 +11,10 @@ export const WrapperIconBottom = styled.div`
 
 export default class NavBarBottomIcon extends Component {
   static propTypes = {
-    // defaultIcon: PropTypes.element,
-    // activeIcon: PropTypes.element,
-    // onClick: PropTypes.func,
-    // iconIsDefault: PropTypes.bool
+    defaultIcon: PropTypes.element,
+    activeIcon: PropTypes.element,
+    onClick: PropTypes.func,
+    iconIsDefault: PropTypes.bool
   }
 
   render() {
@@ -22,6 +22,7 @@ export default class NavBarBottomIcon extends Component {
 
     return (
       <WrapperIconBottom
+        data-cy="NavBarBottomIcon"
         className={iconIsDefault ? null : 'active'}
         onClick={onClick}
       >

@@ -44,13 +44,13 @@ storiesOf('NavBarBottomIcon', module).add('Icon', () => (
       defaultIcon={starIcon}
       activeIcon={listIcon}
       // onClick={action('onClick')}
-      isDefault={boolean('Icon 1: isDefault', true)}
+      iconIsDefault={boolean('Icon 1: isDefault', true)}
     />
     <NavBarBottomIcon
       defaultIcon={starIcon}
       activeIcon={listIcon}
       // onClick={action('onClick')}
-      isDefault={boolean('Icon 2: isDefault', false)}
+      iconIsDefault={boolean('Icon 2: isDefault', false)}
     />
   </NavBarBottom>
 ))
