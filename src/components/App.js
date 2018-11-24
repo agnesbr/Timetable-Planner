@@ -4,6 +4,8 @@ import styled from 'styled-components'
 import Fest from './Fest'
 import NavBarBottomIcon from './NavBarBottomIcon'
 import NavBarBottom from '../components/NavBarBottom'
+import NavBarTop from '../components/NavBarTop'
+import InputSearch from '../components/InputSearch'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar, faAlignCenter } from '@fortawesome/free-solid-svg-icons'
@@ -20,7 +22,7 @@ const listIcon = (
 export const Wrapper = styled.section`
   display: grid;
   grid-auto-flow: row;
-  grid-template-rows: auto 50px;
+  grid-template-rows: 120px auto 50px;
   grid-template-columns: 1fr;
   height: 100vh;
 `
@@ -34,7 +36,8 @@ export default class App extends Component {
   state = {
     festivals: festData,
     isBookmarked: this.loadFavorites(),
-    iconIsDefault: true
+    iconIsDefault: true,
+    search: ''
   }
 
   isFestBookmarked(festId) {
@@ -83,9 +86,22 @@ export default class App extends Component {
     )
   }
 
+  findFest = inputValue => {
+    this.setState({
+      search: inputValue
+    })
+  }
+
   createFestList() {
     const { festivals } = this.state
-    return festivals.map(this.renderSingleFest)
+    const filteredFestivals = festivals.filter(festival => {
+      return (
+        festival.festName
+          .toLowerCase()
+          .indexOf(this.state.search.toLowerCase()) !== -1
+      )
+    })
+    return filteredFestivals.map(this.renderSingleFest)
   }
 
   renderSingleFest = festival => {
@@ -121,8 +137,12 @@ export default class App extends Component {
 
   render() {
     this.saveFavorites()
+
     return (
       <Wrapper>
+        <NavBarTop>
+          <InputSearch onEnter={this.findFest} />
+        </NavBarTop>
         <DisplayContent data-cy="FestList">
           {this.state.iconIsDefault
             ? this.createFestList()

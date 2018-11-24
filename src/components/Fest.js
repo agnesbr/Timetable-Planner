@@ -57,7 +57,7 @@ export const StarSmall = styled.div`
 
 export default class Fest extends Component {
   static propTypes = {
-    festId: PropTypes.string.isRequired,
+    festId: PropTypes.number.isRequired,
     festName: PropTypes.string.isRequired,
     festStartDate: PropTypes.string.isRequired,
     festEndDate: PropTypes.string.isRequired,

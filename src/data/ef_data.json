@@ -1,6 +1,6 @@
 [
   {
-    "festId": "1111",
+    "festId": 1111,
     "festName": "FestName",
     "festStartDate": "13.10.2019",
     "festEndDate": "23.10.2019",
@@ -17,7 +17,7 @@
     ]
   },
   {
-    "festId": "2222",
+    "festId": 2222,
     "festName": "Coachella Valley Music and Arts Festival - Week1",
     "festStartDate": "13.04.2018",
     "festEndDate": "15.04.2018",
@@ -132,7 +132,7 @@
     ]
   },
   {
-    "festId": "3333",
+    "festId": 3333,
     "festName": "Tomorrowland",
     "festStartDate": "20.07.2018",
     "festEndDate": "22.07.2018",
@@ -247,7 +247,7 @@
     ]
   },
   {
-    "festId": "4444",
+    "festId": 4444,
     "festName": "Melt",
     "festStartDate": "19.07.2019",
     "festEndDate": "22.07.2019",
@@ -362,7 +362,7 @@
     ]
   },
   {
-    "festId": "5555",
+    "festId": 5555,
     "festName": "Streetparade",
     "festStartDate": "10.08.2019",
     "festEndDate": "",
@@ -477,7 +477,7 @@
     ]
   },
   {
-    "festId": "66666",
+    "festId": 66666,
     "festName": "#FEST",
     "festStartDate": "12.04.2019",
     "festEndDate": "13.04.2019",
@@ -592,7 +592,7 @@
     ]
   },
   {
-    "festId": "77777",
+    "festId": 77777,
     "festName": "Austin City Limits - Weekend 2",
     "festStartDate": "11.10.2019",
     "festEndDate": "13.10.2019",
@@ -707,7 +707,7 @@
     ]
   },
   {
-    "festId": "88888",
+    "festId": 88888,
     "festName": "Epizode",
     "festStartDate": "28.12.2018",
     "festEndDate": "08.01.2019",
@@ -822,7 +822,7 @@
     ]
   },
   {
-    "festId": "9999",
+    "festId": 9999,
     "festName": "Electric Daisy Carnival - Las Vegas",
     "festStartDate": "17.05.2019",
     "festEndDate": "19.05.2019",
@@ -937,7 +937,7 @@
     ]
   },
   {
-    "festId": "34567364538",
+    "festId": 34567364538,
     "festName": "Thuishaven - Giegling Weekender",
     "festStartDate": "19.05.2018",
     "festEndDate": "20.05.2018",
@@ -1052,7 +1052,7 @@
     ]
   },
   {
-    "festId": "65000145456",
+    "festId": 65000145456,
     "festName": "Ultra Music Festival - Miami",
     "festStartDate": "26.03.2019",
     "festEndDate": "29.03.2019",

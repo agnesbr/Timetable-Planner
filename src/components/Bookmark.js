@@ -29,13 +29,9 @@ const Wrapper = styled.div`
 
 export default class Bookmark extends Component {
   static propTypes = {
-    festId: PropTypes.string,
+    festId: PropTypes.number,
     isBookmarked: PropTypes.bool,
     toggleBookmark: PropTypes.func.isRequired
-  }
-
-  static defaultProps = {
-    placeholder: ''
   }
 
   render() {
