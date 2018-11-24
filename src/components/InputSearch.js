@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
+import { any } from 'bluebird'
 
 export const InputWrapper = styled.div`
   position: relative;
@@ -48,23 +49,18 @@ export default class InputSearch extends Component {
   //   }
   // }
 
-  handleKeyUp = event => {
-    const input = event.target
-    if (event.key === 'Enter') {
-      this.props.onEnter(input.value)
-      input.focus()
-    }
-  }
-
   render() {
-    const { onEnter } = this.props
+    const { updateSearch, stateSearch } = this.props
     return (
       <InputWrapper>
         <InputSearchEl
           data-cy="InputSearch"
-          onKeyUp={this.handleKeyUp}
+          // onKeyUp={this.handleKeyUp}
+          // onChange={this.handleKeyUp}
           placeholder="Search"
           type="text"
+          onChange={stateSearch}
+          value={updateSearch}
         />
         <InputImg />
       </InputWrapper>
