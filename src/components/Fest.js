@@ -15,7 +15,7 @@ export const Wrapper = styled.section`
   grid-auto-flow: row;
   grid-auto-rows: auto;
   grid-gap: 5px;
-  grid-template-columns: 1fr 60px;
+  grid-template-columns: 1fr 40px;
   padding: 20px 15px;
   width: 100%;
 `
@@ -79,13 +79,13 @@ export default class Fest extends Component {
       toggleBookmark
     } = this.props
     return (
-      <Wrapper>
+      <Wrapper data-cy-1="festEl">
         <FestDate dateTime={festEndDate}>
           {festEndDate === ''
             ? festStartDate
             : festStartDate + ' – ' + festEndDate}
         </FestDate>
-        <FestName>{festName}</FestName>
+        <FestName data-cy-1="festName">{festName}</FestName>
         <FestLocation>
           {festCountry}
           <StarSmall> {starIcon}</StarSmall>

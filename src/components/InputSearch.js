@@ -1,66 +1,59 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import { any } from 'bluebird'
+import PropTypes from 'prop-types'
 
 export const InputWrapper = styled.div`
   position: relative;
   width: 100%;
 `
-
 export const InputSearchEl = styled.input`
-  -webkit-transition: all 0.3s ease-in-out;
-  -moz-transition: all 0.3s ease-in-out;
-  -ms-transition: all 0.3s ease-in-out;
-  -o-transition: all 0.3s ease-in-out;
-  outline: none;
-  margin: 5px 1px 3px 0px;
-  border: 1px solid #dddddd;
-  font-size: 0.8em;
   border-radius: 10px;
-  width: 100%;
+  border: 1px solid #dddddd;
+  border: none;
   font-family: FestivoLettersNo1;
+  font-size: 0.8em;
+  margin: 5px 1px 3px 0px;
   outline: none;
-  padding: 10px 40px 8px 10px;
+  padding: 10px 50px 8px 10px;
+  width: 100%;
 
-  input:focus {
-    padding: 3px 3px 3px 3px;
-    box-shadow: 0 0 5px rgba(81, 203, 238, 1);
-    border: 10px solid rgba(81, 203, 238, 1);
+  &:focus {
+    border: 1px solid var(--red);
+    box-shadow: 0 0 8px var(--red);
   }
 `
 
 export const InputImg = styled.div`
+  background-image: url('../../images/search_icon.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  bottom: 15px;
+  height: 16px;
   position: absolute;
-  background-color: yellow;
-  bottom: 7px;
-  right: 7px;
-  width: 24px;
-  height: 24px;
-  z-index: 1;
-  background-image: url('../../images/search-icon.png');
+  right: 22px;
+  width: 16px;
 `
 
 export default class InputSearch extends Component {
-  // handleKeyUp = event => {
-  //   const input = event.target
-  //   if (event.key === 'Enter') {
-  //     this.props.onEnter(input.value)
-  //     input.focus()
-  //   }
-  // }
+  static propTypes = {
+    placeholder: PropTypes.string,
+    onChange: PropTypes.func.isRequired,
+    onKeyUp: PropTypes.string
+  }
+
+  handleKeyUp = event => {
+    const inputValue = event.target.value
+    this.props.onChange(inputValue)
+  }
 
   render() {
-    const { updateSearch, stateSearch } = this.props
     return (
       <InputWrapper>
         <InputSearchEl
-          data-cy="InputSearch"
-          // onKeyUp={this.handleKeyUp}
-          // onChange={this.handleKeyUp}
-          placeholder="Search"
+          data-cy-1="InputSearch"
+          placeholder="Search for festival name"
           type="text"
-          onChange={stateSearch}
-          value={updateSearch}
+          onKeyUp={this.handleKeyUp}
         />
         <InputImg />
       </InputWrapper>

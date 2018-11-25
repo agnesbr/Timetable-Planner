@@ -3,9 +3,8 @@ import styled from 'styled-components'
 
 import Fest from './Fest'
 import NavBarBottomIcon from './NavBarBottomIcon'
-import NavBarBottom from '../components/NavBarBottom'
-import NavBarTop from '../components/NavBarTop'
-//import InputSearch from '../components/InputSearch'
+import NavBar from '../components/NavBar'
+import InputSearch from '../components/InputSearch'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar, faAlignCenter } from '@fortawesome/free-solid-svg-icons'
@@ -18,44 +17,6 @@ const starIcon = <FontAwesomeIcon className="filter-button" icon={faStar} />
 const listIcon = (
   <FontAwesomeIcon className="filter-button" icon={faAlignCenter} />
 )
-
-export const InputWrapper = styled.div`
-  position: relative;
-  width: 100%;
-`
-
-export const InputSearchEl = styled.input`
-  -webkit-transition: all 0.3s ease-in-out;
-  -moz-transition: all 0.3s ease-in-out;
-  -ms-transition: all 0.3s ease-in-out;
-  -o-transition: all 0.3s ease-in-out;
-  outline: none;
-  margin: 5px 1px 3px 0px;
-  border: 1px solid #dddddd;
-  font-size: 0.8em;
-  border-radius: 10px;
-  width: 100%;
-  font-family: FestivoLettersNo1;
-  outline: none;
-  padding: 10px 40px 8px 10px;
-
-  input:focus {
-    padding: 3px 3px 3px 3px;
-    box-shadow: 0 0 5px rgba(81, 203, 238, 1);
-    border: 10px solid rgba(81, 203, 238, 1);
-  }
-`
-
-export const InputImg = styled.div`
-  position: absolute;
-  background-color: yellow;
-  bottom: 7px;
-  right: 7px;
-  width: 24px;
-  height: 24px;
-  z-index: 1;
-  background-image: url('../../images/search-icon.png');
-`
 
 export const Wrapper = styled.section`
   display: grid;
@@ -76,6 +37,12 @@ export default class App extends Component {
     isBookmarked: this.loadFavorites(),
     iconIsDefault: true,
     search: ''
+  }
+
+  updateSearch = inputValue => {
+    this.setState({
+      search: inputValue
+    })
   }
 
   isFestBookmarked(festId) {
@@ -115,17 +82,8 @@ export default class App extends Component {
     return newIsBookmarked
   }
 
-  showBookmarkedFestivals() {
-    const { festivals } = this.state
-    return festivals.map(
-      festival =>
-        this.isFestBookmarked(festival.festId) &&
-        this.renderSingleFest(festival)
-    )
-  }
-
   createFestList() {
-    const { festivals } = this.state
+    const { festivals, iconIsDefault } = this.state
     const filteredFestivals = festivals.filter(festival => {
       return (
         festival.festName
@@ -133,13 +91,15 @@ export default class App extends Component {
           .indexOf(this.state.search.toLowerCase()) !== -1
       )
     })
-    return filteredFestivals.map(this.renderSingleFest)
-  }
-
-  updateSerach = event => {
-    this.setState({
-      search: event.target.value.substr(0, 3)
-    })
+    if (iconIsDefault) {
+      return filteredFestivals.map(this.renderSingleFest)
+    } else {
+      return filteredFestivals.map(
+        festival =>
+          this.isFestBookmarked(festival.festId) &&
+          this.renderSingleFest(festival)
+      )
+    }
   }
 
   renderSingleFest = festival => {
@@ -178,35 +138,21 @@ export default class App extends Component {
 
     return (
       <Wrapper>
-        <NavBarTop>
-          {/* <InputSearch
-            stateSearch={this.state.search}
-            onKeyUp={() => this.updateSerach()}
-            onChange={() => this.updateSerach()}
-          /> */}
-          <InputWrapper>
-            <InputSearchEl
-              data-cy="InputSearch"
-              type="text"
-              value={this.state.search}
-              onChange={this.updateSerach}
-            />
-            <InputImg />
-          </InputWrapper>
-        </NavBarTop>
-        <DisplayContent data-cy="FestList">
-          {this.state.iconIsDefault
-            ? this.createFestList()
-            : this.showBookmarkedFestivals()}
+        <NavBar>
+          <h1>list of available festivals</h1>
+          <InputSearch onChange={this.updateSearch} />
+        </NavBar>
+        <DisplayContent data-cy-1="FestList">
+          {this.createFestList()}
         </DisplayContent>
-        <NavBarBottom>
+        <NavBar>
           <NavBarBottomIcon
             defaultIcon={starIcon}
             activeIcon={listIcon}
             onClick={() => this.handleToggleButtonBookmarked()}
             iconIsDefault={this.state.iconIsDefault}
           />
-        </NavBarBottom>
+        </NavBar>
       </Wrapper>
     )
   }

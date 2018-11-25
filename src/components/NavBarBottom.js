@@ -1,10 +1,10 @@
 import styled from 'styled-components'
 
 export default styled.nav`
-  display: flex;
-  justify-content: space-evenly;
   align-items: center;
   background: rgba(11, 22, 31, 0.85);
+  display: flex;
   font-size: 1.5em;
-  color: var(--teal);
+  justify-content: space-evenly;
+  padding: 0 12px;
 `
