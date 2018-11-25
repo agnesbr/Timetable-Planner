@@ -16,7 +16,7 @@ export const Wrapper = styled.section`
   grid-auto-rows: auto;
   grid-gap: 5px;
   grid-template-columns: 1fr 40px;
-  padding: 20px 15px;
+  padding: 20px 15px 21px 20px;
   width: 100%;
 `
 

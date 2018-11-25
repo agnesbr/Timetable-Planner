@@ -9,17 +9,16 @@ export const InputWrapper = styled.div`
 export const InputSearchEl = styled.input`
   border-radius: 10px;
   border: 1px solid #dddddd;
-  border: none;
   font-family: FestivoLettersNo1;
   font-size: 0.8em;
   margin: 5px 1px 3px 0px;
   outline: none;
-  padding: 10px 50px 8px 10px;
+  padding: 10px 50px 8px 9px;
   width: 100%;
 
   &:focus {
-    border: 1px solid var(--red);
-    box-shadow: 0 0 8px var(--red);
+    border: 1px solid var(--yellow);
+    box-shadow: inset 0 0px 10px #bbb;
   }
 `
 
@@ -27,10 +26,10 @@ export const InputImg = styled.div`
   background-image: url('../../images/search_icon.png');
   background-repeat: no-repeat;
   background-size: contain;
-  bottom: 15px;
+  bottom: 16px;
   height: 16px;
   position: absolute;
-  right: 22px;
+  right: 15px;
   width: 16px;
 `
 

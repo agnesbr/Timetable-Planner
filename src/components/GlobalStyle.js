@@ -27,7 +27,7 @@ body {
 }
 
 h1{
-  color: var(--light);
+  color: #F5F1F1;
   font-family: FestivoLettersNo1;
   font-size: 18px;
   letter-spacing: 0.05em;
