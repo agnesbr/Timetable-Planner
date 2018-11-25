@@ -26,13 +26,7 @@ body {
   z-index: -1;
 }
 
-h1{
-  color: #F5F1F1;
-  font-family: FestivoLettersNo1;
-  font-size: 18px;
-  letter-spacing: 0.05em;
-  margin-bottom: 0;
-}
+
 
 
 
