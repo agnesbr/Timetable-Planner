@@ -5,7 +5,6 @@ import Fest from './Fest'
 import NavBarBottomIcon from './NavBarBottomIcon'
 import NavBar from '../components/NavBar'
 import InputSearch from '../components/InputSearch'
-import Counter from '../components/Counter'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar, faAlignCenter } from '@fortawesome/free-solid-svg-icons'
@@ -38,12 +37,6 @@ export default class App extends Component {
     isBookmarked: this.loadFavorites(),
     iconIsDefault: true,
     search: ''
-  }
-
-  updateSearch = inputValue => {
-    this.setState({
-      search: inputValue
-    })
   }
 
   isFestBookmarked(festId) {
@@ -92,15 +85,20 @@ export default class App extends Component {
           .indexOf(this.state.search.toLowerCase()) !== -1
       )
     })
-    if (iconIsDefault) {
-      return filteredFestivals.map(this.renderSingleFest)
-    } else {
-      return filteredFestivals.map(
-        festival =>
-          this.isFestBookmarked(festival.festId) &&
-          this.renderSingleFest(festival)
-      )
-    }
+
+    const newFilteredFestivals = iconIsDefault
+      ? filteredFestivals
+      : filteredFestivals.filter(festival => {
+          return this.isFestBookmarked(festival.festId)
+        })
+
+    return newFilteredFestivals.map(this.renderSingleFest)
+  }
+
+  updateSearch = inputValue => {
+    this.setState({
+      search: inputValue
+    })
   }
 
   renderSingleFest = festival => {
@@ -134,21 +132,13 @@ export default class App extends Component {
     })
   }
 
-  countFestivals() {
-    const numCounter = this.state.festivals.length
-    return numCounter
-  }
-
   render() {
     this.saveFavorites()
 
     return (
       <Wrapper>
         <NavBar>
-          <Counter
-            contentHeadline="list of available festivals"
-            numCounter={this.countFestivals()}
-          />
+          <h1>list of available festivals</h1>
           <InputSearch onChange={this.updateSearch} />
         </NavBar>
         <DisplayContent data-cy-1="FestList">
