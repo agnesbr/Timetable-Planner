@@ -10,10 +10,11 @@ html {
   height: 100%; 
 }
 
-body, #root {
+body {
   background-attachment: fixed;
   background-image: url('../../images/BG_EF.png');
   background-repeat: repeat;
+  background-size: contain;
   bottom: 0;
   height: 100%; 
   left: 0;
@@ -25,6 +26,13 @@ body, #root {
   z-index: -1;
 }
 
+h1{
+ color: #f5f1f1;
+  font-family: FestivoLettersNo1;
+  font-size: 18px;
+  letter-spacing: 0.05em;
+  margin-bottom: 0;
+}
 
 
 @font-face {

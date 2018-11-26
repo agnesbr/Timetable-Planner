@@ -15,8 +15,8 @@ export const Wrapper = styled.section`
   grid-auto-flow: row;
   grid-auto-rows: auto;
   grid-gap: 5px;
-  grid-template-columns: 1fr 60px;
-  padding: 20px 15px;
+  grid-template-columns: 1fr 40px;
+  padding: 20px 15px 21px 20px;
   width: 100%;
 `
 
@@ -57,7 +57,7 @@ export const StarSmall = styled.div`
 
 export default class Fest extends Component {
   static propTypes = {
-    festId: PropTypes.string.isRequired,
+    festId: PropTypes.number.isRequired,
     festName: PropTypes.string.isRequired,
     festStartDate: PropTypes.string.isRequired,
     festEndDate: PropTypes.string.isRequired,
@@ -79,13 +79,13 @@ export default class Fest extends Component {
       toggleBookmark
     } = this.props
     return (
-      <Wrapper>
+      <Wrapper data-cy-1="festEl">
         <FestDate dateTime={festEndDate}>
           {festEndDate === ''
             ? festStartDate
             : festStartDate + ' – ' + festEndDate}
         </FestDate>
-        <FestName>{festName}</FestName>
+        <FestName data-cy-1="festName">{festName}</FestName>
         <FestLocation>
           {festCountry}
           <StarSmall> {starIcon}</StarSmall>

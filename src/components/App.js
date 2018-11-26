@@ -3,7 +3,8 @@ import styled from 'styled-components'
 
 import Fest from './Fest'
 import NavBarBottomIcon from './NavBarBottomIcon'
-import NavBarBottom from '../components/NavBarBottom'
+import NavBar from '../components/NavBar'
+import InputSearch from '../components/InputSearch'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar, faAlignCenter } from '@fortawesome/free-solid-svg-icons'
@@ -20,7 +21,7 @@ const listIcon = (
 export const Wrapper = styled.section`
   display: grid;
   grid-auto-flow: row;
-  grid-template-rows: auto 50px;
+  grid-template-rows: 120px auto 50px;
   grid-template-columns: 1fr;
   height: 100vh;
 `
@@ -34,7 +35,8 @@ export default class App extends Component {
   state = {
     festivals: festData,
     isBookmarked: this.loadFavorites(),
-    iconIsDefault: true
+    iconIsDefault: true,
+    search: ''
   }
 
   isFestBookmarked(festId) {
@@ -74,18 +76,29 @@ export default class App extends Component {
     return newIsBookmarked
   }
 
-  showBookmarkedFestivals() {
-    const { festivals } = this.state
-    return festivals.map(
-      festival =>
-        this.isFestBookmarked(festival.festId) &&
-        this.renderSingleFest(festival)
-    )
+  createFestList() {
+    const { festivals, iconIsDefault } = this.state
+    const filteredFestivals = festivals.filter(festival => {
+      return (
+        festival.festName
+          .toLowerCase()
+          .indexOf(this.state.search.toLowerCase()) !== -1
+      )
+    })
+
+    const newFilteredFestivals = iconIsDefault
+      ? filteredFestivals
+      : filteredFestivals.filter(festival => {
+          return this.isFestBookmarked(festival.festId)
+        })
+
+    return newFilteredFestivals.map(this.renderSingleFest)
   }
 
-  createFestList() {
-    const { festivals } = this.state
-    return festivals.map(this.renderSingleFest)
+  updateSearch = inputValue => {
+    this.setState({
+      search: inputValue
+    })
   }
 
   renderSingleFest = festival => {
@@ -121,21 +134,24 @@ export default class App extends Component {
 
   render() {
     this.saveFavorites()
+
     return (
       <Wrapper>
-        <DisplayContent data-cy="FestList">
-          {this.state.iconIsDefault
-            ? this.createFestList()
-            : this.showBookmarkedFestivals()}
+        <NavBar>
+          <h1>list of available festivals</h1>
+          <InputSearch onChange={this.updateSearch} />
+        </NavBar>
+        <DisplayContent data-cy-1="FestList">
+          {this.createFestList()}
         </DisplayContent>
-        <NavBarBottom>
+        <NavBar>
           <NavBarBottomIcon
             defaultIcon={starIcon}
             activeIcon={listIcon}
             onClick={() => this.handleToggleButtonBookmarked()}
             iconIsDefault={this.state.iconIsDefault}
           />
-        </NavBarBottom>
+        </NavBar>
       </Wrapper>
     )
   }

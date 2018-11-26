@@ -7,9 +7,16 @@ import { faStar, faAlignCenter } from '@fortawesome/free-solid-svg-icons'
 import Fest from '../components/Fest'
 import Bookmark from '../components/Bookmark'
 import NavBarBottomIcon from '../components/NavBarBottomIcon'
+import NavBar from '../components/NavBar'
 import NavBarBottom from '../components/NavBarBottom'
+import InputSearch from '../components/InputSearch'
 
 import { StyleWrapper } from './StyleWrapper'
+import {
+  InputWrapper,
+  InputSearchEl,
+  InputImg
+} from '../components/InputSearch'
 
 const starIcon = <FontAwesomeIcon className="filter-button" icon={faStar} />
 const listIcon = (
@@ -26,7 +33,7 @@ storiesOf('Fest', module).add('Festival list item', () => (
       festCountry={text('Country', 'Country')}
       festCity={text('City', 'City')}
       isBookmarked={boolean('Icon: isBookmarked', false)}
-      // toggleBookmark={action('onToggle')}
+      toggleBookmark={action('onToggle')}
     />
   </React.Fragment>
 ))
@@ -53,4 +60,14 @@ storiesOf('NavBarBottomIcon', module).add('Icon', () => (
       iconIsDefault={boolean('Icon 2: isDefault', false)}
     />
   </NavBarBottom>
+))
+
+storiesOf('InputSearch', module).add('default', () => (
+  <InputWrapper>
+    <InputSearchEl
+      placeholder={text('Placeholder text', 'Search for festival name')}
+      //onKeyUp={action('onKeyUp')}
+    />
+    <InputImg />
+  </InputWrapper>
 ))
