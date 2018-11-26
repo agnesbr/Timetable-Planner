@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
@@ -8,7 +9,7 @@ import PropTypes from 'prop-types'
 
 const starIcon = <FontAwesomeIcon className="filter-button" icon={faStar} />
 
-export const Wrapper = styled.section`
+export const Wrapper = styled(Link)`
   background: rgba(255, 255, 255, 0.95);
   border-bottom: 2px solid #0e2a3f;
   display: grid;
@@ -78,14 +79,15 @@ export default class Fest extends Component {
       isBookmarked,
       toggleBookmark
     } = this.props
+
     return (
-      <Wrapper data-cy-1="festEl">
+      <Wrapper to={`/festival/${festId}`} data-cy="festEl">
         <FestDate dateTime={festEndDate}>
           {festEndDate === ''
             ? festStartDate
             : festStartDate + ' – ' + festEndDate}
         </FestDate>
-        <FestName data-cy-1="festName">{festName}</FestName>
+        <FestName data-cy="festName">{festName}</FestName>
         <FestLocation>
           {festCountry}
           <StarSmall> {starIcon}</StarSmall>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 import Fest from './Fest'
 import NavBarBottomIcon from './NavBarBottomIcon'
@@ -12,6 +13,7 @@ import { faStar, faAlignCenter } from '@fortawesome/free-solid-svg-icons'
 import uid from 'uid'
 
 import festData from '../data/ef_data.json'
+import FestivalPage from './FestivalPage'
 
 const starIcon = <FontAwesomeIcon className="filter-button" icon={faStar} />
 const listIcon = (
@@ -76,23 +78,27 @@ export default class App extends Component {
     return newIsBookmarked
   }
 
-  createFestList() {
+  getSelectedFestList = () => {
     const { festivals, iconIsDefault } = this.state
-    const filteredFestivals = festivals.filter(festival => {
-      return (
-        festival.festName
-          .toLowerCase()
-          .indexOf(this.state.search.toLowerCase()) !== -1
+
+    return festivals
+      .filter(
+        festival =>
+          festival.festName
+            .toLowerCase()
+            .indexOf(this.state.search.toLowerCase()) !== -1
       )
-    })
+      .filter(
+        festival => iconIsDefault || this.isFestBookmarked(festival.festId)
+      )
+  }
 
-    const newFilteredFestivals = iconIsDefault
-      ? filteredFestivals
-      : filteredFestivals.filter(festival => {
-          return this.isFestBookmarked(festival.festId)
-        })
+  getSelectedListLength = () => {
+    return this.getSelectedFestList().length
+  }
 
-    return newFilteredFestivals.map(this.renderSingleFest)
+  createFestList() {
+    return this.getSelectedFestList().map(this.renderSingleFest)
   }
 
   updateSearch = inputValue => {
@@ -132,27 +138,44 @@ export default class App extends Component {
     })
   }
 
+  getFestById = festId => {
+    console.log(festId, this.state.festivals)
+    return this.state.festivals.find(fest => fest.festId.toString() === festId)
+  }
+
   render() {
     this.saveFavorites()
 
     return (
-      <Wrapper>
-        <NavBar>
-          <h1>list of available festivals</h1>
-          <InputSearch onChange={this.updateSearch} />
-        </NavBar>
-        <DisplayContent data-cy-1="FestList">
-          {this.createFestList()}
-        </DisplayContent>
-        <NavBar>
-          <NavBarBottomIcon
-            defaultIcon={starIcon}
-            activeIcon={listIcon}
-            onClick={() => this.handleToggleButtonBookmarked()}
-            iconIsDefault={this.state.iconIsDefault}
-          />
-        </NavBar>
-      </Wrapper>
+      <Router>
+        <Wrapper>
+          <NavBar>
+            <h1>
+              list of available festivals ({this.getSelectedListLength()})
+            </h1>
+            <InputSearch onChange={this.updateSearch} />
+          </NavBar>
+          <DisplayContent data-cy="FestList">
+            <Route path="/" exact render={() => this.createFestList()} />
+            <Route
+              path="/festival/:festId"
+              render={({ match }) => (
+                <FestivalPage data={this.getFestById(match.params.festId)} />
+              )}
+            />
+            />
+          </DisplayContent>
+
+          <NavBar>
+            <NavBarBottomIcon
+              defaultIcon={starIcon}
+              activeIcon={listIcon}
+              onClick={() => this.handleToggleButtonBookmarked()}
+              iconIsDefault={this.state.iconIsDefault}
+            />
+          </NavBar>
+        </Wrapper>
+      </Router>
     )
   }
 

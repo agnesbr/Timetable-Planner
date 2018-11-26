@@ -22,7 +22,7 @@ export default class NavBarBottomIcon extends Component {
 
     return (
       <WrapperIconBottom
-        data-cy-1="NavBarBottomIcon"
+        data-cy="NavBarBottomIcon"
         className={iconIsDefault ? null : 'active'}
         onClick={onClick}
       >
