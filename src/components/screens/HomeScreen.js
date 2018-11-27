@@ -188,27 +188,23 @@ export default class HomeScreen extends Component {
       )
     }
     return (
-      <Router>
-        <Wrapper>
-          <NavBar>
-            <h1>
-              list of available festivals ({this.getSelectedListLength()})
-            </h1>
-            <InputSearch onChange={this.updateSearch} />
-          </NavBar>
-          <DisplayContent data-cy="FestList">
-            {this.createFestList()}
-          </DisplayContent>
-          <NavBar>
-            <NavBarBottomIcon
-              defaultIcon={starIcon}
-              activeIcon={listIcon}
-              onClick={() => this.handleToggleButtonBookmarked()}
-              iconIsDefault={this.state.iconIsDefault}
-            />
-          </NavBar>
-        </Wrapper>
-      </Router>
+      <Wrapper>
+        <NavBar>
+          <h1>list of available festivals ({this.getSelectedListLength()})</h1>
+          <InputSearch onChange={this.updateSearch} />
+        </NavBar>
+        <DisplayContent data-cy="FestList">
+          {this.createFestList()}
+        </DisplayContent>
+        <NavBar>
+          <NavBarBottomIcon
+            defaultIcon={starIcon}
+            activeIcon={listIcon}
+            onClick={() => this.handleToggleButtonBookmarked()}
+            iconIsDefault={this.state.iconIsDefault}
+          />
+        </NavBar>
+      </Wrapper>
     )
   }
 

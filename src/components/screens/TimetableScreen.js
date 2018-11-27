@@ -5,13 +5,10 @@ import uid from 'uid'
 
 import NavBarBottomIcon from '../NavBarBottomIcon'
 import NavBar from '../NavBar'
-import InputSearch from '../InputSearch'
 import Act from '../Act'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar, faAlignCenter } from '@fortawesome/free-solid-svg-icons'
-
-import festRawData from '../../data/ef_data.json'
 
 const starIcon = <FontAwesomeIcon className="filter-button" icon={faStar} />
 const listIcon = (
@@ -32,67 +29,33 @@ export const DisplayContent = styled.section`
 `
 
 export default class TimetableScreen extends Component {
-  state = {
-    festivals: festRawData
-  }
+  // getFestById = festId => {
+  //   const { festivals } = this.state
 
-  createActList() {
-    const { festData } = this.props
-    return festData.timeTable.map(this.renderSingleAct)
-  }
-
-  renderSingleAct = act => {
-    const { actEndDate, actName, actStartDate, actsId, areaName } = act
-    return (
-      <Act
-        key={uid()}
-        actEndDate={actEndDate}
-        actName={actName}
-        actStartDate={actStartDate}
-        actsId={actsId}
-        areaName={areaName}
-      />
-    )
-  }
-
-  getFestById = festId => {
-    const { festivals } = this.state
-    return festivals.find(fest => fest.festId.toString() === festId)
-  }
-
+  //   console.log(festivals)
+  //   return festivals.find(fest => fest.festId.toString() === festId)
+  // }
   render() {
-    const { festData } = this.props
-    const timetableArr = festData.timeTable
-    console.log(timetableArr)
-    console.log(festData)
-
+    const { festId } = this.props
+    console.log(festId)
     return (
       <Router>
         <Wrapper>
           <NavBar>
             <h1>TIMETABLECSREEN hier muss die headline des fetivals rein </h1>
-            <InputSearch onChange={this.updateSearch} />
           </NavBar>
 
           <DisplayContent data-cy="FestList">
-            {this.createActList()}
-
-            <Route
+            <p>TIMETABLECSREEN hier muss die headline des fetivals rein </p>
+            {/* <Route
               path="/timetable/:festId"
               render={({ match }) => (
                 <Act festData={this.getFestById(match.params.festId)} />
               )}
-            />
+            /> */}
           </DisplayContent>
 
-          <NavBar>
-            <NavBarBottomIcon
-              defaultIcon={starIcon}
-              activeIcon={listIcon}
-              onClick={() => this.handleToggleButtonBookmarked()}
-              iconIsDefault={this.state.iconIsDefault}
-            />
-          </NavBar>
+          <NavBar />
         </Wrapper>
       </Router>
     )
