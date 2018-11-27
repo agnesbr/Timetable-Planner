@@ -1,19 +1,17 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
+import uid from 'uid'
 
-import Fest from '../Fest'
 import NavBarBottomIcon from '../NavBarBottomIcon'
 import NavBar from '../NavBar'
 import InputSearch from '../InputSearch'
-import FestivalPage from '../FestivalPage'
+import Act from '../Act'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar, faAlignCenter } from '@fortawesome/free-solid-svg-icons'
 
-import uid from 'uid'
-
-import festData from '../../data/ef_data.json'
+import festRawData from '../../data/ef_data.json'
 
 const starIcon = <FontAwesomeIcon className="filter-button" icon={faStar} />
 const listIcon = (
@@ -35,7 +33,26 @@ export const DisplayContent = styled.section`
 
 export default class TimetableScreen extends Component {
   state = {
-    festivals: festData
+    festivals: festRawData
+  }
+
+  createActList() {
+    const { festData } = this.props
+    return festData.timeTable.map(this.renderSingleAct)
+  }
+
+  renderSingleAct = act => {
+    const { actEndDate, actName, actStartDate, actsId, areaName } = act
+    return (
+      <Act
+        key={uid()}
+        actEndDate={actEndDate}
+        actName={actName}
+        actStartDate={actStartDate}
+        actsId={actsId}
+        areaName={areaName}
+      />
+    )
   }
 
   getFestById = festId => {
@@ -44,8 +61,11 @@ export default class TimetableScreen extends Component {
   }
 
   render() {
-    // const { festData } = this.props
-    // return <Wrapper>{festData.festName}</Wrapper>
+    const { festData } = this.props
+    const timetableArr = festData.timeTable
+    console.log(timetableArr)
+    console.log(festData)
+
     return (
       <Router>
         <Wrapper>
@@ -55,12 +75,12 @@ export default class TimetableScreen extends Component {
           </NavBar>
 
           <DisplayContent data-cy="FestList">
+            {this.createActList()}
+
             <Route
               path="/timetable/:festId"
               render={({ match }) => (
-                <FestivalPage
-                  festData={this.getFestById(match.params.festId)}
-                />
+                <Act festData={this.getFestById(match.params.festId)} />
               )}
             />
           </DisplayContent>
@@ -78,5 +98,3 @@ export default class TimetableScreen extends Component {
     )
   }
 }
-
-// {this.getFestName(match.params.festName)}
