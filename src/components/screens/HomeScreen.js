@@ -1,19 +1,16 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+// import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 import Fest from '../Fest'
 import NavBarBottomIcon from '../NavBarBottomIcon'
 import NavBar from '../NavBar'
 import InputSearch from '../InputSearch'
-import FestivalPage from '../FestivalPage'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar, faAlignCenter } from '@fortawesome/free-solid-svg-icons'
 
 import uid from 'uid'
-
-import festData from '../../data/ef_data.json'
 
 const starIcon = <FontAwesomeIcon className="filter-button" icon={faStar} />
 const listIcon = (
@@ -35,7 +32,6 @@ export const DisplayContent = styled.section`
 
 export default class HomeScreen extends Component {
   state = {
-    festivals: festData,
     isBookmarked: this.loadFavorites(),
     iconIsDefault: true,
     search: '',
@@ -80,8 +76,8 @@ export default class HomeScreen extends Component {
   }
 
   getSelectedFestList = () => {
-    const { festivals, iconIsDefault } = this.state
-
+    const { iconIsDefault } = this.state
+    const { festivals } = this.props
     return festivals
       .filter(
         festival =>
@@ -141,52 +137,10 @@ export default class HomeScreen extends Component {
     })
   }
 
-  componentWillMount() {
-    console.log('CompWillMount')
-  }
-
-  componentDidlMount() {
-    console.log('CompDidMount')
-  }
-
-  componentWillReceiveProps(nextProps) {
-    console.log('componentWillReceiveProps', nextProps)
-  }
-
-  shouldComponentUpdate(nextProps, nextState) {
-    console.log(' shouldComponentUpdate', nextProps, nextState)
-    return true
-  }
-
-  componentWillUpdate(nextProps, nextState) {
-    console.log('componentWillUpdate', nextProps, nextState)
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    console.log('componentDidUpdate', prevProps, prevState)
-  }
-
-  componentWillUnmount(prevProps, prevState) {
-    console.log('componentWillUnmount')
-  }
-
-  onChangeHomeMounted() {
-    this.setState({
-      homeMounted: !this.state.homeMounted
-    })
-  }
-
   render() {
+    const { festivals } = this.props
     this.saveFavorites()
-    let homeComp = ''
-    if (this.state.homeMounted) {
-      homeComp = (
-        <DisplayContent>
-          <h1>test test</h1>
-          {this.createFestList()}
-        </DisplayContent>
-      )
-    }
+
     return (
       <Wrapper>
         <NavBar>
