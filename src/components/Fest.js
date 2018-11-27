@@ -7,54 +7,16 @@ import { faStar } from '@fortawesome/free-solid-svg-icons'
 import Bookmark from './Bookmark'
 import PropTypes from 'prop-types'
 
-const starIcon = <FontAwesomeIcon className="filter-button" icon={faStar} />
+import StyledWrapper from './StyledWrapper'
 
-export const Wrapper = styled(Link)`
-  background: rgba(255, 255, 255, 0.95);
-  border-bottom: 2px solid #0e2a3f;
+export const TimetableLink = styled(Link)`
+  text-decoration: none;
   display: grid;
-  grid-auto-flow: row;
   grid-auto-rows: auto;
   grid-gap: 5px;
-  grid-template-columns: 1fr 40px;
-  padding: 20px 15px 21px 20px;
   width: 100%;
 `
-
-export const FestDate = styled.time`
-  align-self: end;
-  color: var(--teal);
-  font-family: DINWeb-CondBold, sans-serif;
-  font-size: 19px;
-  grid-column: 1;
-  grid-row: 1/2;
-`
-
-export const FestName = styled.div`
-  align-self: start;
-  color: var(--dark);
-  font-family: FestivoLettersNo1;
-  font-size: 24px;
-  grid-column: 1;
-  grid-row: 2;
-  line-height: 24px;
-`
-export const FestLocation = styled.section`
-  align-items: center;
-  color: var(--teal);
-  display: flex;
-  font-family: DINWeb-CondBold, sans-serif;
-  font-size: 17px;
-  grid-column: 1;
-  grid-row: 3;
-  height: 10px;
-  margin-top: 3px;
-`
-export const StarSmall = styled.div`
-  display: inline;
-  font-size: 8px;
-  margin: 0px 7px 0 7px;
-`
+const starIcon = <FontAwesomeIcon className="filter-button" icon={faStar} />
 
 export default class Fest extends Component {
   static propTypes = {
@@ -81,24 +43,26 @@ export default class Fest extends Component {
     } = this.props
 
     return (
-      <Wrapper to={`/festival/${festId}`} data-cy="festEl">
-        <FestDate dateTime={festEndDate}>
-          {festEndDate === ''
-            ? festStartDate
-            : festStartDate + ' – ' + festEndDate}
-        </FestDate>
-        <FestName data-cy="festName">{festName}</FestName>
-        <FestLocation>
-          {festCountry}
-          <StarSmall> {starIcon}</StarSmall>
-          {festCity}
-        </FestLocation>
+      <StyledWrapper data-cy="festEl">
+        <TimetableLink to={`/timetable/${festId}`}>
+          <time dateTime={festEndDate}>
+            {festEndDate === ''
+              ? festStartDate
+              : festStartDate + ' – ' + festEndDate}
+          </time>
+          <h2 data-cy="festName">{festName}</h2>
+          <section>
+            {festCountry}
+            <div class="star"> {starIcon}</div>
+            {festCity}
+          </section>
+        </TimetableLink>
         <Bookmark
           festId={festId}
           isBookmarked={isBookmarked}
           toggleBookmark={toggleBookmark}
         />
-      </Wrapper>
+      </StyledWrapper>
     )
   }
 }
