@@ -8,6 +8,7 @@ export default createGlobalStyle`
 
 html {
   height: 100%; 
+  color: var(--dark)
 }
 
 body {
@@ -29,11 +30,15 @@ body {
 h1{
  color: #f5f1f1;
   font-family: FestivoLettersNo1;
-  font-size: 18px;
+  font-size: 19px;
   letter-spacing: 0.05em;
   margin-bottom: 0;
+  text-align: center;
 }
 
+a{
+  color: var(--dark);
+}
 
 @font-face {
   font-family: 'FestivoLettersNo1';

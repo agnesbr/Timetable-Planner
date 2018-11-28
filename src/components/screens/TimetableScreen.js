@@ -3,13 +3,14 @@ import styled from 'styled-components'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import uid from 'uid'
 import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 import NavBar from '../NavBar'
 import Act from '../Act'
 import NavBarBottomIcon from '../NavBarBottomIcon'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faStar, faAngleLeft } from '@fortawesome/free-solid-svg-icons'
+import { faAngleLeft } from '@fortawesome/free-solid-svg-icons'
 
 const backIcon = (
   <FontAwesomeIcon className="filter-button" icon={faAngleLeft} />
@@ -33,6 +34,10 @@ export const Homelink = styled(Link)`
 `
 
 export default class TimetableScreen extends Component {
+  state = {
+    iconIsDefault: true
+  }
+
   createActList(festObject) {
     return festObject.timeTable.map(this.renderSingleAct)
   }
@@ -59,26 +64,25 @@ export default class TimetableScreen extends Component {
     const { festivals, festId } = this.props
     const festObject = this.getFestById(festivals, festId)
     return (
-      <Router>
-        <Wrapper>
-          <NavBar>
-            <h1> {festObject.festName}</h1>
-          </NavBar>
-          <DisplayContent data-cy="ActsList">
-            {this.createActList(festObject)}
-          </DisplayContent>
-          <NavBar>
-            <Homelink to={`/`}>
-              <NavBarBottomIcon
-                defaultIcon={backIcon}
-                activeIcon={backIcon}
-                // onClick={() => this.handleToggleButtonBookmarked()}
-                // iconIsDefault={this.state.iconIsDefault}
-              />
-            </Homelink>
-          </NavBar>
-        </Wrapper>
-      </Router>
+      <Wrapper>
+        <NavBar>
+          <h1> {festObject.festName}</h1>
+        </NavBar>
+        <DisplayContent data-cy="ActsList">
+          {this.createActList(festObject)}
+        </DisplayContent>
+        <NavBar>
+          <NavLink to="/">
+            <NavBarBottomIcon
+              fontSize={30}
+              defaultIcon={backIcon}
+              activeIcon={backIcon}
+              // onClick={() => this.handleToggleButtonBookmarked()}
+              iconIsDefault={this.state.iconIsDefault}
+            />
+          </NavLink>
+        </NavBar>
+      </Wrapper>
     )
   }
 }

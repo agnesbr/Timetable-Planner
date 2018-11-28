@@ -3,7 +3,9 @@ describe('Timetable-PLanner ', () => {
     cy.visit('http://localhost:3000')
     cy.clearLocalStorage()
   })
-
+  it('successfully loads', function() {
+    cy.visit('http://localhost:3000')
+  })
   describe('Site shows title', () => {
     it('has the right title', () => {
       cy.title().should('include', 'Timetable-Planner')
@@ -19,7 +21,10 @@ describe('Timetable-PLanner ', () => {
 
   describe('Main section shows list with all festivals', () => {
     it('shows all festivals', () => {
-      cy.get('[data-cy="FestList"]').should('have.length', 1)
+      cy.get('[data-cy="FestList"]')
+        .should('have.length', 1)
+        .scrollTo(0, 500)
+        .scrollTo(500, 0)
     })
   })
 
@@ -78,6 +83,26 @@ describe('Timetable-PLanner ', () => {
     it('clears the input and shows the whole list again', () => {
       cy.get('[data-cy=InputSearch]').clear()
       cy.focused().clear()
+    })
+  })
+
+  describe('Visit festival page', () => {
+    it('clicks on third festival', () => {
+      cy.get('[data-cy=festElLink]')
+        .eq(2)
+        .click()
+    })
+    it('checks the path', () => {
+      cy.url().should('contain', '/timetable')
+    })
+
+    it('checks if content is scrolling', () => {
+      cy.get('[data-cy=ActsList]')
+        .scrollTo(0, 500)
+        .scrollTo(500, 0)
+    })
+    it('gets back to festival page', () => {
+      cy.get('[data-cy=NavBarBottomIcon]').click()
     })
   })
 })

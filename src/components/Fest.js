@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 import Bookmark from './Bookmark'
@@ -15,7 +14,9 @@ export const TimetableLink = styled(Link)`
   grid-auto-rows: auto;
   grid-gap: 5px;
   width: 100%;
+  padding-right: 8px;
 `
+
 const starIcon = <FontAwesomeIcon className="filter-button" icon={faStar} />
 
 export default class Fest extends Component {
@@ -44,7 +45,7 @@ export default class Fest extends Component {
 
     return (
       <StyledWrapper data-cy="festEl">
-        <TimetableLink to={`/timetable/${festId}`}>
+        <TimetableLink data-cy="festElLink" to={`/timetable/${festId}`}>
           <time dateTime={festEndDate}>
             {festEndDate === ''
               ? festStartDate

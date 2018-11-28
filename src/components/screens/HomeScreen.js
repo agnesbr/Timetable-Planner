@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-// import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 import Fest from '../Fest'
 import NavBarBottomIcon from '../NavBarBottomIcon'
@@ -30,12 +29,17 @@ export const DisplayContent = styled.section`
   overflow-y: scroll;
 `
 
+export const StyledCounter = styled.h1`
+  & > span {
+    color: var(--orange);
+  }
+`
+
 export default class HomeScreen extends Component {
   state = {
     isBookmarked: this.loadFavorites(),
     iconIsDefault: true,
-    search: '',
-    homeMounted: true
+    search: ''
   }
 
   isFestBookmarked(festId) {
@@ -144,7 +148,10 @@ export default class HomeScreen extends Component {
     return (
       <Wrapper>
         <NavBar>
-          <h1>list of available festivals ({this.getSelectedListLength()})</h1>
+          <StyledCounter>
+            list of available festivals{' '}
+            <span>{this.getSelectedListLength()}</span>
+          </StyledCounter>
           <InputSearch onChange={this.updateSearch} />
         </NavBar>
         <DisplayContent data-cy="FestList">
@@ -152,6 +159,7 @@ export default class HomeScreen extends Component {
         </DisplayContent>
         <NavBar>
           <NavBarBottomIcon
+            fontSize={20}
             defaultIcon={starIcon}
             activeIcon={listIcon}
             onClick={() => this.handleToggleButtonBookmarked()}
