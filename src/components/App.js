@@ -9,26 +9,29 @@ export default class App extends Component {
     festivals: festRawData
   }
 
-  getFestDateObj() {
-    const festDateObj = this.state.festivals
-    festDateObj.map((festival, index) => {
-      festDateObj[index].festStartDate = new Date(festival.festStartDate)
-      festDateObj[index].festEndDate = new Date(festival.festEndDate)
+  reformatData() {
+    const reformatedFestivals = this.state.festivals
+    reformatedFestivals.map((festival, festIndex) => {
+      reformatedFestivals[festIndex].festStartDate = new Date(
+        festival.festStartDate
+      )
+      reformatedFestivals[festIndex].festEndDate = new Date(
+        festival.festEndDate
+      )
+      festival.timeTable.map((act, actIndex) => {
+        reformatedFestivals[festIndex].timeTable[
+          actIndex
+        ].actStartDate = new Date(act.actStartDate)
+        reformatedFestivals[festIndex].timeTable[
+          actIndex
+        ].actEndDate = new Date(act.actEndDate)
+      })
     })
   }
 
-  // getActDateObj() {
-  //   const actDateObj = this.state.festivals.timeTable
-  //   console.log(actDateObj)
-  //   // actDateObj.map((festival, index) => {
-  //   //   actDateObj[index].actStartDate = new Date(festival.timeTable.actStartDate)
-  //     //  actDateObj[index].actsEndDate = new Date(festival.festEndDate)
-  //   })
-  // }
-
   render() {
-    this.getFestDateObj()
-    //this.getActDateObj()
+    this.reformatData()
+    console.log(this.state.festivals)
     return (
       <Router>
         <React.Fragment>

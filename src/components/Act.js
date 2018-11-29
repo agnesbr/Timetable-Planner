@@ -15,19 +15,34 @@ export default class Act extends Component {
   static propTypes = {
     areaName: PropTypes.string.isRequired,
     actName: PropTypes.string.isRequired,
-    actStartDate: PropTypes.string.isRequired,
-    actEndDate: PropTypes.string.isRequired
+    actStartDate: PropTypes.func,
+    actEndDate: PropTypes.func
   }
 
   render() {
     const { areaName, actName, actStartDate, actEndDate } = this.props
+
+    const playDay = actStartDate.toLocaleDateString('en-GB', {
+      weekday: 'short'
+    })
+
+    const actStartTime = actStartDate.toLocaleTimeString('en-GB', {
+      hour: '2-digit',
+      minute: '2-digit'
+    })
+
+    const actEndTime = actEndDate.toLocaleTimeString('en-GB', {
+      hour: '2-digit',
+      minute: '2-digit'
+    })
+
     return (
       <StyledWrapper>
         <Div>
           <section>{areaName}</section>
           <h2>{actName}</h2>
           <time>
-            Sa. {actStartDate} – {actEndDate}
+            {playDay}, {actStartTime} – {actEndTime}
           </time>
         </Div>
       </StyledWrapper>
