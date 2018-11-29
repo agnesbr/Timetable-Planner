@@ -43,18 +43,30 @@ export default class Fest extends Component {
       toggleBookmark
     } = this.props
 
+    const festStartDateFormat = festStartDate.toLocaleDateString('en-GB', {
+      day: 'numeric',
+      month: '2-digit',
+      year: '2-digit'
+    })
+
+    const festEndDateFormat = festEndDate.toLocaleDateString('en-GB', {
+      day: 'numeric',
+      month: '2-digit',
+      year: '2-digit'
+    })
+
     return (
       <StyledWrapper data-cy="festEl">
         <TimetableLink data-cy="festElLink" to={`/timetable/${festId}`}>
-          <time dateTime={festEndDate}>
-            {festEndDate === ''
-              ? festStartDate
-              : festStartDate + ' – ' + festEndDate}
+          <time dateTime={festEndDateFormat}>
+            {festEndDateFormat === ''
+              ? festStartDateFormat
+              : festStartDateFormat + ' – ' + festEndDateFormat}
           </time>
           <h2 data-cy="festName">{festName}</h2>
           <section>
             {festCountry}
-            <div class="star"> {starIcon}</div>
+            <div className="star"> {starIcon}</div>
             {festCity}
           </section>
         </TimetableLink>
