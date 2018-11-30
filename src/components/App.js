@@ -1,173 +1,57 @@
 import React, { Component } from 'react'
-import styled from 'styled-components'
-
-import Fest from './Fest'
-import NavBarBottomIcon from './NavBarBottomIcon'
-import NavBar from '../components/NavBar'
-import InputSearch from '../components/InputSearch'
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faStar, faAlignCenter } from '@fortawesome/free-solid-svg-icons'
-
-import uid from 'uid'
-
-import festData from '../data/ef_data.json'
-
-const starIcon = <FontAwesomeIcon className="filter-button" icon={faStar} />
-const listIcon = (
-  <FontAwesomeIcon className="filter-button" icon={faAlignCenter} />
-)
-
-export const Wrapper = styled.section`
-  display: grid;
-  grid-auto-flow: row;
-  grid-template-rows: 120px auto 50px;
-  grid-template-columns: 1fr;
-  height: 100vh;
-`
-
-export const DisplayContent = styled.section`
-  display: block;
-  overflow-y: scroll;
-`
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+import HomeScreen from './screens/HomeScreen'
+import TimetableScreen from './screens/TimetableScreen'
+import festRawData from '../data/ef_data.json'
 
 export default class App extends Component {
   state = {
-    festivals: festData,
-    isBookmarked: this.loadFavorites(),
-    iconIsDefault: true,
-    search: ''
+    festivals: festRawData
   }
 
-  isFestBookmarked(festId) {
-    const { isBookmarked } = this.state
-    return isBookmarked.includes(festId)
-  }
-
-  toggleBookmark = festId => {
-    const { isBookmarked } = this.state
-
-    const newIsBookmarked = isBookmarked.includes(festId)
-      ? this.deleteItemFromIsBookmarked(festId)
-      : this.addItemToIsBookmarked(festId)
-
-    this.setState({
-      isBookmarked: newIsBookmarked
-    })
-  }
-
-  deleteItemFromIsBookmarked = festId => {
-    const { isBookmarked } = this.state
-    const bookmarkedIndex = isBookmarked.indexOf(festId)
-    const newIsBookmarked = [
-      ...isBookmarked.slice(0, bookmarkedIndex),
-      ...isBookmarked.slice(bookmarkedIndex + 1)
-    ]
-
-    return newIsBookmarked
-  }
-
-  addItemToIsBookmarked = festId => {
-    const { isBookmarked } = this.state
-    const newIsBookmarked = isBookmarked.includes(festId)
-      ? [...isBookmarked]
-      : [...isBookmarked, festId]
-
-    return newIsBookmarked
-  }
-
-  createFestList() {
-    const { festivals, iconIsDefault } = this.state
-    const filteredFestivals = festivals.filter(festival => {
-      return (
-        festival.festName
-          .toLowerCase()
-          .indexOf(this.state.search.toLowerCase()) !== -1
+  reformatData() {
+    const reformatedFestivals = this.state.festivals
+    reformatedFestivals.map((festival, festIndex) => {
+      reformatedFestivals[festIndex].festStartDate = new Date(
+        festival.festStartDate
       )
-    })
-
-    const newFilteredFestivals = iconIsDefault
-      ? filteredFestivals
-      : filteredFestivals.filter(festival => {
-          return this.isFestBookmarked(festival.festId)
-        })
-
-    return newFilteredFestivals.map(this.renderSingleFest)
-  }
-
-  updateSearch = inputValue => {
-    this.setState({
-      search: inputValue
-    })
-  }
-
-  renderSingleFest = festival => {
-    const {
-      festId,
-      festName,
-      festStartDate,
-      festEndDate,
-      festCountry,
-      festCity
-    } = festival
-
-    return (
-      <Fest
-        key={uid()}
-        festId={festId}
-        festName={festName}
-        festStartDate={festStartDate}
-        festEndDate={festEndDate}
-        festCountry={festCountry}
-        festCity={festCity}
-        isBookmarked={this.isFestBookmarked(festId)}
-        toggleBookmark={this.toggleBookmark}
-      />
-    )
-  }
-
-  handleToggleButtonBookmarked = () => {
-    this.setState({
-      iconIsDefault: !this.state.iconIsDefault
+      reformatedFestivals[festIndex].festEndDate = new Date(
+        festival.festEndDate
+      )
+      festival.timeTable.map((act, actIndex) => {
+        reformatedFestivals[festIndex].timeTable[
+          actIndex
+        ].actStartDate = new Date(act.actStartDate)
+        reformatedFestivals[festIndex].timeTable[
+          actIndex
+        ].actEndDate = new Date(act.actEndDate)
+      })
     })
   }
 
   render() {
-    this.saveFavorites()
-
+    this.reformatData()
+    console.log(this.state.festivals)
     return (
-      <Wrapper>
-        <NavBar>
-          <h1>list of available festivals</h1>
-          <InputSearch onChange={this.updateSearch} />
-        </NavBar>
-        <DisplayContent data-cy-1="FestList">
-          {this.createFestList()}
-        </DisplayContent>
-        <NavBar>
-          <NavBarBottomIcon
-            defaultIcon={starIcon}
-            activeIcon={listIcon}
-            onClick={() => this.handleToggleButtonBookmarked()}
-            iconIsDefault={this.state.iconIsDefault}
+      <Router>
+        <React.Fragment>
+          <Route
+            exact
+            path="/"
+            render={() => <HomeScreen festivals={this.state.festivals} />}
           />
-        </NavBar>
-      </Wrapper>
+          <Route
+            exact
+            path="/timetable/:festId"
+            render={({ match }) => (
+              <TimetableScreen
+                festId={match.params.festId}
+                festivals={this.state.festivals}
+              />
+            )}
+          />
+        </React.Fragment>
+      </Router>
     )
-  }
-
-  saveFavorites() {
-    localStorage.setItem(
-      'TimeTable--isBookmarked',
-      JSON.stringify(this.state.isBookmarked)
-    )
-  }
-
-  loadFavorites() {
-    try {
-      return JSON.parse(localStorage.getItem('TimeTable--isBookmarked')) || []
-    } catch (err) {
-      return []
-    }
   }
 }

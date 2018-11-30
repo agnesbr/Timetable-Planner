@@ -39,7 +39,7 @@ export default class Bookmark extends Component {
 
     return (
       <Wrapper
-        data-cy-1="Bookmark"
+        data-cy="Bookmark"
         className={isBookmarked ? 'bookmark-active' : null}
         onClick={() => toggleBookmark(festId)}
       >

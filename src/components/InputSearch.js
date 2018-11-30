@@ -49,7 +49,7 @@ export default class InputSearch extends Component {
     return (
       <InputWrapper>
         <InputSearchEl
-          data-cy-1="InputSearch"
+          data-cy="InputSearch"
           placeholder="Search for festival name"
           type="text"
           onKeyUp={this.handleKeyUp}

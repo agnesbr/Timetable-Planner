@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
 export const WrapperIconBottom = styled.div`
+  font-size: ${props => props.fontSize || 20}px;
   color: var(--light);
   &.active {
     color: var(--teal);
@@ -18,11 +19,18 @@ export default class NavBarBottomIcon extends Component {
   }
 
   render() {
-    const { iconIsDefault, defaultIcon, activeIcon, onClick } = this.props
+    const {
+      iconIsDefault,
+      defaultIcon,
+      activeIcon,
+      onClick,
+      fontSize
+    } = this.props
 
     return (
       <WrapperIconBottom
-        data-cy-1="NavBarBottomIcon"
+        fontSize={fontSize}
+        data-cy="NavBarBottomIcon"
         className={iconIsDefault ? null : 'active'}
         onClick={onClick}
       >

@@ -2,8 +2,8 @@
   {
     "festId": 1111,
     "festName": "FestName",
-    "festStartDate": "13.10.2019",
-    "festEndDate": "23.10.2019",
+    "festStartDate": "2019-10-13",
+    "festEndDate": "2019-10-13",
     "festCountry": "Musterland",
     "festCity": "Musterstadt",
     "timeTable": [
@@ -11,16 +11,16 @@
         "areaName": "Area Name",
         "actsId": "23345",
         "actName": "Act Name",
-        "actStartDate": "21:00 21.10.2019",
-        "actEndDate": "21:00 21.10.2019"
+        "actStartDate": "21:00 2019-10-21",
+        "actEndDate": "21:00 2019-10-21"
       }
     ]
   },
   {
     "festId": 2222,
     "festName": "Coachella Valley Music and Arts Festival - Week1",
-    "festStartDate": "13.04.2018",
-    "festEndDate": "15.04.2018",
+    "festStartDate": "2018-04-13",
+    "festEndDate": "2018-04-15",
     "festCountry": "United States",
     "festCity": "Indio",
     "timeTable": [
@@ -28,229 +28,229 @@
         "areaName": "COACHELLA STAGE",
         "actsId": "1",
         "actName": "Jamie Jones",
-        "actStartDate": "01:55 20.07.2018",
-        "actEndDate": "02:50 20.07.2018"
+        "actStartDate": "01:55 2018-07-20",
+        "actEndDate": "02:50 2018-07-20"
       },
       {
         "areaName": "COACHELLA STAGE",
         "actsId": "2",
         "actName": "Chris Liebing",
-        "actStartDate": "03:35 20.07.2018",
-        "actEndDate": "03:50 20.07.2018"
+        "actStartDate": "03:35 2018-07-20",
+        "actEndDate": "03:50 2018-07-20"
       },
       {
         "areaName": "COACHELLA STAGE",
         "actsId": "3",
         "actName": "Maceo Plex",
-        "actStartDate": "04:05 20.07.2018",
-        "actEndDate": "04:50 20.07.2018"
+        "actStartDate": "04:05 2018-07-20",
+        "actEndDate": "04:50 2018-07-20"
       },
       {
         "areaName": "COACHELLA STAGE",
         "actsId": "4",
         "actName": "Jackmaster",
-        "actStartDate": "05:35 20.07.2018",
-        "actEndDate": "05:50 20.07.2018"
+        "actStartDate": "05:35 2018-07-20",
+        "actEndDate": "05:50 2018-07-20"
       },
       {
         "areaName": "COACHELLA STAGE",
         "actsId": "5",
         "actName": "Joseph Capriati",
-        "actStartDate": "01:35 21.07.2018",
-        "actEndDate": "01:50 21.07.2018"
+        "actStartDate": "01:35 2018-07-21",
+        "actEndDate": "01:50 2018-07-21"
       },
       {
         "areaName": "COACHELLA STAGE",
         "actsId": "6",
-        "actName": "K�lsch",
-        "actStartDate": "02:35 21.07.2018",
-        "actEndDate": "02:50 21.07.2018"
+        "actName": "Kölsch",
+        "actStartDate": "02:35 2018-07-21",
+        "actEndDate": "02:50 2018-07-21"
       },
       {
         "areaName": "COACHELLA STAGE",
         "actsId": "7",
         "actName": "Alan Walker",
-        "actStartDate": "03:35 21.07.2018",
-        "actEndDate": "03:50 21.07.2018"
+        "actStartDate": "03:35 2018-07-21",
+        "actEndDate": "03:50 2018-07-21"
       },
       {
         "areaName": "DOLAB",
         "actsId": "8",
         "actName": "The Black Madonna",
-        "actStartDate": "01:35 20.07.2018",
-        "actEndDate": "02:50 20.07.2018"
+        "actStartDate": "01:35 2018-07-20",
+        "actEndDate": "02:50 2018-07-20"
       },
       {
         "areaName": "DOLAB",
         "actsId": "9",
         "actName": "Motor City Drum Ensemble",
-        "actStartDate": "02:35 20.07.2018",
-        "actEndDate": "03:35 20.07.2018"
+        "actStartDate": "02:35 2018-07-20",
+        "actEndDate": "03:35 2018-07-20"
       },
       {
         "areaName": "DOLAB",
         "actsId": "10",
         "actName": "Alison Wonderland",
-        "actStartDate": "03:35 20.07.2018",
-        "actEndDate": "04:35 20.07.2018"
+        "actStartDate": "03:35 2018-07-20",
+        "actEndDate": "04:35 2018-07-20"
       },
       {
         "areaName": "DOLAB",
         "actsId": "11",
         "actName": "Snakehips",
-        "actStartDate": "04:35 20.07.2018",
-        "actEndDate": "05:35 20.07.2018"
+        "actStartDate": "04:35 2018-07-20",
+        "actEndDate": "05:35 2018-07-20"
       },
       {
         "areaName": "DOLAB",
         "actsId": "12",
         "actName": "Louis The Child",
-        "actStartDate": "05:35 20.07.2018",
-        "actEndDate": "08:50 20.07.2018"
+        "actStartDate": "05:35 2018-07-20",
+        "actEndDate": "08:50 2018-07-20"
       },
       {
         "areaName": "DOLAB",
         "actsId": "13",
         "actName": "San Holo",
-        "actStartDate": "02:35 21.07.2018",
-        "actEndDate": "03:35 21.07.2018"
+        "actStartDate": "02:35 2018-07-21",
+        "actEndDate": "03:35 2018-07-21"
       },
       {
         "areaName": "DOLAB",
         "actsId": "14",
         "actName": "Avalon Emerson",
-        "actStartDate": "03:35 21.07.2018",
-        "actEndDate": "04:35 21.07.2018"
+        "actStartDate": "03:35 2018-07-21",
+        "actEndDate": "04:35 2018-07-21"
       },
       {
         "areaName": "DOLAB",
         "actsId": "15",
         "actName": "Hundred Waters",
-        "actStartDate": "04:35 21.07.2018",
-        "actEndDate": "05:50 21.07.2018"
+        "actStartDate": "04:35 2018-07-21",
+        "actEndDate": "05:50 2018-07-21"
       }
     ]
   },
   {
     "festId": 3333,
     "festName": "Tomorrowland",
-    "festStartDate": "20.07.2018",
-    "festEndDate": "22.07.2018",
+    "festStartDate": "2018-07-20",
+    "festEndDate": "2018-22-07",
     "festCountry": "Belgium",
     "festCity": "Boom",
     "timeTable": [
       {
-        "actStartDate": "01:55 20.07.2018",
+        "actStartDate": "01:55 2018-07-20",
         "areaName": "Diynamic",
         "actsId": "31",
         "actName": "Lost Frequencies",
-        "actEndDate": "02:50 20.07.2018"
+        "actEndDate": "02:50 2018-07-20"
       },
       {
         "areaName": "Diynamic",
         "actsId": "32",
         "actName": "Steve Angello",
-        "actStartDate": "03:35 20.07.2018",
-        "actEndDate": "03:50 20.07.2018"
+        "actStartDate": "03:35 2018-07-20",
+        "actEndDate": "03:50 2018-07-20"
       },
       {
         "areaName": "Diynamic",
         "actsId": "33",
         "actName": "Bassjackers",
-        "actStartDate": "04:05 20.07.2018",
-        "actEndDate": "04:50 20.07.2018"
+        "actStartDate": "04:05 2018-07-20",
+        "actEndDate": "04:50 2018-07-20"
       },
       {
         "areaName": "Diynamic",
         "actsId": "34",
         "actName": "Jackmaster",
-        "actStartDate": "05:35 20.07.2018",
-        "actEndDate": "05:50 20.07.2018"
+        "actStartDate": "05:35 2018-07-20",
+        "actEndDate": "05:50 2018-07-20"
       },
       {
         "areaName": "Diynamic",
         "actsId": "35",
         "actName": "Joseph Capriati",
-        "actStartDate": "01:35 21.07.2018",
-        "actEndDate": "01:50 21.07.2018"
+        "actStartDate": "01:35 2018-07-21",
+        "actEndDate": "01:50 2018-07-21"
       },
       {
         "areaName": "Diynamic",
         "actsId": "36",
         "actName": "K�lsch",
-        "actStartDate": "02:35 21.07.2018",
-        "actEndDate": "02:50 21.07.2018"
+        "actStartDate": "02:35 2018-07-21",
+        "actEndDate": "02:50 2018-07-21"
       },
       {
         "areaName": "Diynamic",
         "actsId": "37",
         "actName": "Alan Walker",
-        "actStartDate": "03:35 21.07.2018",
-        "actEndDate": "03:50 21.07.2018"
+        "actStartDate": "03:35 2018-07-21",
+        "actEndDate": "03:50 2018-07-21"
       },
       {
         "areaName": "Smash the House",
         "actsId": "38",
         "actName": "Brennan Heart",
-        "actStartDate": "01:35 20.07.2018",
-        "actEndDate": "02:50 20.07.2018"
+        "actStartDate": "01:35 2018-07-20",
+        "actEndDate": "02:50 2018-07-20"
       },
       {
         "areaName": "Smash the House",
         "actsId": "39",
         "actName": "Motor City Drum Ensemble",
-        "actStartDate": "02:35 20.07.2018",
-        "actEndDate": "03:35 20.07.2018"
+        "actStartDate": "02:35 2018-07-20",
+        "actEndDate": "03:35 2018-07-20"
       },
       {
         "areaName": "Smash the House",
         "actsId": "40",
         "actName": "Dimitri Vegas & Like Mike",
-        "actStartDate": "03:35 20.07.2018",
-        "actEndDate": "04:35 20.07.2018"
+        "actStartDate": "03:35 2018-07-20",
+        "actEndDate": "04:35 2018-07-20"
       },
       {
         "areaName": "Smash the House",
         "actsId": "41",
         "actName": "Afrojack",
-        "actStartDate": "04:35 20.07.2018",
-        "actEndDate": "05:35 20.07.2018"
+        "actStartDate": "04:35 2018-07-20",
+        "actEndDate": "05:35 2018-07-20"
       },
       {
         "areaName": "Smash the House",
         "actsId": "42",
         "actName": "Louis The Child",
-        "actStartDate": "05:35 20.07.2018",
-        "actEndDate": "08:50 20.07.2018"
+        "actStartDate": "05:35 2018-07-20",
+        "actEndDate": "08:50 2018-07-20"
       },
       {
         "areaName": "Smash the House",
         "actsId": "43",
         "actName": "Oliver Heldens",
-        "actStartDate": "02:35 21.07.2018",
-        "actEndDate": "03:35 21.07.2018"
+        "actStartDate": "02:35 2018-07-21",
+        "actEndDate": "03:35 2018-07-21"
       },
       {
         "areaName": "Smash the House",
         "actsId": "44",
         "actName": "Armin Van Buuren",
-        "actStartDate": "03:35 21.07.2018",
-        "actEndDate": "04:35 21.07.2018"
+        "actStartDate": "03:35 2018-07-21",
+        "actEndDate": "04:35 2018-07-21"
       },
       {
         "areaName": "Smash the House",
         "actsId": "45",
         "actName": "Martin Garrix",
-        "actStartDate": "04:35 21.07.2018",
-        "actEndDate": "05:50 21.07.2018"
+        "actStartDate": "04:35 2018-07-21",
+        "actEndDate": "05:50 2018-07-21"
       }
     ]
   },
   {
     "festId": 4444,
     "festName": "Melt",
-    "festStartDate": "19.07.2019",
-    "festEndDate": "22.07.2019",
+    "festStartDate": "2019-07-19",
+    "festEndDate": "2019-07-22-07",
     "festCountry": "Germany",
     "festCity": "Gräfchenshain",
     "timeTable": [
@@ -258,113 +258,113 @@
         "areaName": "Meltselektor",
         "actsId": "1",
         "actName": "Jamie Jones",
-        "actStartDate": "01:55 20.07.2019",
-        "actEndDate": "02:50 20.07.2019"
+        "actStartDate": "01:55 2019-07-20",
+        "actEndDate": "02:50 2019-07-20"
       },
       {
         "areaName": "Meltselektor",
         "actsId": "2",
         "actName": "Chris Liebing",
-        "actStartDate": "03:35 20.07.2019",
-        "actEndDate": "03:50 20.07.2019"
+        "actStartDate": "03:35 2019-07-20",
+        "actEndDate": "03:50 2019-07-20"
       },
       {
         "areaName": "Meltselektor",
         "actsId": "3",
         "actName": "Maceo Plex",
-        "actStartDate": "04:05 20.07.2019",
-        "actEndDate": "04:50 20.07.2019"
+        "actStartDate": "04:05 2019-07-20",
+        "actEndDate": "04:50 2019-07-20"
       },
       {
         "areaName": "Meltselektor",
         "actsId": "4",
         "actName": "Jackmaster",
-        "actStartDate": "05:35 20.07.2019",
-        "actEndDate": "05:50 20.07.2019"
+        "actStartDate": "05:35 2019-07-20",
+        "actEndDate": "05:50 2019-07-20"
       },
       {
         "areaName": "Meltselektor",
         "actsId": "5",
         "actName": "Joseph Capriati",
-        "actStartDate": "01:35 19.07.2019",
-        "actEndDate": "01:50 19.07.2019"
+        "actStartDate": "01:35 2019-07-19",
+        "actEndDate": "01:50 2019-07-19"
       },
       {
         "areaName": "Meltselektor",
         "actsId": "6",
         "actName": "K�lsch",
-        "actStartDate": "02:35 19.07.2019",
-        "actEndDate": "02:50 19.07.2019"
+        "actStartDate": "02:35 2019-07-19",
+        "actEndDate": "02:50 2019-07-19"
       },
       {
         "areaName": "Meltselektor",
         "actsId": "7",
         "actName": "Alan Walker",
-        "actStartDate": "03:35 19.07.2019",
-        "actEndDate": "03:50 19.07.2019"
+        "actStartDate": "03:35 2019-07-19",
+        "actEndDate": "03:50 2019-07-19"
       },
       {
         "areaName": "Big Wheel",
         "actsId": "8",
         "actName": "The Black Madonna",
-        "actStartDate": "01:35 20.07.2019",
-        "actEndDate": "02:50 20.07.2019"
+        "actStartDate": "01:35 2019-07-20",
+        "actEndDate": "02:50 2019-07-20"
       },
       {
         "areaName": "Big Wheel",
         "actsId": "9",
         "actName": "Motor City Drum Ensemble",
-        "actStartDate": "02:35 20.07.2019",
-        "actEndDate": "03:35 20.07.2019"
+        "actStartDate": "02:35 2019-07-20",
+        "actEndDate": "03:35 2019-07-20"
       },
       {
         "areaName": "Big Wheel",
         "actsId": "10",
         "actName": "Alison Wonderland",
-        "actStartDate": "03:35 20.07.2019",
-        "actEndDate": "04:35 20.07.2019"
+        "actStartDate": "03:35 2019-07-20",
+        "actEndDate": "04:35 2019-07-20"
       },
       {
         "areaName": "Big Wheel",
         "actsId": "11",
         "actName": "Snakehips",
-        "actStartDate": "04:35 20.07.2019",
-        "actEndDate": "05:35 20.07.2019"
+        "actStartDate": "04:35 2019-07-20",
+        "actEndDate": "05:35 2019-07-20"
       },
       {
         "areaName": "Big Wheel",
         "actsId": "12",
         "actName": "Louis The Child",
-        "actStartDate": "05:35 20.07.2019",
-        "actEndDate": "08:50 20.07.2019"
+        "actStartDate": "05:35 2019-07-20",
+        "actEndDate": "08:50 2019-07-20"
       },
       {
         "areaName": "Big Wheel",
         "actsId": "13",
         "actName": "San Holo",
-        "actStartDate": "02:35 19.07.2019",
-        "actEndDate": "03:35 19.07.2019"
+        "actStartDate": "02:35 2019-07-19",
+        "actEndDate": "03:35 2019-07-19"
       },
       {
         "areaName": "Big Wheel",
         "actsId": "14",
         "actName": "Avalon Emerson",
-        "actStartDate": "03:35 19.07.2019",
-        "actEndDate": "04:35 19.07.2019"
+        "actStartDate": "03:35 2019-07-19",
+        "actEndDate": "04:35 2019-07-19"
       },
       {
         "areaName": "Big Wheel",
         "actsId": "15",
         "actName": "Hundred Waters",
-        "actStartDate": "04:35 19.07.2019",
-        "actEndDate": "05:50 19.07.2019"
+        "actStartDate": "04:35 2019-07-19",
+        "actEndDate": "05:50 2019-07-19"
       }
     ]
   },
   {
     "festId": 5555,
     "festName": "Streetparade",
-    "festStartDate": "10.08.2019",
+    "festStartDate": "2019-08-10",
     "festEndDate": "",
     "festCountry": "Switzerland",
     "festCity": "Zurich",
@@ -373,114 +373,114 @@
         "areaName": "Meltselektor",
         "actsId": "1",
         "actName": "Jamie Jones",
-        "actStartDate": "01:55 20.07.2019",
-        "actEndDate": "02:50 20.07.2019"
+        "actStartDate": "01:55 2019-07-20",
+        "actEndDate": "02:50 2019-07-20"
       },
       {
         "areaName": "Meltselektor",
         "actsId": "2",
         "actName": "Chris Liebing",
-        "actStartDate": "03:35 20.07.2019",
-        "actEndDate": "03:50 20.07.2019"
+        "actStartDate": "03:35 2019-07-20",
+        "actEndDate": "03:50 2019-07-20"
       },
       {
         "areaName": "Meltselektor",
         "actsId": "3",
         "actName": "Maceo Plex",
-        "actStartDate": "04:05 20.07.2019",
-        "actEndDate": "04:50 20.07.2019"
+        "actStartDate": "04:05 2019-07-20",
+        "actEndDate": "04:50 2019-07-20"
       },
       {
         "areaName": "Meltselektor",
         "actsId": "4",
         "actName": "Jackmaster",
-        "actStartDate": "05:35 20.07.2019",
-        "actEndDate": "05:50 20.07.2019"
+        "actStartDate": "05:35 2019-07-20",
+        "actEndDate": "05:50 2019-07-20"
       },
       {
         "areaName": "Meltselektor",
         "actsId": "5",
         "actName": "Joseph Capriati",
-        "actStartDate": "01:35 19.07.2019",
-        "actEndDate": "01:50 19.07.2019"
+        "actStartDate": "01:35 2019-07-19",
+        "actEndDate": "01:50 2019-07-19"
       },
       {
         "areaName": "Meltselektor",
         "actsId": "6",
         "actName": "K�lsch",
-        "actStartDate": "02:35 19.07.2019",
-        "actEndDate": "02:50 19.07.2019"
+        "actStartDate": "02:35 2019-07-19",
+        "actEndDate": "02:50 2019-07-19"
       },
       {
         "areaName": "Meltselektor",
         "actsId": "7",
         "actName": "Alan Walker",
-        "actStartDate": "03:35 19.07.2019",
-        "actEndDate": "03:50 19.07.2019"
+        "actStartDate": "03:35 2019-07-19",
+        "actEndDate": "03:50 2019-07-19"
       },
       {
         "areaName": "Big Wheel",
         "actsId": "8",
         "actName": "The Black Madonna",
-        "actStartDate": "01:35 20.07.2019",
-        "actEndDate": "02:50 20.07.2019"
+        "actStartDate": "01:35 2019-07-20",
+        "actEndDate": "02:50 2019-07-20"
       },
       {
         "areaName": "Big Wheel",
         "actsId": "9",
         "actName": "Motor City Drum Ensemble",
-        "actStartDate": "02:35 20.07.2019",
-        "actEndDate": "03:35 20.07.2019"
+        "actStartDate": "02:35 2019-07-20",
+        "actEndDate": "03:35 2019-07-20"
       },
       {
         "areaName": "Big Wheel",
         "actsId": "10",
         "actName": "Alison Wonderland",
-        "actStartDate": "03:35 20.07.2019",
-        "actEndDate": "04:35 20.07.2019"
+        "actStartDate": "03:35 2019-07-20",
+        "actEndDate": "04:35 2019-07-20"
       },
       {
         "areaName": "Big Wheel",
         "actsId": "11",
         "actName": "Snakehips",
-        "actStartDate": "04:35 20.07.2019",
-        "actEndDate": "05:35 20.07.2019"
+        "actStartDate": "04:35 2019-07-20",
+        "actEndDate": "05:35 2019-07-20"
       },
       {
         "areaName": "Big Wheel",
         "actsId": "12",
         "actName": "Louis The Child",
-        "actStartDate": "05:35 20.07.2019",
-        "actEndDate": "08:50 20.07.2019"
+        "actStartDate": "05:35 2019-07-20",
+        "actEndDate": "08:50 2019-07-20"
       },
       {
         "areaName": "Big Wheel",
         "actsId": "13",
         "actName": "San Holo",
-        "actStartDate": "02:35 19.07.2019",
-        "actEndDate": "03:35 19.07.2019"
+        "actStartDate": "02:35 2019-07-19",
+        "actEndDate": "03:35 2019-07-19"
       },
       {
         "areaName": "Big Wheel",
         "actsId": "14",
         "actName": "Avalon Emerson",
-        "actStartDate": "03:35 19.07.2019",
-        "actEndDate": "04:35 19.07.2019"
+        "actStartDate": "03:35 2019-07-19",
+        "actEndDate": "04:35 2019-07-19"
       },
       {
         "areaName": "Big Wheel",
         "actsId": "15",
         "actName": "Hundred Waters",
-        "actStartDate": "04:35 19.07.2019",
-        "actEndDate": "05:50 19.07.2019"
+        "actStartDate": "04:35 2019-07-19",
+        "actEndDate": "05:50 2019-07-19"
       }
     ]
   },
   {
     "festId": 66666,
     "festName": "#FEST",
-    "festStartDate": "12.04.2019",
-    "festEndDate": "13.04.2019",
+    "festStartDate": "2019-04-12",
+    "festEndDate": "2019-04-13",
     "festCountry": "United States",
     "festCity": "Athens",
     "timeTable": [
@@ -488,114 +488,114 @@
         "areaName": "Meltselektor",
         "actsId": "1",
         "actName": "Jamie Jones",
-        "actStartDate": "01:55 20.07.2019",
-        "actEndDate": "02:50 20.07.2019"
+        "actStartDate": "01:55 2019-07-20",
+        "actEndDate": "02:50 2019-07-20"
       },
       {
         "areaName": "Meltselektor",
         "actsId": "2",
         "actName": "Chris Liebing",
-        "actStartDate": "03:35 20.07.2019",
-        "actEndDate": "03:50 20.07.2019"
+        "actStartDate": "03:35 2019-07-20",
+        "actEndDate": "03:50 2019-07-20"
       },
       {
         "areaName": "Meltselektor",
         "actsId": "3",
         "actName": "Maceo Plex",
-        "actStartDate": "04:05 20.07.2019",
-        "actEndDate": "04:50 20.07.2019"
+        "actStartDate": "04:05 2019-07-20",
+        "actEndDate": "04:50 2019-07-20"
       },
       {
         "areaName": "Meltselektor",
         "actsId": "4",
         "actName": "Jackmaster",
-        "actStartDate": "05:35 20.07.2019",
-        "actEndDate": "05:50 20.07.2019"
+        "actStartDate": "05:35 2019-07-20",
+        "actEndDate": "05:50 2019-07-20"
       },
       {
         "areaName": "Meltselektor",
         "actsId": "5",
         "actName": "Joseph Capriati",
-        "actStartDate": "01:35 19.07.2019",
-        "actEndDate": "01:50 19.07.2019"
+        "actStartDate": "01:35 2019-07-19",
+        "actEndDate": "01:50 2019-07-19"
       },
       {
         "areaName": "Meltselektor",
         "actsId": "6",
-        "actName": "K�lsch",
-        "actStartDate": "02:35 19.07.2019",
-        "actEndDate": "02:50 19.07.2019"
+        "actName": "Kölsch",
+        "actStartDate": "02:35 2019-07-19",
+        "actEndDate": "02:50 2019-07-19"
       },
       {
         "areaName": "Meltselektor",
         "actsId": "7",
         "actName": "Alan Walker",
-        "actStartDate": "03:35 19.07.2019",
-        "actEndDate": "03:50 19.07.2019"
+        "actStartDate": "03:35 2019-07-19",
+        "actEndDate": "03:50 2019-07-19"
       },
       {
         "areaName": "Big Wheel",
         "actsId": "8",
         "actName": "The Black Madonna",
-        "actStartDate": "01:35 20.07.2019",
-        "actEndDate": "02:50 20.07.2019"
+        "actStartDate": "01:35 2019-07-20",
+        "actEndDate": "02:50 2019-07-20"
       },
       {
         "areaName": "Big Wheel",
         "actsId": "9",
         "actName": "Motor City Drum Ensemble",
-        "actStartDate": "02:35 20.07.2019",
-        "actEndDate": "03:35 20.07.2019"
+        "actStartDate": "02:35 2019-07-20",
+        "actEndDate": "03:35 2019-07-20"
       },
       {
         "areaName": "Big Wheel",
         "actsId": "10",
         "actName": "Alison Wonderland",
-        "actStartDate": "03:35 20.07.2019",
-        "actEndDate": "04:35 20.07.2019"
+        "actStartDate": "03:35 2019-07-20",
+        "actEndDate": "04:35 2019-07-20"
       },
       {
         "areaName": "Big Wheel",
         "actsId": "11",
         "actName": "Snakehips",
-        "actStartDate": "04:35 20.07.2019",
-        "actEndDate": "05:35 20.07.2019"
+        "actStartDate": "04:35 2019-07-20",
+        "actEndDate": "05:35 2019-07-20"
       },
       {
         "areaName": "Big Wheel",
         "actsId": "12",
         "actName": "Louis The Child",
-        "actStartDate": "05:35 20.07.2019",
-        "actEndDate": "08:50 20.07.2019"
+        "actStartDate": "05:35 2019-07-20",
+        "actEndDate": "08:50 2019-07-20"
       },
       {
         "areaName": "Big Wheel",
         "actsId": "13",
         "actName": "San Holo",
-        "actStartDate": "02:35 19.07.2019",
-        "actEndDate": "03:35 19.07.2019"
+        "actStartDate": "02:35 2019-07-19",
+        "actEndDate": "03:35 2019-07-19"
       },
       {
         "areaName": "Big Wheel",
         "actsId": "14",
         "actName": "Avalon Emerson",
-        "actStartDate": "03:35 19.07.2019",
-        "actEndDate": "04:35 19.07.2019"
+        "actStartDate": "03:35 2019-07-19",
+        "actEndDate": "04:35 2019-07-19"
       },
       {
         "areaName": "Big Wheel",
         "actsId": "15",
         "actName": "Hundred Waters",
-        "actStartDate": "04:35 19.07.2019",
-        "actEndDate": "05:50 19.07.2019"
+        "actStartDate": "04:35 2019-07-19",
+        "actEndDate": "05:50 2019-07-19"
       }
     ]
   },
   {
     "festId": 77777,
     "festName": "Austin City Limits - Weekend 2",
-    "festStartDate": "11.10.2019",
-    "festEndDate": "13.10.2019",
+    "festStartDate": "2019-07-11",
+    "festEndDate": "2019-07-13",
     "festCountry": "United States",
     "festCity": "Austin",
     "timeTable": [
@@ -603,114 +603,114 @@
         "areaName": "Meltselektor",
         "actsId": "1",
         "actName": "Jamie Jones",
-        "actStartDate": "01:55 20.07.2019",
-        "actEndDate": "02:50 20.07.2019"
+        "actStartDate": "01:55 2019-07-20",
+        "actEndDate": "02:50 2019-07-20"
       },
       {
         "areaName": "Meltselektor",
         "actsId": "2",
         "actName": "Chris Liebing",
-        "actStartDate": "03:35 20.07.2019",
-        "actEndDate": "03:50 20.07.2019"
+        "actStartDate": "03:35 2019-07-20",
+        "actEndDate": "03:50 2019-07-20"
       },
       {
         "areaName": "Meltselektor",
         "actsId": "3",
         "actName": "Maceo Plex",
-        "actStartDate": "04:05 20.07.2019",
-        "actEndDate": "04:50 20.07.2019"
+        "actStartDate": "04:05 2019-07-20",
+        "actEndDate": "04:50 2019-07-20"
       },
       {
         "areaName": "Meltselektor",
         "actsId": "4",
         "actName": "Jackmaster",
-        "actStartDate": "05:35 20.07.2019",
-        "actEndDate": "05:50 20.07.2019"
+        "actStartDate": "05:35 2019-07-20",
+        "actEndDate": "05:50 2019-07-20"
       },
       {
         "areaName": "Meltselektor",
         "actsId": "5",
         "actName": "Joseph Capriati",
-        "actStartDate": "01:35 19.07.2019",
-        "actEndDate": "01:50 19.07.2019"
+        "actStartDate": "01:35 2019-07-19",
+        "actEndDate": "01:50 2019-07-19"
       },
       {
         "areaName": "Meltselektor",
         "actsId": "6",
         "actName": "K�lsch",
-        "actStartDate": "02:35 19.07.2019",
-        "actEndDate": "02:50 19.07.2019"
+        "actStartDate": "02:35 2019-07-19",
+        "actEndDate": "02:50 2019-07-19"
       },
       {
         "areaName": "Meltselektor",
         "actsId": "7",
         "actName": "Alan Walker",
-        "actStartDate": "03:35 19.07.2019",
-        "actEndDate": "03:50 19.07.2019"
+        "actStartDate": "03:35 2019-07-19",
+        "actEndDate": "03:50 2019-07-19"
       },
       {
         "areaName": "Big Wheel",
         "actsId": "8",
         "actName": "The Black Madonna",
-        "actStartDate": "01:35 20.07.2019",
-        "actEndDate": "02:50 20.07.2019"
+        "actStartDate": "01:35 2019-07-20",
+        "actEndDate": "02:50 2019-07-20"
       },
       {
         "areaName": "Big Wheel",
         "actsId": "9",
         "actName": "Motor City Drum Ensemble",
-        "actStartDate": "02:35 20.07.2019",
-        "actEndDate": "03:35 20.07.2019"
+        "actStartDate": "02:35 2019-07-20",
+        "actEndDate": "03:35 2019-07-20"
       },
       {
         "areaName": "Big Wheel",
         "actsId": "10",
         "actName": "Alison Wonderland",
-        "actStartDate": "03:35 20.07.2019",
-        "actEndDate": "04:35 20.07.2019"
+        "actStartDate": "03:35 2019-07-20",
+        "actEndDate": "04:35 2019-07-20"
       },
       {
         "areaName": "Big Wheel",
         "actsId": "11",
         "actName": "Snakehips",
-        "actStartDate": "04:35 20.07.2019",
-        "actEndDate": "05:35 20.07.2019"
+        "actStartDate": "04:35 2019-07-20",
+        "actEndDate": "05:35 2019-07-20"
       },
       {
         "areaName": "Big Wheel",
         "actsId": "12",
         "actName": "Louis The Child",
-        "actStartDate": "05:35 20.07.2019",
-        "actEndDate": "08:50 20.07.2019"
+        "actStartDate": "05:35 2019-07-20",
+        "actEndDate": "08:50 2019-07-20"
       },
       {
         "areaName": "Big Wheel",
         "actsId": "13",
         "actName": "San Holo",
-        "actStartDate": "02:35 19.07.2019",
-        "actEndDate": "03:35 19.07.2019"
+        "actStartDate": "02:35 2019-07-19",
+        "actEndDate": "03:35 2019-07-19"
       },
       {
         "areaName": "Big Wheel",
         "actsId": "14",
         "actName": "Avalon Emerson",
-        "actStartDate": "03:35 19.07.2019",
-        "actEndDate": "04:35 19.07.2019"
+        "actStartDate": "03:35 2019-07-19",
+        "actEndDate": "04:35 2019-07-19"
       },
       {
         "areaName": "Big Wheel",
         "actsId": "15",
         "actName": "Hundred Waters",
-        "actStartDate": "04:35 19.07.2019",
-        "actEndDate": "05:50 19.07.2019"
+        "actStartDate": "04:35 2019-07-19",
+        "actEndDate": "05:50 2019-07-19"
       }
     ]
   },
   {
     "festId": 88888,
     "festName": "Epizode",
-    "festStartDate": "28.12.2018",
-    "festEndDate": "08.01.2019",
+    "festStartDate": "2018-12-28",
+    "festEndDate": "2019-01-08",
     "festCountry": "Vietnam",
     "festCity": "Doung Don",
     "timeTable": [
@@ -718,114 +718,114 @@
         "areaName": "Meltselektor",
         "actsId": "1",
         "actName": "Jamie Jones",
-        "actStartDate": "01:55 20.07.2019",
-        "actEndDate": "02:50 20.07.2019"
+        "actStartDate": "01:55 2019-07-20",
+        "actEndDate": "02:50 2019-07-20"
       },
       {
         "areaName": "Meltselektor",
         "actsId": "2",
         "actName": "Chris Liebing",
-        "actStartDate": "03:35 20.07.2019",
-        "actEndDate": "03:50 20.07.2019"
+        "actStartDate": "03:35 2019-07-20",
+        "actEndDate": "03:50 2019-07-20"
       },
       {
         "areaName": "Meltselektor",
         "actsId": "3",
         "actName": "Maceo Plex",
-        "actStartDate": "04:05 20.07.2019",
-        "actEndDate": "04:50 20.07.2019"
+        "actStartDate": "04:05 2019-07-20",
+        "actEndDate": "04:50 2019-07-20"
       },
       {
         "areaName": "Meltselektor",
         "actsId": "4",
         "actName": "Jackmaster",
-        "actStartDate": "05:35 20.07.2019",
-        "actEndDate": "05:50 20.07.2019"
+        "actStartDate": "05:35 2019-07-20",
+        "actEndDate": "05:50 2019-07-20"
       },
       {
         "areaName": "Meltselektor",
         "actsId": "5",
         "actName": "Joseph Capriati",
-        "actStartDate": "01:35 19.07.2019",
-        "actEndDate": "01:50 19.07.2019"
+        "actStartDate": "01:35 2019-07-19",
+        "actEndDate": "01:50 2019-07-19"
       },
       {
         "areaName": "Meltselektor",
         "actsId": "6",
         "actName": "K�lsch",
-        "actStartDate": "02:35 19.07.2019",
-        "actEndDate": "02:50 19.07.2019"
+        "actStartDate": "02:35 2019-07-19",
+        "actEndDate": "02:50 2019-07-19"
       },
       {
         "areaName": "Meltselektor",
         "actsId": "7",
         "actName": "Alan Walker",
-        "actStartDate": "03:35 19.07.2019",
-        "actEndDate": "03:50 19.07.2019"
+        "actStartDate": "03:35 2019-07-19",
+        "actEndDate": "03:50 2019-07-19"
       },
       {
         "areaName": "Big Wheel",
         "actsId": "8",
         "actName": "The Black Madonna",
-        "actStartDate": "01:35 20.07.2019",
-        "actEndDate": "02:50 20.07.2019"
+        "actStartDate": "01:35 2019-07-20",
+        "actEndDate": "02:50 2019-07-20"
       },
       {
         "areaName": "Big Wheel",
         "actsId": "9",
         "actName": "Motor City Drum Ensemble",
-        "actStartDate": "02:35 20.07.2019",
-        "actEndDate": "03:35 20.07.2019"
+        "actStartDate": "02:35 2019-07-20",
+        "actEndDate": "03:35 2019-07-20"
       },
       {
         "areaName": "Big Wheel",
         "actsId": "10",
         "actName": "Alison Wonderland",
-        "actStartDate": "03:35 20.07.2019",
-        "actEndDate": "04:35 20.07.2019"
+        "actStartDate": "03:35 2019-07-20",
+        "actEndDate": "04:35 2019-07-20"
       },
       {
         "areaName": "Big Wheel",
         "actsId": "11",
         "actName": "Snakehips",
-        "actStartDate": "04:35 20.07.2019",
-        "actEndDate": "05:35 20.07.2019"
+        "actStartDate": "04:35 2019-07-20",
+        "actEndDate": "05:35 2019-07-20"
       },
       {
         "areaName": "Big Wheel",
         "actsId": "12",
         "actName": "Louis The Child",
-        "actStartDate": "05:35 20.07.2019",
-        "actEndDate": "08:50 20.07.2019"
+        "actStartDate": "05:35 2019-07-20",
+        "actEndDate": "08:50 2019-07-20"
       },
       {
         "areaName": "Big Wheel",
         "actsId": "13",
         "actName": "San Holo",
-        "actStartDate": "02:35 19.07.2019",
-        "actEndDate": "03:35 19.07.2019"
+        "actStartDate": "02:35 2019-07-19",
+        "actEndDate": "03:35 2019-07-19"
       },
       {
         "areaName": "Big Wheel",
         "actsId": "14",
         "actName": "Avalon Emerson",
-        "actStartDate": "03:35 19.07.2019",
-        "actEndDate": "04:35 19.07.2019"
+        "actStartDate": "03:35 2019-07-19",
+        "actEndDate": "04:35 2019-07-19"
       },
       {
         "areaName": "Big Wheel",
         "actsId": "15",
         "actName": "Hundred Waters",
-        "actStartDate": "04:35 19.07.2019",
-        "actEndDate": "05:50 19.07.2019"
+        "actStartDate": "04:35 2019-07-19",
+        "actEndDate": "05:50 2019-07-19"
       }
     ]
   },
   {
     "festId": 9999,
     "festName": "Electric Daisy Carnival - Las Vegas",
-    "festStartDate": "17.05.2019",
-    "festEndDate": "19.05.2019",
+    "festStartDate": "2019-05-17",
+    "festEndDate": "2019-05-19",
     "festCountry": "United States ",
     "festCity": "Las Vegas",
     "timeTable": [
@@ -833,114 +833,114 @@
         "areaName": "Meltselektor",
         "actsId": "1",
         "actName": "Jamie Jones",
-        "actStartDate": "01:55 20.07.2019",
-        "actEndDate": "02:50 20.07.2019"
+        "actStartDate": "01:55 2019-07-20",
+        "actEndDate": "02:50 2019-07-20"
       },
       {
         "areaName": "Meltselektor",
         "actsId": "2",
         "actName": "Chris Liebing",
-        "actStartDate": "03:35 20.07.2019",
-        "actEndDate": "03:50 20.07.2019"
+        "actStartDate": "03:35 2019-07-20",
+        "actEndDate": "03:50 2019-07-20"
       },
       {
         "areaName": "Meltselektor",
         "actsId": "3",
         "actName": "Maceo Plex",
-        "actStartDate": "04:05 20.07.2019",
-        "actEndDate": "04:50 20.07.2019"
+        "actStartDate": "04:05 2019-07-20",
+        "actEndDate": "04:50 2019-07-20"
       },
       {
         "areaName": "Meltselektor",
         "actsId": "4",
         "actName": "Jackmaster",
-        "actStartDate": "05:35 20.07.2019",
-        "actEndDate": "05:50 20.07.2019"
+        "actStartDate": "05:35 2019-07-20",
+        "actEndDate": "05:50 2019-07-20"
       },
       {
         "areaName": "Meltselektor",
         "actsId": "5",
         "actName": "Joseph Capriati",
-        "actStartDate": "01:35 19.07.2019",
-        "actEndDate": "01:50 19.07.2019"
+        "actStartDate": "01:35 2019-07-19",
+        "actEndDate": "01:50 2019-07-19"
       },
       {
         "areaName": "Meltselektor",
         "actsId": "6",
         "actName": "K�lsch",
-        "actStartDate": "02:35 19.07.2019",
-        "actEndDate": "02:50 19.07.2019"
+        "actStartDate": "02:35 2019-07-19",
+        "actEndDate": "02:50 2019-07-19"
       },
       {
         "areaName": "Meltselektor",
         "actsId": "7",
         "actName": "Alan Walker",
-        "actStartDate": "03:35 19.07.2019",
-        "actEndDate": "03:50 19.07.2019"
+        "actStartDate": "03:35 2019-07-19",
+        "actEndDate": "03:50 2019-07-19"
       },
       {
         "areaName": "Big Wheel",
         "actsId": "8",
         "actName": "The Black Madonna",
-        "actStartDate": "01:35 20.07.2019",
-        "actEndDate": "02:50 20.07.2019"
+        "actStartDate": "01:35 2019-07-20",
+        "actEndDate": "02:50 2019-07-20"
       },
       {
         "areaName": "Big Wheel",
         "actsId": "9",
         "actName": "Motor City Drum Ensemble",
-        "actStartDate": "02:35 20.07.2019",
-        "actEndDate": "03:35 20.07.2019"
+        "actStartDate": "02:35 2019-07-20",
+        "actEndDate": "03:35 2019-07-20"
       },
       {
         "areaName": "Big Wheel",
         "actsId": "10",
         "actName": "Alison Wonderland",
-        "actStartDate": "03:35 20.07.2019",
-        "actEndDate": "04:35 20.07.2019"
+        "actStartDate": "03:35 2019-07-20",
+        "actEndDate": "04:35 2019-07-20"
       },
       {
         "areaName": "Big Wheel",
         "actsId": "11",
         "actName": "Snakehips",
-        "actStartDate": "04:35 20.07.2019",
-        "actEndDate": "05:35 20.07.2019"
+        "actStartDate": "04:35 2019-07-20",
+        "actEndDate": "05:35 2019-07-20"
       },
       {
         "areaName": "Big Wheel",
         "actsId": "12",
         "actName": "Louis The Child",
-        "actStartDate": "05:35 20.07.2019",
-        "actEndDate": "08:50 20.07.2019"
+        "actStartDate": "05:35 2019-07-20",
+        "actEndDate": "08:50 2019-07-20"
       },
       {
         "areaName": "Big Wheel",
         "actsId": "13",
         "actName": "San Holo",
-        "actStartDate": "02:35 19.07.2019",
-        "actEndDate": "03:35 19.07.2019"
+        "actStartDate": "02:35 2019-07-19",
+        "actEndDate": "03:35 2019-07-19"
       },
       {
         "areaName": "Big Wheel",
         "actsId": "14",
         "actName": "Avalon Emerson",
-        "actStartDate": "03:35 19.07.2019",
-        "actEndDate": "04:35 19.07.2019"
+        "actStartDate": "03:35 2019-07-19",
+        "actEndDate": "04:35 2019-07-19"
       },
       {
         "areaName": "Big Wheel",
         "actsId": "15",
         "actName": "Hundred Waters",
-        "actStartDate": "04:35 19.07.2019",
-        "actEndDate": "05:50 19.07.2019"
+        "actStartDate": "04:35 2019-07-19",
+        "actEndDate": "05:50 2019-07-19"
       }
     ]
   },
   {
     "festId": 34567364538,
     "festName": "Thuishaven - Giegling Weekender",
-    "festStartDate": "19.05.2018",
-    "festEndDate": "20.05.2018",
+    "festStartDate": "2018-05-19",
+    "festEndDate": "2018-05-20",
     "festCountry": "Netherland",
     "festCity": "Amsterdam",
     "timeTable": [
@@ -948,114 +948,114 @@
         "areaName": "Meltselektor",
         "actsId": "1",
         "actName": "Jamie Jones",
-        "actStartDate": "01:55 20.07.2019",
-        "actEndDate": "02:50 20.07.2019"
+        "actStartDate": "01:55 2019-07-20",
+        "actEndDate": "02:50 2019-07-20"
       },
       {
         "areaName": "Meltselektor",
         "actsId": "2",
         "actName": "Chris Liebing",
-        "actStartDate": "03:35 20.07.2019",
-        "actEndDate": "03:50 20.07.2019"
+        "actStartDate": "03:35 2019-07-20",
+        "actEndDate": "03:50 2019-07-20"
       },
       {
         "areaName": "Meltselektor",
         "actsId": "3",
         "actName": "Maceo Plex",
-        "actStartDate": "04:05 20.07.2019",
-        "actEndDate": "04:50 20.07.2019"
+        "actStartDate": "04:05 2019-07-20",
+        "actEndDate": "04:50 2019-07-20"
       },
       {
         "areaName": "Meltselektor",
         "actsId": "4",
         "actName": "Jackmaster",
-        "actStartDate": "05:35 20.07.2019",
-        "actEndDate": "05:50 20.07.2019"
+        "actStartDate": "05:35 2019-07-20",
+        "actEndDate": "05:50 2019-07-20"
       },
       {
         "areaName": "Meltselektor",
         "actsId": "5",
         "actName": "Joseph Capriati",
-        "actStartDate": "01:35 19.07.2019",
-        "actEndDate": "01:50 19.07.2019"
+        "actStartDate": "01:35 2019-07-19",
+        "actEndDate": "01:50 2019-07-19"
       },
       {
         "areaName": "Meltselektor",
         "actsId": "6",
         "actName": "K�lsch",
-        "actStartDate": "02:35 19.07.2019",
-        "actEndDate": "02:50 19.07.2019"
+        "actStartDate": "02:35 2019-07-19",
+        "actEndDate": "02:50 2019-07-19"
       },
       {
         "areaName": "Meltselektor",
         "actsId": "7",
         "actName": "Alan Walker",
-        "actStartDate": "03:35 19.07.2019",
-        "actEndDate": "03:50 19.07.2019"
+        "actStartDate": "03:35 2019-07-19",
+        "actEndDate": "03:50 2019-07-19"
       },
       {
         "areaName": "Big Wheel",
         "actsId": "8",
         "actName": "The Black Madonna",
-        "actStartDate": "01:35 20.07.2019",
-        "actEndDate": "02:50 20.07.2019"
+        "actStartDate": "01:35 2019-07-20",
+        "actEndDate": "02:50 2019-07-20"
       },
       {
         "areaName": "Big Wheel",
         "actsId": "9",
         "actName": "Motor City Drum Ensemble",
-        "actStartDate": "02:35 20.07.2019",
-        "actEndDate": "03:35 20.07.2019"
+        "actStartDate": "02:35 2019-07-20",
+        "actEndDate": "03:35 2019-07-20"
       },
       {
         "areaName": "Big Wheel",
         "actsId": "10",
         "actName": "Alison Wonderland",
-        "actStartDate": "03:35 20.07.2019",
-        "actEndDate": "04:35 20.07.2019"
+        "actStartDate": "03:35 2019-07-20",
+        "actEndDate": "04:35 2019-07-20"
       },
       {
         "areaName": "Big Wheel",
         "actsId": "11",
         "actName": "Snakehips",
-        "actStartDate": "04:35 20.07.2019",
-        "actEndDate": "05:35 20.07.2019"
+        "actStartDate": "04:35 2019-07-20",
+        "actEndDate": "05:35 2019-07-20"
       },
       {
         "areaName": "Big Wheel",
         "actsId": "12",
         "actName": "Louis The Child",
-        "actStartDate": "05:35 20.07.2019",
-        "actEndDate": "08:50 20.07.2019"
+        "actStartDate": "05:35 2019-07-20",
+        "actEndDate": "08:50 2019-07-20"
       },
       {
         "areaName": "Big Wheel",
         "actsId": "13",
         "actName": "San Holo",
-        "actStartDate": "02:35 19.07.2019",
-        "actEndDate": "03:35 19.07.2019"
+        "actStartDate": "02:35 2019-07-19",
+        "actEndDate": "03:35 2019-07-19"
       },
       {
         "areaName": "Big Wheel",
         "actsId": "14",
         "actName": "Avalon Emerson",
-        "actStartDate": "03:35 19.07.2019",
-        "actEndDate": "04:35 19.07.2019"
+        "actStartDate": "03:35 2019-07-19",
+        "actEndDate": "04:35 2019-07-19"
       },
       {
         "areaName": "Big Wheel",
         "actsId": "15",
         "actName": "Hundred Waters",
-        "actStartDate": "04:35 19.07.2019",
-        "actEndDate": "05:50 19.07.2019"
+        "actStartDate": "04:35 2019-07-19",
+        "actEndDate": "05:50 2019-07-19"
       }
     ]
   },
   {
     "festId": 65000145456,
     "festName": "Ultra Music Festival - Miami",
-    "festStartDate": "26.03.2019",
-    "festEndDate": "29.03.2019",
+    "festStartDate": "2019-03-26",
+    "festEndDate": "2019-03-29",
     "festCountry": "United States",
     "festCity": "Mismi",
     "timeTable": [
@@ -1063,106 +1063,106 @@
         "areaName": "Meltselektor",
         "actsId": "1",
         "actName": "Jamie Jones",
-        "actStartDate": "01:55 20.07.2019",
-        "actEndDate": "02:50 20.07.2019"
+        "actStartDate": "01:55 2019-07-20",
+        "actEndDate": "02:50 2019-07-20"
       },
       {
         "areaName": "Meltselektor",
         "actsId": "2",
         "actName": "Chris Liebing",
-        "actStartDate": "03:35 20.07.2019",
-        "actEndDate": "03:50 20.07.2019"
+        "actStartDate": "03:35 2019-07-20",
+        "actEndDate": "03:50 2019-07-20"
       },
       {
         "areaName": "Meltselektor",
         "actsId": "3",
         "actName": "Maceo Plex",
-        "actStartDate": "04:05 20.07.2019",
-        "actEndDate": "04:50 20.07.2019"
+        "actStartDate": "04:05 2019-07-20",
+        "actEndDate": "04:50 2019-07-20"
       },
       {
         "areaName": "Meltselektor",
         "actsId": "4",
         "actName": "Jackmaster",
-        "actStartDate": "05:35 20.07.2019",
-        "actEndDate": "05:50 20.07.2019"
+        "actStartDate": "05:35 2019-07-20",
+        "actEndDate": "05:50 2019-07-20"
       },
       {
         "areaName": "Meltselektor",
         "actsId": "5",
         "actName": "Joseph Capriati",
-        "actStartDate": "01:35 19.07.2019",
-        "actEndDate": "01:50 19.07.2019"
+        "actStartDate": "01:35 2019-07-19",
+        "actEndDate": "01:50 2019-07-19"
       },
       {
         "areaName": "Meltselektor",
         "actsId": "6",
         "actName": "K�lsch",
-        "actStartDate": "02:35 19.07.2019",
-        "actEndDate": "02:50 19.07.2019"
+        "actStartDate": "02:35 2019-07-19",
+        "actEndDate": "02:50 2019-07-19"
       },
       {
         "areaName": "Meltselektor",
         "actsId": "7",
         "actName": "Alan Walker",
-        "actStartDate": "03:35 19.07.2019",
-        "actEndDate": "03:50 19.07.2019"
+        "actStartDate": "03:35 2019-07-19",
+        "actEndDate": "03:50 2019-07-19"
       },
       {
         "areaName": "Big Wheel",
         "actsId": "8",
         "actName": "The Black Madonna",
-        "actStartDate": "01:35 20.07.2019",
-        "actEndDate": "02:50 20.07.2019"
+        "actStartDate": "01:35 2019-07-20",
+        "actEndDate": "02:50 2019-07-20"
       },
       {
         "areaName": "Big Wheel",
         "actsId": "9",
         "actName": "Motor City Drum Ensemble",
-        "actStartDate": "02:35 20.07.2019",
-        "actEndDate": "03:35 20.07.2019"
+        "actStartDate": "02:35 2019-07-20",
+        "actEndDate": "03:35 2019-07-20"
       },
       {
         "areaName": "Big Wheel",
         "actsId": "10",
         "actName": "Alison Wonderland",
-        "actStartDate": "03:35 20.07.2019",
-        "actEndDate": "04:35 20.07.2019"
+        "actStartDate": "03:35 2019-07-20",
+        "actEndDate": "04:35 2019-07-20"
       },
       {
         "areaName": "Big Wheel",
         "actsId": "11",
         "actName": "Snakehips",
-        "actStartDate": "04:35 20.07.2019",
-        "actEndDate": "05:35 20.07.2019"
+        "actStartDate": "04:35 2019-07-20",
+        "actEndDate": "05:35 2019-07-20"
       },
       {
         "areaName": "Big Wheel",
         "actsId": "12",
         "actName": "Louis The Child",
-        "actStartDate": "05:35 20.07.2019",
-        "actEndDate": "08:50 20.07.2019"
+        "actStartDate": "05:35 2019-07-20",
+        "actEndDate": "08:50 2019-07-20"
       },
       {
         "areaName": "Big Wheel",
         "actsId": "13",
         "actName": "San Holo",
-        "actStartDate": "02:35 19.07.2019",
-        "actEndDate": "03:35 19.07.2019"
+        "actStartDate": "02:35 2019-07-19",
+        "actEndDate": "03:35 2019-07-19"
       },
       {
         "areaName": "Big Wheel",
         "actsId": "14",
         "actName": "Avalon Emerson",
-        "actStartDate": "03:35 19.07.2019",
-        "actEndDate": "04:35 19.07.2019"
+        "actStartDate": "03:35 2019-07-19",
+        "actEndDate": "04:35 2019-07-19"
       },
       {
         "areaName": "Big Wheel",
         "actsId": "15",
         "actName": "Hundred Waters",
-        "actStartDate": "04:35 19.07.2019",
-        "actEndDate": "05:50 19.07.2019"
+        "actStartDate": "04:35 2019-07-19",
+        "actEndDate": "05:50 2019-07-19"
       }
     ]
   }

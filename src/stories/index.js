@@ -7,9 +7,8 @@ import { faStar, faAlignCenter } from '@fortawesome/free-solid-svg-icons'
 import Fest from '../components/Fest'
 import Bookmark from '../components/Bookmark'
 import NavBarBottomIcon from '../components/NavBarBottomIcon'
-import NavBar from '../components/NavBar'
 import NavBarBottom from '../components/NavBarBottom'
-import InputSearch from '../components/InputSearch'
+import Act from '../components/Act'
 
 import { StyleWrapper } from './StyleWrapper'
 import {
@@ -33,7 +32,7 @@ storiesOf('Fest', module).add('Festival list item', () => (
       festCountry={text('Country', 'Country')}
       festCity={text('City', 'City')}
       isBookmarked={boolean('Icon: isBookmarked', false)}
-      toggleBookmark={action('onToggle')}
+      //toggleBookmark={action('onToggle')}
     />
   </React.Fragment>
 ))
@@ -70,4 +69,15 @@ storiesOf('InputSearch', module).add('default', () => (
     />
     <InputImg />
   </InputWrapper>
+))
+
+storiesOf('Act', module).add('Act list item', () => (
+  <React.Fragment>
+    <Act
+      areaName={text('Area name', 'Honolulu')}
+      actName={text('Acts name', 'Max Mustermann')}
+      actStartDate={text('Acts start date', '20:00')}
+      actEndDate={text('Acts end date', '21:00')}
+    />
+  </React.Fragment>
 ))
