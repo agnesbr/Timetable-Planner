@@ -31,7 +31,7 @@ export default class App extends Component {
 
   render() {
     this.reformatData()
-    console.log(this.state.festivals)
+
     return (
       <Router>
         <React.Fragment>

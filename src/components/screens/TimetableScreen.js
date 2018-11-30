@@ -82,16 +82,33 @@ export default class TimetableScreen extends Component {
 
     return newIsActBookmarked
   }
-  //////////////////////////////////////////////////
+  ////////////////////////////////////////////////
   getSelectedActList = festObject => {
     const { iconIsDefault } = this.state
     const { festivals } = this.props
-    console.log(festObject)
+
     return festivals.filter(
       festival =>
-        iconIsDefault || this.isActBookmarked(festObject.timeTable.actId)
+        iconIsDefault || this.isActBookmarked(festObject.timeTable[3].actsId)
     )
+    console.log(this.isActBookmarked(festObject.timeTable[3].actsId))
   }
+
+  // if (iconIsDefault === true){
+  //   createActList(festObject, actsId)
+  // }else{
+  //   return festivals.map((festival, festIndex) => {
+
+  //     festivals[festIndex].timeTable.map
+
+  //     ((act, actIndex) => {
+  //       festivals[festIndex].timeTable[
+  //         actIndex].
+  //     filter(
+  //     timeTable =>
+  //      this.isActBookmarked(festObject.timeTable[3].actsId)
+  //   )
+
   //////////////////////////////////////////////////
 
   createActList(festObject) {
@@ -123,13 +140,14 @@ export default class TimetableScreen extends Component {
     this.saveFavoriteActs()
     const { festivals, festId } = this.props
     const festObject = this.getFestById(festivals, festId)
+    console.log(festObject)
     return (
       <Wrapper>
         <NavBar>
           <h1> {festObject.festName}</h1>
         </NavBar>
         <DisplayContent data-cy="ActsList">
-          {this.createActList()}
+          {this.createActList(festObject)}
           {/* {this.createActList(festObject)} */}
         </DisplayContent>
         <NavBarBottom>
