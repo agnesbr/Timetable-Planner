@@ -35,13 +35,13 @@ export default class Bookmark extends Component {
   }
 
   render() {
-    const { festId, isBookmarked, toggleBookmark } = this.props
+    const { id, isBookmarked, toggleBookmark } = this.props
 
     return (
       <Wrapper
         data-cy="Bookmark"
         className={isBookmarked ? 'bookmark-active' : null}
-        onClick={() => toggleBookmark(festId)}
+        onClick={() => toggleBookmark(id)}
       >
         {starIcon}
       </Wrapper>

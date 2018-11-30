@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
+import uid from 'uid'
 
 import Fest from '../Fest'
 import NavBarBottomIcon from '../NavBarBottomIcon'
@@ -8,8 +9,6 @@ import InputSearch from '../InputSearch'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar, faAlignCenter } from '@fortawesome/free-solid-svg-icons'
-
-import uid from 'uid'
 
 const starIcon = <FontAwesomeIcon className="filter-button" icon={faStar} />
 const listIcon = (

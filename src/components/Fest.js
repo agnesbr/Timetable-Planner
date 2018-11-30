@@ -71,7 +71,7 @@ export default class Fest extends Component {
           </section>
         </TimetableLink>
         <Bookmark
-          festId={festId}
+          id={festId}
           isBookmarked={isBookmarked}
           toggleBookmark={toggleBookmark}
         />

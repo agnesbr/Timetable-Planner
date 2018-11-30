@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import StyledWrapper from './StyledWrapper'
 import styled from 'styled-components'
+import Bookmark from './Bookmark'
 import PropTypes from 'prop-types'
 
 export const Div = styled.div`
@@ -20,7 +21,15 @@ export default class Act extends Component {
   }
 
   render() {
-    const { areaName, actName, actStartDate, actEndDate } = this.props
+    const {
+      actsId,
+      areaName,
+      actName,
+      actStartDate,
+      actEndDate,
+      isBookmarked,
+      toggleBookmark
+    } = this.props
 
     const playDay = actStartDate.toLocaleDateString('en-GB', {
       weekday: 'short'
@@ -45,6 +54,11 @@ export default class Act extends Component {
             {playDay}, {actStartTime} – {actEndTime}
           </time>
         </Div>
+        <Bookmark
+          id={actsId}
+          isBookmarked={isBookmarked}
+          toggleBookmark={toggleBookmark}
+        />
       </StyledWrapper>
     )
   }
