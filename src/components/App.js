@@ -15,9 +15,11 @@ export default class App extends Component {
       reformatedFestivals[festIndex].festStartDate = new Date(
         festival.festStartDate
       )
+
       reformatedFestivals[festIndex].festEndDate = new Date(
         festival.festEndDate
       )
+
       festival.timeTable.map((act, actIndex) => {
         reformatedFestivals[festIndex].timeTable[
           actIndex

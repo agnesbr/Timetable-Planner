@@ -46,11 +46,6 @@ export default class TimetableScreen extends Component {
     isActBookmarked: this.loadFavoriteActs()
   }
 
-  isActBookmarked(actsId) {
-    const { isActBookmarked } = this.state
-    return isActBookmarked.includes(actsId)
-  }
-
   toggleBookmark = actsId => {
     const { isActBookmarked } = this.state
 
@@ -82,38 +77,23 @@ export default class TimetableScreen extends Component {
 
     return newIsActBookmarked
   }
-  ////////////////////////////////////////////////
-  getSelectedActList = festObject => {
-    const { iconIsDefault } = this.state
-    const { festivals } = this.props
 
-    return festivals.filter(
-      festival =>
-        iconIsDefault || this.isActBookmarked(festObject.timeTable[3].actsId)
-    )
-    console.log(this.isActBookmarked(festObject.timeTable[3].actsId))
+  isActBookmarked(actsId) {
+    const { isActBookmarked } = this.state
+    return isActBookmarked.includes(actsId)
   }
 
-  // if (iconIsDefault === true){
-  //   createActList(festObject, actsId)
-  // }else{
-  //   return festivals.map((festival, festIndex) => {
-
-  //     festivals[festIndex].timeTable.map
-
-  //     ((act, actIndex) => {
-  //       festivals[festIndex].timeTable[
-  //         actIndex].
-  //     filter(
-  //     timeTable =>
-  //      this.isActBookmarked(festObject.timeTable[3].actsId)
-  //   )
-
-  //////////////////////////////////////////////////
+  getSelectedActList = timeTable => {
+    const { iconIsDefault } = this.state
+    return timeTable.filter(
+      act => iconIsDefault || this.isActBookmarked(act.actsId)
+    )
+  }
 
   createActList(festObject) {
-    return this.getSelectedActList(festObject).map(this.renderSingleAct)
-    // return festObject.timeTable.map(this.renderSingleAct)
+    return this.getSelectedActList(festObject.timeTable).map(
+      this.renderSingleAct
+    )
   }
 
   renderSingleAct = act => {
@@ -141,6 +121,8 @@ export default class TimetableScreen extends Component {
     const { festivals, festId } = this.props
     const festObject = this.getFestById(festivals, festId)
     console.log(festObject)
+    console.log(festObject.timeTable)
+
     return (
       <Wrapper>
         <NavBar>
@@ -148,7 +130,6 @@ export default class TimetableScreen extends Component {
         </NavBar>
         <DisplayContent data-cy="ActsList">
           {this.createActList(festObject)}
-          {/* {this.createActList(festObject)} */}
         </DisplayContent>
         <NavBarBottom>
           <NavLink to="/">

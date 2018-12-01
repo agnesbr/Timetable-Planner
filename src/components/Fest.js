@@ -23,8 +23,8 @@ export default class Fest extends Component {
   static propTypes = {
     festId: PropTypes.number.isRequired,
     festName: PropTypes.string.isRequired,
-    festStartDate: PropTypes.date,
-    festEndDate: PropTypes.date,
+    festStartDate: PropTypes.instanceOf(Date),
+    festEndDate: PropTypes.instanceOf(Date),
     festCountry: PropTypes.string.isRequired,
     festCity: PropTypes.string.isRequired,
     isBookmarked: PropTypes.bool,

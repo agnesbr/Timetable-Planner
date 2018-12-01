@@ -16,8 +16,8 @@ export default class Act extends Component {
   static propTypes = {
     areaName: PropTypes.string.isRequired,
     actName: PropTypes.string.isRequired,
-    actStartDate: PropTypes.func,
-    actEndDate: PropTypes.func
+    actStartDate: PropTypes.instanceOf(Date),
+    actEndDate: PropTypes.instanceOf(Date)
   }
 
   render() {
