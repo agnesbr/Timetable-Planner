@@ -16,9 +16,11 @@ export default class App extends Component {
         festival.festStartDate
       )
 
-      reformatedFestivals[festIndex].festEndDate = new Date(
-        festival.festEndDate
-      )
+      if (reformatedFestivals[festIndex].festEndDate !== '') {
+        reformatedFestivals[festIndex].festEndDate = new Date(
+          festival.festEndDate
+        )
+      }
 
       festival.timeTable.map((act, actIndex) => {
         reformatedFestivals[festIndex].timeTable[
@@ -29,6 +31,7 @@ export default class App extends Component {
         ].actEndDate = new Date(act.actEndDate)
       })
     })
+    console.log(reformatedFestivals)
   }
 
   render() {

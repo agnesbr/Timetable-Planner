@@ -49,11 +49,27 @@ export default class Fest extends Component {
       year: '2-digit'
     })
 
-    const festEndDateFormat = festEndDate.toLocaleDateString('en-GB', {
-      day: 'numeric',
-      month: '2-digit',
-      year: '2-digit'
-    })
+    let festEndDateFormat
+    if (festEndDate === '') {
+      console.log('ohne datum')
+      festEndDateFormat = ''
+    } else {
+      console.log('mit datum')
+      console.log(festEndDate)
+      festEndDateFormat = festEndDate.toLocaleDateString('en-GB', {
+        day: 'numeric',
+        month: '2-digit',
+        year: '2-digit'
+      })
+    }
+
+    // const festEndDateFormat =
+    //   festEndDate === '' ||
+    //   festEndDate.toLocaleDateString('en-GB', {
+    //     day: 'numeric',
+    //     month: '2-digit',
+    //     year: '2-digit'
+    //   })
 
     return (
       <StyledWrapper data-cy="festEl">
