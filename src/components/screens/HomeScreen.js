@@ -142,7 +142,6 @@ export default class HomeScreen extends Component {
   }
 
   render() {
-    const { festivals } = this.props
     this.saveFavorites()
 
     return (

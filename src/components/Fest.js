@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 import Bookmark from './Bookmark'
 import PropTypes from 'prop-types'
+import { BrowserRouter, Route } from 'react-router-dom'
 
 import StyledWrapper from './StyledWrapper'
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter, Router, Route } from 'react-router-dom'
 import HomeScreen from './screens/HomeScreen'
 import TimetableScreen from './screens/TimetableScreen'
 import festRawData from '../data/ef_data.json'
@@ -38,8 +38,8 @@ export default class App extends Component {
     this.reformatData()
 
     return (
-      <Router>
-        <React.Fragment>
+      <BrowserRouter>
+        <div>
           <Route
             exact
             path="/"
@@ -55,8 +55,8 @@ export default class App extends Component {
               />
             )}
           />
-        </React.Fragment>
-      </Router>
+        </div>
+      </BrowserRouter>
     )
   }
 }
