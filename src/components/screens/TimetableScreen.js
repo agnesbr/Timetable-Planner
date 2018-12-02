@@ -134,6 +134,7 @@ export default class TimetableScreen extends Component {
         <NavBarBottom>
           <NavLink to="/">
             <NavBarBottomIcon
+              dataCy={'backToHomepage'}
               fontSize={30}
               defaultIcon={backIcon}
               activeIcon={backIcon}
@@ -141,6 +142,7 @@ export default class TimetableScreen extends Component {
             />
           </NavLink>
           <NavBarBottomIcon
+            dataCy={'showBookmarkedFestList'}
             fontSize={20}
             defaultIcon={starIcon}
             activeIcon={listIcon}

@@ -63,14 +63,6 @@ export default class Fest extends Component {
       })
     }
 
-    // const festEndDateFormat =
-    //   festEndDate === '' ||
-    //   festEndDate.toLocaleDateString('en-GB', {
-    //     day: 'numeric',
-    //     month: '2-digit',
-    //     year: '2-digit'
-    //   })
-
     return (
       <StyledWrapper data-cy="festEl">
         <TimetableLink data-cy="festElLink" to={`/timetable/${festId}`}>

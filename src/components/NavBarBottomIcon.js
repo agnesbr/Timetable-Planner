@@ -24,13 +24,14 @@ export default class NavBarBottomIcon extends Component {
       defaultIcon,
       activeIcon,
       onClick,
-      fontSize
+      fontSize,
+      dataCy
     } = this.props
 
     return (
       <WrapperIconBottom
+        data-cy={dataCy}
         fontSize={fontSize}
-        data-cy="NavBarBottomIcon"
         className={iconIsDefault ? null : 'active'}
         onClick={onClick}
       >

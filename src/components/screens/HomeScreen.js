@@ -5,6 +5,7 @@ import uid from 'uid'
 import Fest from '../Fest'
 import NavBarBottomIcon from '../NavBarBottomIcon'
 import NavBar from '../NavBar'
+import NavBarBottom from '../NavBarBottom'
 import InputSearch from '../InputSearch'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -156,15 +157,16 @@ export default class HomeScreen extends Component {
         <DisplayContent data-cy="FestList">
           {this.createFestList()}
         </DisplayContent>
-        <NavBar>
+        <NavBarBottom>
           <NavBarBottomIcon
+            dataCy={'showBookmarkedFestList'}
             fontSize={20}
             defaultIcon={starIcon}
             activeIcon={listIcon}
             onClick={() => this.handleToggleButtonBookmarked()}
             iconIsDefault={this.state.iconIsDefault}
           />
-        </NavBar>
+        </NavBarBottom>
       </Wrapper>
     )
   }
