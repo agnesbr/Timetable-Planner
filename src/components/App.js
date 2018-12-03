@@ -15,9 +15,13 @@ export default class App extends Component {
       reformatedFestivals[festIndex].festStartDate = new Date(
         festival.festStartDate
       )
-      reformatedFestivals[festIndex].festEndDate = new Date(
-        festival.festEndDate
-      )
+
+      if (reformatedFestivals[festIndex].festEndDate !== '') {
+        reformatedFestivals[festIndex].festEndDate = new Date(
+          festival.festEndDate
+        )
+      }
+
       festival.timeTable.map((act, actIndex) => {
         reformatedFestivals[festIndex].timeTable[
           actIndex
@@ -27,14 +31,15 @@ export default class App extends Component {
         ].actEndDate = new Date(act.actEndDate)
       })
     })
+    console.log(reformatedFestivals)
   }
 
   render() {
     this.reformatData()
-    console.log(this.state.festivals)
+
     return (
       <Router>
-        <React.Fragment>
+        <div>
           <Route
             exact
             path="/"
@@ -50,7 +55,7 @@ export default class App extends Component {
               />
             )}
           />
-        </React.Fragment>
+        </div>
       </Router>
     )
   }

@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
+import uid from 'uid'
 
 import Fest from '../Fest'
 import NavBarBottomIcon from '../NavBarBottomIcon'
 import NavBar from '../NavBar'
+import NavBarBottom from '../NavBarBottom'
 import InputSearch from '../InputSearch'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar, faAlignCenter } from '@fortawesome/free-solid-svg-icons'
-
-import uid from 'uid'
 
 const starIcon = <FontAwesomeIcon className="filter-button" icon={faStar} />
 const listIcon = (
@@ -142,7 +142,6 @@ export default class HomeScreen extends Component {
   }
 
   render() {
-    const { festivals } = this.props
     this.saveFavorites()
 
     return (
@@ -157,15 +156,16 @@ export default class HomeScreen extends Component {
         <DisplayContent data-cy="FestList">
           {this.createFestList()}
         </DisplayContent>
-        <NavBar>
+        <NavBarBottom>
           <NavBarBottomIcon
+            dataCy={'showBookmarkedFestList'}
             fontSize={20}
             defaultIcon={starIcon}
             activeIcon={listIcon}
             onClick={() => this.handleToggleButtonBookmarked()}
             iconIsDefault={this.state.iconIsDefault}
           />
-        </NavBar>
+        </NavBarBottom>
       </Wrapper>
     )
   }

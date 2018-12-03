@@ -23,8 +23,8 @@ export default class Fest extends Component {
   static propTypes = {
     festId: PropTypes.number.isRequired,
     festName: PropTypes.string.isRequired,
-    festStartDate: PropTypes.date,
-    festEndDate: PropTypes.date,
+    festStartDate: PropTypes.instanceOf(Date),
+    // festEndDate: PropTypes.instanceOf(Date),
     festCountry: PropTypes.string.isRequired,
     festCity: PropTypes.string.isRequired,
     isBookmarked: PropTypes.bool,
@@ -49,29 +49,37 @@ export default class Fest extends Component {
       year: '2-digit'
     })
 
-    const festEndDateFormat = festEndDate.toLocaleDateString('en-GB', {
-      day: 'numeric',
-      month: '2-digit',
-      year: '2-digit'
-    })
+    let festEndDateFormat
+    if (festEndDate === '') {
+      console.log('ohne datum')
+      festEndDateFormat = ''
+    } else {
+      console.log('mit datum')
+      console.log(festEndDate)
+      festEndDateFormat = festEndDate.toLocaleDateString('en-GB', {
+        day: 'numeric',
+        month: '2-digit',
+        year: '2-digit'
+      })
+    }
 
     return (
       <StyledWrapper data-cy="festEl">
         <TimetableLink data-cy="festElLink" to={`/timetable/${festId}`}>
-          <time dateTime={festEndDateFormat}>
+          <time className="teal" dateTime={festEndDateFormat}>
             {festEndDateFormat === ''
               ? festStartDateFormat
               : festStartDateFormat + ' – ' + festEndDateFormat}
           </time>
           <h2 data-cy="festName">{festName}</h2>
-          <section>
+          <section className="teal">
             {festCountry}
             <div className="star"> {starIcon}</div>
             {festCity}
           </section>
         </TimetableLink>
         <Bookmark
-          festId={festId}
+          id={festId}
           isBookmarked={isBookmarked}
           toggleBookmark={toggleBookmark}
         />

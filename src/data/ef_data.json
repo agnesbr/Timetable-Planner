@@ -1,16 +1,16 @@
 [
   {
     "festId": 1111,
-    "festName": "FestName",
+    "festName": "MAYA MUSIC FESTIVAL",
     "festStartDate": "2019-10-13",
-    "festEndDate": "2019-10-13",
-    "festCountry": "Musterland",
-    "festCity": "Musterstadt",
+    "festEndDate": "",
+    "festCountry": "Germany",
+    "festCity": "Berlin",
     "timeTable": [
       {
-        "areaName": "Area Name",
+        "areaName": "Waldbühne",
         "actsId": "23345",
-        "actName": "Act Name",
+        "actName": "Hot since 82",
         "actStartDate": "21:00 2019-10-21",
         "actEndDate": "21:00 2019-10-21"
       }
@@ -135,7 +135,7 @@
     "festId": 3333,
     "festName": "Tomorrowland",
     "festStartDate": "2018-07-20",
-    "festEndDate": "2018-22-07",
+    "festEndDate": "2018-07-07",
     "festCountry": "Belgium",
     "festCity": "Boom",
     "timeTable": [
@@ -250,7 +250,7 @@
     "festId": 4444,
     "festName": "Melt",
     "festStartDate": "2019-07-19",
-    "festEndDate": "2019-07-22-07",
+    "festEndDate": "2019-07-22",
     "festCountry": "Germany",
     "festCity": "Gräfchenshain",
     "timeTable": [

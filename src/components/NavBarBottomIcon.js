@@ -15,7 +15,9 @@ export default class NavBarBottomIcon extends Component {
     defaultIcon: PropTypes.element,
     activeIcon: PropTypes.element,
     onClick: PropTypes.func,
-    iconIsDefault: PropTypes.bool
+    iconIsDefault: PropTypes.bool,
+    dataCy: PropTypes.string,
+    fontSize: PropTypes.number
   }
 
   render() {
@@ -24,13 +26,14 @@ export default class NavBarBottomIcon extends Component {
       defaultIcon,
       activeIcon,
       onClick,
-      fontSize
+      fontSize,
+      dataCy
     } = this.props
 
     return (
       <WrapperIconBottom
+        data-cy={dataCy}
         fontSize={fontSize}
-        data-cy="NavBarBottomIcon"
         className={iconIsDefault ? null : 'active'}
         onClick={onClick}
       >
