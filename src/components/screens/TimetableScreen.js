@@ -120,8 +120,6 @@ export default class TimetableScreen extends Component {
     this.saveFavoriteActs()
     const { festivals, festId } = this.props
     const festObject = this.getFestById(festivals, festId)
-    console.log(festObject)
-    console.log(festObject.timeTable)
 
     return (
       <Wrapper>

@@ -16,7 +16,9 @@ export default class App extends Component {
         festival.festStartDate
       )
 
-      if (reformatedFestivals[festIndex].festEndDate !== '') {
+      if (reformatedFestivals[festIndex].festEndDate == '' || null) {
+        reformatedFestivals[festIndex].festEndDate = null
+      } else {
         reformatedFestivals[festIndex].festEndDate = new Date(
           festival.festEndDate
         )
@@ -31,7 +33,6 @@ export default class App extends Component {
         ].actEndDate = new Date(act.actEndDate)
       })
     })
-    console.log(reformatedFestivals)
   }
 
   render() {
@@ -39,7 +40,7 @@ export default class App extends Component {
 
     return (
       <Router>
-        <div>
+        <React.Fragment>
           <Route
             exact
             path="/"
@@ -55,7 +56,7 @@ export default class App extends Component {
               />
             )}
           />
-        </div>
+        </React.Fragment>
       </Router>
     )
   }
