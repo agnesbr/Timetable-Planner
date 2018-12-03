@@ -48,9 +48,9 @@ export default class Act extends Component {
     return (
       <StyledWrapper>
         <Div>
-          <section>{areaName}</section>
+          <section className="purple">{areaName}</section>
           <h2>{actName}</h2>
-          <time>
+          <time className="purple">
             {playDay}, {actStartTime} – {actEndTime}
           </time>
         </Div>

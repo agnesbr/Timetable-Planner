@@ -5,7 +5,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 import Bookmark from './Bookmark'
 import PropTypes from 'prop-types'
-import { BrowserRouter, Route } from 'react-router-dom'
 
 import StyledWrapper from './StyledWrapper'
 
@@ -25,7 +24,7 @@ export default class Fest extends Component {
     festId: PropTypes.number.isRequired,
     festName: PropTypes.string.isRequired,
     festStartDate: PropTypes.instanceOf(Date),
-    festEndDate: PropTypes.instanceOf(Date),
+    // festEndDate: PropTypes.instanceOf(Date),
     festCountry: PropTypes.string.isRequired,
     festCity: PropTypes.string.isRequired,
     isBookmarked: PropTypes.bool,
@@ -67,13 +66,13 @@ export default class Fest extends Component {
     return (
       <StyledWrapper data-cy="festEl">
         <TimetableLink data-cy="festElLink" to={`/timetable/${festId}`}>
-          <time dateTime={festEndDateFormat}>
+          <time className="teal" dateTime={festEndDateFormat}>
             {festEndDateFormat === ''
               ? festStartDateFormat
               : festStartDateFormat + ' – ' + festEndDateFormat}
           </time>
           <h2 data-cy="festName">{festName}</h2>
-          <section>
+          <section className="teal">
             {festCountry}
             <div className="star"> {starIcon}</div>
             {festCity}

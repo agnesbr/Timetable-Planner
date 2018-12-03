@@ -35,8 +35,6 @@ export const InputImg = styled.div`
 
 export default class InputSearch extends Component {
   static propTypes = {
-    placeholder: PropTypes.string,
-    onChange: PropTypes.func.isRequired,
     onKeyUp: PropTypes.string
   }
 

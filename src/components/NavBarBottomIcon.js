@@ -15,7 +15,9 @@ export default class NavBarBottomIcon extends Component {
     defaultIcon: PropTypes.element,
     activeIcon: PropTypes.element,
     onClick: PropTypes.func,
-    iconIsDefault: PropTypes.bool
+    iconIsDefault: PropTypes.bool,
+    dataCy: PropTypes.string,
+    fontSize: PropTypes.number
   }
 
   render() {

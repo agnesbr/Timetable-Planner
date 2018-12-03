@@ -83,12 +83,12 @@ a{
 :root {
   --dark: #0B161F;
   --light: #E3E7DE;
-  --purple: #a177c0;
+  --purple: #6A4287;
   --red: #FE6767;
   --green: #8BC53F;
   --orange: #E99A00;
   --yellow: #E99A00;
-  --teal: #0DA2A3;
+  --teal: #1A999A;
 }
 
 `

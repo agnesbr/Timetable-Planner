@@ -1,16 +1,16 @@
 [
   {
     "festId": 1111,
-    "festName": "FestName",
+    "festName": "MAYA MUSIC FESTIVAL",
     "festStartDate": "2019-10-13",
     "festEndDate": "",
-    "festCountry": "Musterland",
-    "festCity": "Musterstadt",
+    "festCountry": "Germany",
+    "festCity": "Berlin",
     "timeTable": [
       {
-        "areaName": "Area Name",
+        "areaName": "Waldbühne",
         "actsId": "23345",
-        "actName": "Act Name",
+        "actName": "Hot since 82",
         "actStartDate": "21:00 2019-10-21",
         "actEndDate": "21:00 2019-10-21"
       }
