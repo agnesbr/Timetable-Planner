@@ -24,7 +24,7 @@ export default class Fest extends Component {
     festId: PropTypes.number.isRequired,
     festName: PropTypes.string.isRequired,
     festStartDate: PropTypes.instanceOf(Date),
-    // festEndDate: PropTypes.instanceOf(Date),
+    festEndDate: PropTypes.instanceOf(Date),
     festCountry: PropTypes.string.isRequired,
     festCity: PropTypes.string.isRequired,
     isBookmarked: PropTypes.bool,
@@ -50,12 +50,9 @@ export default class Fest extends Component {
     })
 
     let festEndDateFormat
-    if (festEndDate === '') {
-      console.log('ohne datum')
-      festEndDateFormat = ''
+    if (festEndDate == null) {
+      festEndDateFormat = null
     } else {
-      console.log('mit datum')
-      console.log(festEndDate)
       festEndDateFormat = festEndDate.toLocaleDateString('en-GB', {
         day: 'numeric',
         month: '2-digit',
@@ -67,7 +64,7 @@ export default class Fest extends Component {
       <StyledWrapper data-cy="festEl">
         <TimetableLink data-cy="festElLink" to={`/timetable/${festId}`}>
           <time className="teal" dateTime={festEndDateFormat}>
-            {festEndDateFormat === ''
+            {festEndDateFormat == null
               ? festStartDateFormat
               : festStartDateFormat + ' – ' + festEndDateFormat}
           </time>
