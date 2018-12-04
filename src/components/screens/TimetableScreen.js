@@ -109,23 +109,15 @@ export default class TimetableScreen extends Component {
       act => bookmarkIconIsDefault || this.isActBookmarked(act.actsId)
     )
     if (sortAlphaIconIsDefault === false) {
-      return filteredTimeTable
-        .filter(
-          act => bookmarkIconIsDefault || this.isActBookmarked(act.actsId)
-        )
-        .sort((a, b) => a.actName.localeCompare(b.actName))
+      return filteredTimeTable.sort((a, b) =>
+        a.actName.localeCompare(b.actName)
+      )
     } else if (sortByTimeIsDefault === false) {
-      return filteredTimeTable
-        .filter(
-          act => bookmarkIconIsDefault || this.isActBookmarked(act.actsId)
-        )
-        .sort((a, b) => a.actStartDate - b.actStartDate)
+      return filteredTimeTable.sort((a, b) => a.actStartDate - b.actStartDate)
     } else if (sortByStageIconIsDefault === false) {
-      return filteredTimeTable
-        .filter(
-          act => bookmarkIconIsDefault || this.isActBookmarked(act.actsId)
-        )
-        .sort((a, b) => a.areaName.localeCompare(b.areaName))
+      return filteredTimeTable.sort((a, b) =>
+        a.areaName.localeCompare(b.areaName)
+      )
     }
   }
 
