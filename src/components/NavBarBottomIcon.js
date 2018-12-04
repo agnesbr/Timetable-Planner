@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 
 export const WrapperIconBottom = styled.div`
   font-size: ${props => props.fontSize || 20}px;
+  align-self: center;
   color: var(--light);
   &.active {
     color: var(--teal);

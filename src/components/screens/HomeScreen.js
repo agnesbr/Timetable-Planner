@@ -159,7 +159,7 @@ export default class HomeScreen extends Component {
         <NavBarBottom>
           <NavBarBottomIcon
             dataCy={'showBookmarkedFestList'}
-            fontSize={20}
+            fontSize={25}
             defaultIcon={starIcon}
             activeIcon={listIcon}
             onClick={() => this.handleToggleButtonBookmarked()}

@@ -6,38 +6,32 @@ import festRawData from '../data/ef_data.json'
 
 export default class App extends Component {
   state = {
-    festivals: festRawData
+    festivals: []
   }
 
-  reformatData() {
-    const reformatedFestivals = this.state.festivals
-    reformatedFestivals.map((festival, festIndex) => {
-      reformatedFestivals[festIndex].festStartDate = new Date(
-        festival.festStartDate
-      )
-
-      if (reformatedFestivals[festIndex].festEndDate == '' || null) {
-        reformatedFestivals[festIndex].festEndDate = null
+  componentWillMount() {
+    const festivals = festRawData
+    const reformatedFestivals = festivals.map(festival => {
+      festival.festStartDate = new Date(festival.festStartDate)
+      if (festival.festEndDate === '') {
+        festival.festEndDate = null
       } else {
-        reformatedFestivals[festIndex].festEndDate = new Date(
-          festival.festEndDate
-        )
+        festival.festEndDate = new Date(festival.festEndDate)
       }
-
-      festival.timeTable.map((act, actIndex) => {
-        reformatedFestivals[festIndex].timeTable[
-          actIndex
-        ].actStartDate = new Date(act.actStartDate)
-        reformatedFestivals[festIndex].timeTable[
-          actIndex
-        ].actEndDate = new Date(act.actEndDate)
+      const newTimeTable = festival.timeTable.map(act => {
+        act.actStartDate = new Date(act.actStartDate)
+        act.actEndDate = new Date(act.actEndDate)
+        return act
       })
+      festival.timeTable = newTimeTable
+      return festival
+    })
+    this.setState({
+      festivals: reformatedFestivals
     })
   }
 
   render() {
-    this.reformatData()
-
     return (
       <Router>
         <React.Fragment>

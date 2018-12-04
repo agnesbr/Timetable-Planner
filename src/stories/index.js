@@ -3,8 +3,16 @@ import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
 import { text, boolean, number, date } from '@storybook/addon-knobs'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faStar, faAlignCenter } from '@fortawesome/free-solid-svg-icons'
+import {
+  faStar,
+  faAlignCenter,
+  faAngleLeft,
+  faSortAlphaDown,
+  faClock,
+  faMapMarkerAlt
+} from '@fortawesome/free-solid-svg-icons'
 import { MemoryRouter } from 'react-router'
+import { NavLink } from 'react-router-dom'
 
 import Fest from '../components/Fest'
 import Bookmark from '../components/Bookmark'
@@ -19,9 +27,19 @@ import {
   InputImg
 } from '../components/InputSearch'
 
+const backIcon = (
+  <FontAwesomeIcon className="filter-button" icon={faAngleLeft} />
+)
 const starIcon = <FontAwesomeIcon className="filter-button" icon={faStar} />
 const listIcon = (
   <FontAwesomeIcon className="filter-button" icon={faAlignCenter} />
+)
+const sortDown = (
+  <FontAwesomeIcon className="filter-button" icon={faSortAlphaDown} />
+)
+const clock = <FontAwesomeIcon className="filter-button" icon={faClock} />
+const stage = (
+  <FontAwesomeIcon className="filter-button" icon={faMapMarkerAlt} />
 )
 
 function dateKnob(name, defaultValue) {
@@ -95,3 +113,53 @@ storiesOf('Act', module).add('Act list item', () => (
     />
   </React.Fragment>
 ))
+
+storiesOf('NavBarBottom', module)
+  .addDecorator(story => (
+    <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
+  ))
+  .add('NavBarBottom Timetable Screen', () => (
+    <NavBarBottom>
+      <NavLink to="/">
+        <NavBarBottomIcon
+          dataCy={'backToHomepage'}
+          fontSize={32}
+          defaultIcon={backIcon}
+          activeIcon={backIcon}
+          iconIsDefault={boolean('Icon: backIconIsDefault', true)}
+        />
+      </NavLink>
+      <NavBarBottomIcon
+        dataCy={'sortActsAlpha'}
+        fontSize={26}
+        defaultIcon={sortDown}
+        activeIcon={sortDown}
+        onClick={action('onClick - handleButtonSortAlpha')}
+        iconIsDefault={boolean('Icon: sortAlphaIconIsDefault', true)}
+      />
+      <NavBarBottomIcon
+        dataCy={'sortActsByTime'}
+        fontSize={25}
+        defaultIcon={clock}
+        activeIcon={clock}
+        onClick={action('onClick - handleButtonSortTime')}
+        iconIsDefault={boolean('Icon: sortByTimeIsDefault', true)}
+      />
+      <NavBarBottomIcon
+        dataCy={'sortActsByStage'}
+        fontSize={25}
+        defaultIcon={stage}
+        activeIcon={stage}
+        onClick={action('onClick - handleButtonSortStage')}
+        iconIsDefault={boolean('Icon: sortByStageIconIsDefault', false)}
+      />
+      <NavBarBottomIcon
+        dataCy={'showBookmarkedFestList'}
+        fontSize={25}
+        defaultIcon={starIcon}
+        activeIcon={listIcon}
+        onClick={action('onToggle - handleToggleButtonBookmarked')}
+        iconIsDefault={boolean('Icon: bookmarkIconIsDefault', true)}
+      />
+    </NavBarBottom>
+  ))

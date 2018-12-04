@@ -7,7 +7,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faStar,
   faAlignCenter,
-  faAngleLeft
+  faAngleLeft,
+  faSortAlphaDown,
+  faClock,
+  faMapMarkerAlt
 } from '@fortawesome/free-solid-svg-icons'
 
 import NavBar from '../NavBar'
@@ -21,6 +24,13 @@ const backIcon = (
 const starIcon = <FontAwesomeIcon className="filter-button" icon={faStar} />
 const listIcon = (
   <FontAwesomeIcon className="filter-button" icon={faAlignCenter} />
+)
+const sortDown = (
+  <FontAwesomeIcon className="filter-button" icon={faSortAlphaDown} />
+)
+const clock = <FontAwesomeIcon className="filter-button" icon={faClock} />
+const stage = (
+  <FontAwesomeIcon className="filter-button" icon={faMapMarkerAlt} />
 )
 
 export const Wrapper = styled.section`
@@ -42,7 +52,11 @@ export const Homelink = styled(Link)`
 
 export default class TimetableScreen extends Component {
   state = {
-    iconIsDefault: true,
+    bookmarkIconIsDefault: true,
+    backIconIsDefault: true,
+    sortAlphaIconIsDefault: true,
+    sortByTimeIsDefault: true,
+    sortByStageIconIsDefault: false,
     isActBookmarked: this.loadFavoriteActs()
   }
 
@@ -84,10 +98,35 @@ export default class TimetableScreen extends Component {
   }
 
   getSelectedActList = timeTable => {
-    const { iconIsDefault } = this.state
-    return timeTable.filter(
-      act => iconIsDefault || this.isActBookmarked(act.actsId)
+    const {
+      bookmarkIconIsDefault,
+      sortAlphaIconIsDefault,
+      sortByTimeIsDefault,
+      sortByStageIconIsDefault
+    } = this.state
+
+    const filteredTimeTable = timeTable.filter(
+      act => bookmarkIconIsDefault || this.isActBookmarked(act.actsId)
     )
+    if (sortAlphaIconIsDefault === false) {
+      return filteredTimeTable
+        .filter(
+          act => bookmarkIconIsDefault || this.isActBookmarked(act.actsId)
+        )
+        .sort((a, b) => a.actName.localeCompare(b.actName))
+    } else if (sortByTimeIsDefault === false) {
+      return filteredTimeTable
+        .filter(
+          act => bookmarkIconIsDefault || this.isActBookmarked(act.actsId)
+        )
+        .sort((a, b) => a.actStartDate - b.actStartDate)
+    } else if (sortByStageIconIsDefault === false) {
+      return filteredTimeTable
+        .filter(
+          act => bookmarkIconIsDefault || this.isActBookmarked(act.actsId)
+        )
+        .sort((a, b) => a.areaName.localeCompare(b.areaName))
+    }
   }
 
   createActList(festObject) {
@@ -120,7 +159,7 @@ export default class TimetableScreen extends Component {
     this.saveFavoriteActs()
     const { festivals, festId } = this.props
     const festObject = this.getFestById(festivals, festId)
-
+    console.log(this.state)
     return (
       <Wrapper>
         <NavBar>
@@ -133,19 +172,43 @@ export default class TimetableScreen extends Component {
           <NavLink to="/">
             <NavBarBottomIcon
               dataCy={'backToHomepage'}
-              fontSize={30}
+              fontSize={32}
               defaultIcon={backIcon}
               activeIcon={backIcon}
-              iconIsDefault={this.state.iconIsDefault}
+              iconIsDefault={this.state.backIconIsDefault}
             />
           </NavLink>
           <NavBarBottomIcon
+            dataCy={'sortActsAlpha'}
+            fontSize={26}
+            defaultIcon={sortDown}
+            activeIcon={sortDown}
+            onClick={() => this.handleButtonSortAlpha()}
+            iconIsDefault={this.state.sortAlphaIconIsDefault}
+          />
+          <NavBarBottomIcon
+            dataCy={'sortActsByTime'}
+            fontSize={25}
+            defaultIcon={clock}
+            activeIcon={clock}
+            onClick={() => this.handleButtonSortTime()}
+            iconIsDefault={this.state.sortByTimeIsDefault}
+          />
+          <NavBarBottomIcon
+            dataCy={'sortActsByStage'}
+            fontSize={25}
+            defaultIcon={stage}
+            activeIcon={stage}
+            onClick={() => this.handleButtonSortStage()}
+            iconIsDefault={this.state.sortByStageIconIsDefault}
+          />
+          <NavBarBottomIcon
             dataCy={'showBookmarkedFestList'}
-            fontSize={20}
+            fontSize={25}
             defaultIcon={starIcon}
             activeIcon={listIcon}
             onClick={() => this.handleToggleButtonBookmarked()}
-            iconIsDefault={this.state.iconIsDefault}
+            iconIsDefault={this.state.bookmarkIconIsDefault}
           />
         </NavBarBottom>
       </Wrapper>
@@ -153,7 +216,28 @@ export default class TimetableScreen extends Component {
   }
   handleToggleButtonBookmarked = () => {
     this.setState({
-      iconIsDefault: !this.state.iconIsDefault
+      bookmarkIconIsDefault: !this.state.bookmarkIconIsDefault
+    })
+  }
+  handleButtonSortAlpha = () => {
+    this.setState({
+      sortAlphaIconIsDefault: false,
+      sortByTimeIsDefault: true,
+      sortByStageIconIsDefault: true
+    })
+  }
+  handleButtonSortTime = () => {
+    this.setState({
+      sortAlphaIconIsDefault: true,
+      sortByTimeIsDefault: false,
+      sortByStageIconIsDefault: true
+    })
+  }
+  handleButtonSortStage = () => {
+    this.setState({
+      sortAlphaIconIsDefault: true,
+      sortByTimeIsDefault: true,
+      sortByStageIconIsDefault: false
     })
   }
 
