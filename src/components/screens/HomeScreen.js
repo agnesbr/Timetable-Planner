@@ -9,11 +9,18 @@ import NavBarBottom from '../NavBarBottom'
 import InputSearch from '../InputSearch'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faStar, faAlignCenter } from '@fortawesome/free-solid-svg-icons'
+import {
+  faStar,
+  faAlignCenter,
+  faSortAlphaDown
+} from '@fortawesome/free-solid-svg-icons'
 
 const starIcon = <FontAwesomeIcon className="filter-button" icon={faStar} />
 const listIcon = (
   <FontAwesomeIcon className="filter-button" icon={faAlignCenter} />
+)
+const sortDown = (
+  <FontAwesomeIcon className="filter-button" icon={faSortAlphaDown} />
 )
 
 export const Wrapper = styled.section`
@@ -37,50 +44,52 @@ export const StyledCounter = styled.h1`
 
 export default class HomeScreen extends Component {
   state = {
-    isBookmarked: this.loadFavorites(),
-    iconIsDefault: true,
-    search: ''
+    isFestBookmarked: this.loadFavoriteFests(),
+    search: '',
+    bookmarkIconIsDefault: true,
+    sortAlphaIconIsDefault: true,
+    sortByDateIsDefault: true
   }
 
   isFestBookmarked(festId) {
-    const { isBookmarked } = this.state
-    return isBookmarked.includes(festId)
+    const { isFestBookmarked } = this.state
+    return isFestBookmarked.includes(festId)
   }
 
   toggleBookmark = festId => {
-    const { isBookmarked } = this.state
+    const { isFestBookmarked } = this.state
 
-    const newIsBookmarked = isBookmarked.includes(festId)
-      ? this.deleteItemFromIsBookmarked(festId)
-      : this.addItemToIsBookmarked(festId)
+    const newIsFestBookmarked = isFestBookmarked.includes(festId)
+      ? this.deleteItemFromIsFestBookmarked(festId)
+      : this.addItemToIsFestBookmarked(festId)
 
     this.setState({
-      isBookmarked: newIsBookmarked
+      isFestBookmarked: newIsFestBookmarked
     })
   }
 
-  deleteItemFromIsBookmarked = festId => {
-    const { isBookmarked } = this.state
-    const bookmarkedIndex = isBookmarked.indexOf(festId)
-    const newIsBookmarked = [
-      ...isBookmarked.slice(0, bookmarkedIndex),
-      ...isBookmarked.slice(bookmarkedIndex + 1)
+  deleteItemFromIsFestBookmarked = festId => {
+    const { isFestBookmarked } = this.state
+    const bookmarkedIndex = isFestBookmarked.indexOf(festId)
+    const newIsFestBookmarked = [
+      ...isFestBookmarked.slice(0, bookmarkedIndex),
+      ...isFestBookmarked.slice(bookmarkedIndex + 1)
     ]
 
-    return newIsBookmarked
+    return newIsFestBookmarked
   }
 
-  addItemToIsBookmarked = festId => {
-    const { isBookmarked } = this.state
-    const newIsBookmarked = isBookmarked.includes(festId)
-      ? [...isBookmarked]
-      : [...isBookmarked, festId]
+  addItemToIsFestBookmarked = festId => {
+    const { isFestBookmarked } = this.state
+    const newIsFestBookmarked = isFestBookmarked.includes(festId)
+      ? [...isFestBookmarked]
+      : [...isFestBookmarked, festId]
 
-    return newIsBookmarked
+    return newIsFestBookmarked
   }
 
   getSelectedFestList = () => {
-    const { iconIsDefault } = this.state
+    const { bookmarkIconIsDefault } = this.state
     const { festivals } = this.props
     return festivals
       .filter(
@@ -90,7 +99,8 @@ export default class HomeScreen extends Component {
             .indexOf(this.state.search.toLowerCase()) !== -1
       )
       .filter(
-        festival => iconIsDefault || this.isFestBookmarked(festival.festId)
+        festival =>
+          bookmarkIconIsDefault || this.isFestBookmarked(festival.festId)
       )
   }
 
@@ -137,12 +147,12 @@ export default class HomeScreen extends Component {
 
   handleToggleButtonBookmarked = () => {
     this.setState({
-      iconIsDefault: !this.state.iconIsDefault
+      bookmarkIconIsDefault: !this.state.bookmarkIconIsDefault
     })
   }
 
   render() {
-    this.saveFavorites()
+    this.saveFavoriteFests()
 
     return (
       <Wrapper>
@@ -158,29 +168,40 @@ export default class HomeScreen extends Component {
         </DisplayContent>
         <NavBarBottom className="center">
           <NavBarBottomIcon
+            dataCy={'sortActsAlpha'}
+            fontSize={26}
+            width={40}
+            defaultIcon={sortDown}
+            activeIcon={sortDown}
+            onClick={() => this.handleButtonSortAlpha()}
+            iconIsDefault={this.state.sortAlphaIconIsDefault}
+          />
+          <NavBarBottomIcon
             dataCy={'showBookmarkedFestList'}
             fontSize={25}
             width={40}
             defaultIcon={starIcon}
             activeIcon={listIcon}
             onClick={() => this.handleToggleButtonBookmarked()}
-            iconIsDefault={this.state.iconIsDefault}
+            iconIsDefault={this.state.bookmarkIconIsDefault}
           />
         </NavBarBottom>
       </Wrapper>
     )
   }
 
-  saveFavorites() {
+  saveFavoriteFests() {
     localStorage.setItem(
-      'TimeTable--isBookmarked',
-      JSON.stringify(this.state.isBookmarked)
+      'TimeTable--isFestBookmarked',
+      JSON.stringify(this.state.isFestBookmarked)
     )
   }
 
-  loadFavorites() {
+  loadFavoriteFests() {
     try {
-      return JSON.parse(localStorage.getItem('TimeTable--isBookmarked')) || []
+      return (
+        JSON.parse(localStorage.getItem('TimeTable--isFestBookmarked')) || []
+      )
     } catch (err) {
       return []
     }
