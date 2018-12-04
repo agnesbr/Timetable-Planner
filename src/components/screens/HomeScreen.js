@@ -12,7 +12,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faStar,
   faAlignCenter,
-  faSortAlphaDown
+  faSortAlphaDown,
+  faCalendar
 } from '@fortawesome/free-solid-svg-icons'
 
 const starIcon = <FontAwesomeIcon className="filter-button" icon={faStar} />
@@ -22,6 +23,7 @@ const listIcon = (
 const sortDown = (
   <FontAwesomeIcon className="filter-button" icon={faSortAlphaDown} />
 )
+const calendar = <FontAwesomeIcon className="filter-button" icon={faCalendar} />
 
 export const Wrapper = styled.section`
   display: grid;
@@ -48,7 +50,7 @@ export default class HomeScreen extends Component {
     search: '',
     bookmarkIconIsDefault: true,
     sortAlphaIconIsDefault: true,
-    sortByDateIsDefault: true
+    sortByDateIsDefault: false
   }
 
   isFestBookmarked(festId) {
@@ -89,9 +91,13 @@ export default class HomeScreen extends Component {
   }
 
   getSelectedFestList = () => {
-    const { bookmarkIconIsDefault } = this.state
+    const {
+      bookmarkIconIsDefault,
+      sortAlphaIconIsDefault,
+      sortByDateIsDefault
+    } = this.state
     const { festivals } = this.props
-    return festivals
+    const filteredFestivals = festivals
       .filter(
         festival =>
           festival.festName
@@ -102,6 +108,13 @@ export default class HomeScreen extends Component {
         festival =>
           bookmarkIconIsDefault || this.isFestBookmarked(festival.festId)
       )
+    if (sortAlphaIconIsDefault === false) {
+      return filteredFestivals.sort((a, b) =>
+        a.festName.localeCompare(b.festName)
+      )
+    } else if (sortByDateIsDefault === false) {
+      return filteredFestivals.sort((a, b) => a.festStartDate - b.festStartDate)
+    }
   }
 
   getSelectedListLength = () => {
@@ -168,18 +181,27 @@ export default class HomeScreen extends Component {
         </DisplayContent>
         <NavBarBottom className="center">
           <NavBarBottomIcon
-            dataCy={'sortActsAlpha'}
+            dataCy={'sortFestsAlpha'}
             fontSize={26}
-            width={40}
+            width={75}
             defaultIcon={sortDown}
             activeIcon={sortDown}
             onClick={() => this.handleButtonSortAlpha()}
             iconIsDefault={this.state.sortAlphaIconIsDefault}
           />
           <NavBarBottomIcon
+            dataCy={'sortFestsDate'}
+            fontSize={24}
+            width={75}
+            defaultIcon={calendar}
+            activeIcon={calendar}
+            onClick={() => this.handleButtonSortDate()}
+            iconIsDefault={this.state.sortByDateIsDefault}
+          />
+          <NavBarBottomIcon
             dataCy={'showBookmarkedFestList'}
             fontSize={25}
-            width={40}
+            width={75}
             defaultIcon={starIcon}
             activeIcon={listIcon}
             onClick={() => this.handleToggleButtonBookmarked()}
@@ -188,6 +210,19 @@ export default class HomeScreen extends Component {
         </NavBarBottom>
       </Wrapper>
     )
+  }
+
+  handleButtonSortAlpha = () => {
+    this.setState({
+      sortAlphaIconIsDefault: false,
+      sortByDateIsDefault: true
+    })
+  }
+  handleButtonSortDate = () => {
+    this.setState({
+      sortAlphaIconIsDefault: true,
+      sortByDateIsDefault: false
+    })
   }
 
   saveFavoriteFests() {
