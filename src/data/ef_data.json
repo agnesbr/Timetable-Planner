@@ -1,22 +1,5 @@
 [
   {
-    "festId": 1111,
-    "festName": "MAYA MUSIC FESTIVAL",
-    "festStartDate": "2019-10-13",
-    "festEndDate": "",
-    "festCountry": "Germany",
-    "festCity": "Berlin",
-    "timeTable": [
-      {
-        "areaName": "Waldbühne",
-        "actsId": "23345",
-        "actName": "Hot since 82",
-        "actStartDate": "21:00 2019-10-21",
-        "actEndDate": "21:00 2019-10-21"
-      }
-    ]
-  },
-  {
     "festId": 2222,
     "festName": "Coachella Valley Music and Arts Festival - Week1",
     "festStartDate": "2018-04-13",

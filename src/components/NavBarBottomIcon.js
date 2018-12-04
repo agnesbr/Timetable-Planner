@@ -3,9 +3,14 @@ import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
 export const WrapperIconBottom = styled.div`
-  font-size: ${props => props.fontSize || 20}px;
+  align-items: center;
   align-self: center;
   color: var(--light);
+  display: flex;
+  font-size: ${props => props.fontSize || 20}px;
+  height: 40px;
+  justify-content: center;
+  width: ${props => props.width || 40}px;
   &.active {
     color: var(--teal);
   }
@@ -18,6 +23,7 @@ export default class NavBarBottomIcon extends Component {
     onClick: PropTypes.func,
     iconIsDefault: PropTypes.bool,
     dataCy: PropTypes.string,
+    fontSize: PropTypes.number,
     fontSize: PropTypes.number
   }
 
@@ -28,6 +34,7 @@ export default class NavBarBottomIcon extends Component {
       activeIcon,
       onClick,
       fontSize,
+      width,
       dataCy
     } = this.props
 
@@ -35,6 +42,7 @@ export default class NavBarBottomIcon extends Component {
       <WrapperIconBottom
         data-cy={dataCy}
         fontSize={fontSize}
+        width={width}
         className={iconIsDefault ? null : 'active'}
         onClick={onClick}
       >

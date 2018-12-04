@@ -168,11 +168,12 @@ export default class TimetableScreen extends Component {
         <DisplayContent data-cy="ActsList">
           {this.createActList(festObject)}
         </DisplayContent>
-        <NavBarBottom>
+        <NavBarBottom className="space-between">
           <NavLink to="/">
             <NavBarBottomIcon
               dataCy={'backToHomepage'}
               fontSize={32}
+              width={40}
               defaultIcon={backIcon}
               activeIcon={backIcon}
               iconIsDefault={this.state.backIconIsDefault}
@@ -181,6 +182,7 @@ export default class TimetableScreen extends Component {
           <NavBarBottomIcon
             dataCy={'sortActsAlpha'}
             fontSize={26}
+            width={40}
             defaultIcon={sortDown}
             activeIcon={sortDown}
             onClick={() => this.handleButtonSortAlpha()}
@@ -189,6 +191,7 @@ export default class TimetableScreen extends Component {
           <NavBarBottomIcon
             dataCy={'sortActsByTime'}
             fontSize={25}
+            width={40}
             defaultIcon={clock}
             activeIcon={clock}
             onClick={() => this.handleButtonSortTime()}
@@ -197,6 +200,7 @@ export default class TimetableScreen extends Component {
           <NavBarBottomIcon
             dataCy={'sortActsByStage'}
             fontSize={25}
+            width={40}
             defaultIcon={stage}
             activeIcon={stage}
             onClick={() => this.handleButtonSortStage()}
@@ -205,6 +209,7 @@ export default class TimetableScreen extends Component {
           <NavBarBottomIcon
             dataCy={'showBookmarkedFestList'}
             fontSize={25}
+            width={40}
             defaultIcon={starIcon}
             activeIcon={listIcon}
             onClick={() => this.handleToggleButtonBookmarked()}

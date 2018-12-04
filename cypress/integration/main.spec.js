@@ -134,34 +134,21 @@ describe('Timetable-PLanner ', () => {
     })
 
     describe('Sorting criteria nav bar bottom act site', () => {
-      it('checks if the sort alphabeticaly button is true', () => {
-        cy.get('[data-cy=sortActsAlpha]')
-        assert.isFalse(false, 'val is true')
-      })
       it('clicks on the sort alphabeticaly button', () => {
         cy.get('[data-cy=sortActsAlpha]').click()
-        assert.isFalse(false, 'val is false')
       })
 
-      // it('clicks on the sort by time button', () => {
-      //   cy.get('[data-cy=sortActsByTime]').click()
-      //   assert.isFalse(false, 'val is false')
-      // })
+      it('clicks on the sort by time button', () => {
+        cy.get('[data-cy=sortActsByTime]').click()
+      })
 
-      // it('clicks on the sort by stage button', () => {
-      //   cy.get('[data-cy=sortActsByStage]').click()
-      // })
-      // it('checkes if stage button is false ', () => {
-      //   cy.get('[data-cy=sortActsByStage]')
-      //   assert.isFalse(false, 'val is false')
-      // })
-      // it('checkes if time button is false ', () => {
-      //   cy.get('[data-cy=sortActsByTime]')
-      // })
+      it('clicks on the sort by stage button', () => {
+        cy.get('[data-cy=sortActsByStage]').click()
+      })
 
-      // it('gets back to festival page', () => {
-      //   cy.get('[data-cy=backToHomepage]').click()
-      // })
+      it('gets back to festival page', () => {
+        cy.get('[data-cy=backToHomepage]').click()
+      })
     })
   })
 })
