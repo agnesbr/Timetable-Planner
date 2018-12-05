@@ -156,13 +156,17 @@ export default class TimetableScreen extends Component {
     )
   }
 
-  shortenFestName = festObject => {
-    const HeadlineFest = festObject.festName
-    console.log(HeadlineFest.length)
-  }
-
   getFestById = (festivals, festId) => {
     return festivals.find(festival => festival.festId.toString() === festId)
+  }
+
+  shortenFestName = (festObject, num) => {
+    const shortenedFestName = festObject.festName
+    if (shortenedFestName.length > num && num > 3) {
+      return shortenedFestName.slice(0, num - 3) + '...'
+    } else if (shortenedFestName.length > num && num <= 3) {
+      return shortenedFestName.slice(0, num) + '...'
+    }
   }
 
   render() {
@@ -172,8 +176,7 @@ export default class TimetableScreen extends Component {
     return (
       <Wrapper>
         <NavBar>
-          <h1> {this.shortenFestName()}</h1>
-          {/* <h1> {festObject.festName}</h1> */}
+          <h1> {this.shortenFestName(festObject, 35)}</h1>
           <InputSearch
             placeholder="Search for act name"
             onChange={this.updateSearch}
