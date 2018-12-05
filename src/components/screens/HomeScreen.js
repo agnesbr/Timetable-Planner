@@ -20,10 +20,12 @@ const starIcon = <FontAwesomeIcon className="filter-button" icon={faStar} />
 const listIcon = (
   <FontAwesomeIcon className="filter-button" icon={faAlignCenter} />
 )
-const sortDown = (
+const sortDownIcon = (
   <FontAwesomeIcon className="filter-button" icon={faSortAlphaDown} />
 )
-const calendar = <FontAwesomeIcon className="filter-button" icon={faCalendar} />
+const calendarIcon = (
+  <FontAwesomeIcon className="filter-button" icon={faCalendar} />
+)
 
 export const Wrapper = styled.section`
   display: grid;
@@ -46,55 +48,55 @@ export const StyledCounter = styled.h1`
 
 export default class HomeScreen extends Component {
   state = {
-    isFestBookmarked: this.loadFavoriteFests(),
+    listOfBookmarkedFests: this.loadFavoriteFests(),
     search: '',
-    bookmarkIconIsDefault: true,
-    sortAlphaIconIsDefault: true,
-    sortByDateIsDefault: false
+    bookmarkIconIsActive: false,
+    sortAlphaIconIsActive: false,
+    sortByDateIsActive: true
   }
 
   isFestBookmarked(festId) {
-    const { isFestBookmarked } = this.state
-    return isFestBookmarked.includes(festId)
+    const { listOfBookmarkedFests } = this.state
+    return listOfBookmarkedFests.includes(festId)
   }
 
   toggleBookmark = festId => {
-    const { isFestBookmarked } = this.state
+    const { listOfBookmarkedFests } = this.state
 
-    const newIsFestBookmarked = isFestBookmarked.includes(festId)
-      ? this.deleteItemFromIsFestBookmarked(festId)
-      : this.addItemToIsFestBookmarked(festId)
+    const newListOfBookmarkedFests = listOfBookmarkedFests.includes(festId)
+      ? this.deleteItemFromListOfBookmarkedFests(festId)
+      : this.addItemToListOfBookmarkedFests(festId)
 
     this.setState({
-      isFestBookmarked: newIsFestBookmarked
+      listOfBookmarkedFests: newListOfBookmarkedFests
     })
   }
 
-  deleteItemFromIsFestBookmarked = festId => {
-    const { isFestBookmarked } = this.state
-    const bookmarkedIndex = isFestBookmarked.indexOf(festId)
-    const newIsFestBookmarked = [
-      ...isFestBookmarked.slice(0, bookmarkedIndex),
-      ...isFestBookmarked.slice(bookmarkedIndex + 1)
+  deleteItemFromListOfBookmarkedFests = festId => {
+    const { listOfBookmarkedFests } = this.state
+    const bookmarkedIndex = listOfBookmarkedFests.indexOf(festId)
+    const newListOfBookmarkedFests = [
+      ...listOfBookmarkedFests.slice(0, bookmarkedIndex),
+      ...listOfBookmarkedFests.slice(bookmarkedIndex + 1)
     ]
 
-    return newIsFestBookmarked
+    return newListOfBookmarkedFests
   }
 
-  addItemToIsFestBookmarked = festId => {
-    const { isFestBookmarked } = this.state
-    const newIsFestBookmarked = isFestBookmarked.includes(festId)
-      ? [...isFestBookmarked]
-      : [...isFestBookmarked, festId]
+  addItemToListOfBookmarkedFests = festId => {
+    const { listOfBookmarkedFests } = this.state
+    const newListOfBookmarkedFests = listOfBookmarkedFests.includes(festId)
+      ? [...listOfBookmarkedFests]
+      : [...listOfBookmarkedFests, festId]
 
-    return newIsFestBookmarked
+    return newListOfBookmarkedFests
   }
 
   getSelectedFestList = () => {
     const {
-      bookmarkIconIsDefault,
-      sortAlphaIconIsDefault,
-      sortByDateIsDefault
+      bookmarkIconIsActive,
+      sortAlphaIconIsActive,
+      sortByDateIsActive
     } = this.state
     const { festivals } = this.props
     const filteredFestivals = festivals
@@ -106,13 +108,13 @@ export default class HomeScreen extends Component {
       )
       .filter(
         festival =>
-          bookmarkIconIsDefault || this.isFestBookmarked(festival.festId)
+          !bookmarkIconIsActive || this.isFestBookmarked(festival.festId)
       )
-    if (sortAlphaIconIsDefault === false) {
+    if (!sortAlphaIconIsActive) {
       return filteredFestivals.sort((a, b) =>
         a.festName.localeCompare(b.festName)
       )
-    } else if (sortByDateIsDefault === false) {
+    } else if (!sortByDateIsActive) {
       return filteredFestivals.sort((a, b) => a.festStartDate - b.festStartDate)
     }
   }
@@ -160,7 +162,7 @@ export default class HomeScreen extends Component {
 
   handleToggleButtonBookmarked = () => {
     this.setState({
-      bookmarkIconIsDefault: !this.state.bookmarkIconIsDefault
+      bookmarkIconIsActive: !this.state.bookmarkIconIsActive
     })
   }
 
@@ -184,31 +186,31 @@ export default class HomeScreen extends Component {
         </DisplayContent>
         <NavBarBottom className="center">
           <NavBarBottomIcon
-            dataCy={'sortFestsAlpha'}
-            fontSize={26}
-            width={75}
-            defaultIcon={sortDown}
-            activeIcon={sortDown}
+            dataCy="sortFestsAlpha"
+            fontSize="26"
+            width="75"
+            defaultIcon={sortDownIcon}
+            activeIcon={sortDownIcon}
             onClick={() => this.handleButtonSortAlpha()}
-            iconIsDefault={this.state.sortAlphaIconIsDefault}
+            iconIsActive={this.state.sortAlphaIconIsActive}
           />
           <NavBarBottomIcon
-            dataCy={'sortFestsDate'}
-            fontSize={24}
-            width={75}
-            defaultIcon={calendar}
-            activeIcon={calendar}
+            dataCy="sortFestsDate"
+            fontSize="24"
+            width="75"
+            defaultIcon={calendarIcon}
+            activeIcon={calendarIcon}
             onClick={() => this.handleButtonSortDate()}
-            iconIsDefault={this.state.sortByDateIsDefault}
+            iconIsActive={this.state.sortByDateIsActive}
           />
           <NavBarBottomIcon
-            dataCy={'showBookmarkedFestList'}
-            fontSize={25}
-            width={75}
+            dataCy="showBookmarkedFestList"
+            fontSize="25"
+            width="75"
             defaultIcon={starIcon}
             activeIcon={listIcon}
             onClick={() => this.handleToggleButtonBookmarked()}
-            iconIsDefault={this.state.bookmarkIconIsDefault}
+            iconIsActive={this.state.bookmarkIconIsActive}
           />
         </NavBarBottom>
       </Wrapper>
@@ -217,28 +219,29 @@ export default class HomeScreen extends Component {
 
   handleButtonSortAlpha = () => {
     this.setState({
-      sortAlphaIconIsDefault: false,
-      sortByDateIsDefault: true
+      sortAlphaIconIsActive: true,
+      sortByDateIsActive: false
     })
   }
   handleButtonSortDate = () => {
     this.setState({
-      sortAlphaIconIsDefault: true,
-      sortByDateIsDefault: false
+      sortAlphaIconIsActive: false,
+      sortByDateIsActive: true
     })
   }
 
   saveFavoriteFests() {
     localStorage.setItem(
-      'TimeTable--isFestBookmarked',
-      JSON.stringify(this.state.isFestBookmarked)
+      'TimeTable--listOfBookmarkedFests',
+      JSON.stringify(this.state.listOfBookmarkedFests)
     )
   }
 
   loadFavoriteFests() {
     try {
       return (
-        JSON.parse(localStorage.getItem('TimeTable--isFestBookmarked')) || []
+        JSON.parse(localStorage.getItem('TimeTable--listOfBookmarkedFests')) ||
+        []
       )
     } catch (err) {
       return []
