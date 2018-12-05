@@ -24,7 +24,7 @@ export default class NavBarBottomIcon extends Component {
     iconIsDefault: PropTypes.bool,
     dataCy: PropTypes.string,
     fontSize: PropTypes.number,
-    fontSize: PropTypes.number
+    width: PropTypes.number
   }
 
   render() {

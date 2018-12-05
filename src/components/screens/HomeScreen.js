@@ -174,7 +174,10 @@ export default class HomeScreen extends Component {
             list of available festivals{' '}
             <span>{this.getSelectedListLength()}</span>
           </StyledCounter>
-          <InputSearch onChange={this.updateSearch} />
+          <InputSearch
+            placeholder="Search for festival name"
+            onChange={this.updateSearch}
+          />
         </NavBar>
         <DisplayContent data-cy="FestList">
           {this.createFestList()}

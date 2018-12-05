@@ -44,11 +44,12 @@ export default class InputSearch extends Component {
   }
 
   render() {
+    const { placeholder } = this.props
     return (
       <InputWrapper>
         <InputSearchEl
           data-cy="InputSearch"
-          placeholder="Search for festival name"
+          placeholder={placeholder}
           type="text"
           onKeyUp={this.handleKeyUp}
         />

@@ -17,6 +17,7 @@ import NavBar from '../NavBar'
 import Act from '../Act'
 import NavBarBottomIcon from '../NavBarBottomIcon'
 import NavBarBottom from '../NavBarBottom'
+import InputSearch from '../InputSearch'
 
 const backIcon = (
   <FontAwesomeIcon className="filter-button" icon={faAngleLeft} />
@@ -57,7 +58,14 @@ export default class TimetableScreen extends Component {
     sortAlphaIconIsDefault: true,
     sortByTimeIsDefault: true,
     sortByStageIconIsDefault: false,
-    isActBookmarked: this.loadFavoriteActs()
+    isActBookmarked: this.loadFavoriteActs(),
+    search: ''
+  }
+
+  updateSearch = inputValue => {
+    this.setState({
+      search: inputValue
+    })
   }
 
   toggleBookmark = actsId => {
@@ -105,9 +113,14 @@ export default class TimetableScreen extends Component {
       sortByStageIconIsDefault
     } = this.state
 
-    const filteredTimeTable = timeTable.filter(
-      act => bookmarkIconIsDefault || this.isActBookmarked(act.actsId)
-    )
+    const filteredTimeTable = timeTable
+      .filter(
+        act =>
+          act.actName.toLowerCase().indexOf(this.state.search.toLowerCase()) !==
+          -1
+      )
+      .filter(act => bookmarkIconIsDefault || this.isActBookmarked(act.actsId))
+
     if (sortAlphaIconIsDefault === false) {
       return filteredTimeTable.sort((a, b) =>
         a.actName.localeCompare(b.actName)
@@ -143,6 +156,11 @@ export default class TimetableScreen extends Component {
     )
   }
 
+  shortenFestName = festObject => {
+    const HeadlineFest = festObject.festName
+    console.log(HeadlineFest.length)
+  }
+
   getFestById = (festivals, festId) => {
     return festivals.find(festival => festival.festId.toString() === festId)
   }
@@ -151,11 +169,15 @@ export default class TimetableScreen extends Component {
     this.saveFavoriteActs()
     const { festivals, festId } = this.props
     const festObject = this.getFestById(festivals, festId)
-    console.log(this.state)
     return (
       <Wrapper>
         <NavBar>
-          <h1> {festObject.festName}</h1>
+          <h1> {this.shortenFestName()}</h1>
+          {/* <h1> {festObject.festName}</h1> */}
+          <InputSearch
+            placeholder="Search for act name"
+            onChange={this.updateSearch}
+          />
         </NavBar>
         <DisplayContent data-cy="ActsList">
           {this.createActList(festObject)}
