@@ -121,13 +121,13 @@ export default class TimetableScreen extends Component {
       )
       .filter(act => !bookmarkIconIsActive || this.isActBookmarked(act.actsId))
 
-    if (!sortAlphaIconIsActive) {
+    if (sortAlphaIconIsActive) {
       return filteredTimeTable.sort((a, b) =>
         a.actName.localeCompare(b.actName)
       )
-    } else if (!sortByTimeIsActive) {
+    } else if (sortByTimeIsActive) {
       return filteredTimeTable.sort((a, b) => a.actStartDate - b.actStartDate)
-    } else if (!sortByStageIconIsActive) {
+    } else if (sortByStageIconIsActive) {
       return filteredTimeTable.sort((a, b) =>
         a.areaName.localeCompare(b.areaName)
       )
@@ -168,14 +168,31 @@ export default class TimetableScreen extends Component {
     }
   }
 
+  devideTimetableIntoStages = festObject => {
+    const timeTable = festObject.timeTable
+    const allStages = timeTable.map(act => act.areaName)
+    const uniqueStages = [...new Set(allStages)]
+
+    const stageObject = uniqueStages.map(stage => {
+      return timeTable.filter(act => act.areaName === stage)
+    })
+
+    console.log(timeTable)
+    console.log(allStages)
+    console.log(uniqueStages)
+    console.log(stageObject)
+  }
+
   render() {
     this.saveFavoriteActs()
     const { festivals, festId } = this.props
     const festObject = this.getFestById(festivals, festId)
     const headline = festObject.festName
+    this.devideTimetableIntoStages(festObject)
+
     return (
       <Wrapper>
-        <NavBar>
+        <NavBar height="200">
           {<h1> {this.shortenFestName(headline, 35)}</h1>}
           <InputSearch
             placeholder="Search for act name"

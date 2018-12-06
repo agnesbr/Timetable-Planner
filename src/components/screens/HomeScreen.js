@@ -110,11 +110,11 @@ export default class HomeScreen extends Component {
         festival =>
           !bookmarkIconIsActive || this.isFestBookmarked(festival.festId)
       )
-    if (!sortAlphaIconIsActive) {
+    if (sortAlphaIconIsActive) {
       return filteredFestivals.sort((a, b) =>
         a.festName.localeCompare(b.festName)
       )
-    } else if (!sortByDateIsActive) {
+    } else if (sortByDateIsActive) {
       return filteredFestivals.sort((a, b) => a.festStartDate - b.festStartDate)
     }
   }
@@ -171,7 +171,7 @@ export default class HomeScreen extends Component {
 
     return (
       <Wrapper>
-        <NavBar>
+        <NavBar height="120">
           <StyledCounter>
             list of available festivals{' '}
             <span>{this.getSelectedListLength()}</span>

@@ -23,8 +23,8 @@ export default class NavBarBottomIcon extends Component {
     onClick: PropTypes.func,
     iconIsActive: PropTypes.bool,
     dataCy: PropTypes.string,
-    fontSize: PropTypes.number,
-    width: PropTypes.number
+    fontSize: PropTypes.string,
+    width: PropTypes.string
   }
 
   render() {
