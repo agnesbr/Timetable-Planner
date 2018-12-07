@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
+import img from '../images/search_icon.png'
 
 export const InputWrapper = styled.div`
   position: relative;
@@ -23,7 +24,7 @@ export const InputSearchEl = styled.input`
 `
 
 export const InputImg = styled.div`
-  background-image: url('../../images/search_icon.png');
+  background-image: url(${img});
   background-repeat: no-repeat;
   background-size: contain;
   bottom: 16px;

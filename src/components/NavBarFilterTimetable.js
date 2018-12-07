@@ -3,16 +3,20 @@ import styled from 'styled-components'
 
 export const FilterWrapper = styled.nav`
   display: flex;
+  width: 100%;
+  background: rgba(11, 22, 31, 0.85);
+  position: sticky;
+
   justify-content: center;
   flex-direction: column;
   font-size: 0.7em;
   width: 100%;
   font-family: DINWeb-CondBold, sans-serif;
   padding: 0 20px;
+
   div {
     display: flex;
     justify-content: space-evenly;
-    width: 100%;
     color: var(--light);
     margin: 3px 10px;
   }

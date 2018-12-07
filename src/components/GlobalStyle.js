@@ -1,5 +1,5 @@
 import { createGlobalStyle } from 'styled-components'
-
+import imgBg from '../images/BG_EF.png'
 export default createGlobalStyle`
 
 * {
@@ -13,7 +13,7 @@ html {
 
 body {
   background-attachment: fixed;
-  background-image: url('../../images/BG_EF.png');
+  background-image: url(${imgBg});
   background-repeat: repeat;
   background-size: contain;
   bottom: 0;

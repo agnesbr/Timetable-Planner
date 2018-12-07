@@ -17,6 +17,7 @@ import NavBar from '../NavBar'
 import Act from '../Act'
 import NavBarBottomIcon from '../NavBarBottomIcon'
 import NavBarBottom from '../NavBarBottom'
+import NavBarFilterTimetable from '../NavBarFilterTimetable'
 import InputSearch from '../InputSearch'
 
 const backIcon = (
@@ -42,9 +43,42 @@ export const Wrapper = styled.section`
   height: 100vh;
 `
 
-export const DisplayContent = styled.section`
+export const DisplayContent = styled.main`
   display: block;
   overflow-y: scroll;
+  width: 100vw;
+`
+export const ContentInner = styled.section`
+  display: flex;
+  /* grid-template-rows: 1fr auto;
+  grid-template-columns: 1fr; */
+  flex-direction: column;
+
+  header {
+    display: flex;
+    background: rgba(11, 22, 31, 0.85);
+    position: sticky;
+  }
+
+  main {
+    display: flex;
+    flex-direction: row;
+    color: red;
+  }
+`
+
+export const InnerColumn = styled.section`
+  min-width: 250px;
+  max-width: 100%;
+  margin: 0 5px;
+
+  & :first-child {
+    margin-left: 10px;
+  }
+
+  & :last-child {
+    margin-left: 5px;
+  }
 `
 
 export const Homelink = styled(Link)`
@@ -168,27 +202,33 @@ export default class TimetableScreen extends Component {
     }
   }
 
-  devideTimetableIntoStages = festObject => {
-    const timeTable = festObject.timeTable
+  divideTimetableIntoStages = festObject => {
+    let timeTable = festObject.timeTable
     const allStages = timeTable.map(act => act.areaName)
     const uniqueStages = [...new Set(allStages)]
 
     const stageObject = uniqueStages.map(stage => {
       return timeTable.filter(act => act.areaName === stage)
     })
-
     console.log(timeTable)
-    console.log(allStages)
+    // console.log(allStages)
     console.log(uniqueStages)
     console.log(stageObject)
+
+    return stageObject.map(stage => {
+      return (
+        <InnerColumn>{stage.map(act => this.renderSingleAct(act))}</InnerColumn>
+      )
+    })
+
+    console.log(timeTable)
   }
 
   render() {
     this.saveFavoriteActs()
-    const { festivals, festId } = this.props
+    const { festivals, festId, stageObject } = this.props
     const festObject = this.getFestById(festivals, festId)
     const headline = festObject.festName
-    this.devideTimetableIntoStages(festObject)
 
     return (
       <Wrapper>
@@ -200,7 +240,15 @@ export default class TimetableScreen extends Component {
           />
         </NavBar>
         <DisplayContent data-cy="ActsList">
-          {this.createActList(festObject)}
+          <ContentInner>
+            <NavBarFilterTimetable />
+            <main>
+              {this.divideTimetableIntoStages(festObject)}
+              {/* <InnerColumn>{this.createActList(festObject)}</InnerColumn>
+              <InnerColumn>{this.createActList(festObject)}</InnerColumn>
+              <InnerColumn>{this.createActList(festObject)}</InnerColumn> */}
+            </main>
+          </ContentInner>
         </DisplayContent>
         <NavBarBottom className="space-between">
           <NavLink to="/">

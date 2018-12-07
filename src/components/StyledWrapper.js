@@ -6,14 +6,13 @@ export default styled.main`
   display: flex;
   align-items: center;
   padding: 20px 15px 21px 20px;
-  width: 100%;
 
   h2 {
     align-self: start;
     color: var(--dark);
     font-family: FestivoLettersNo1;
     font-size: ${props => props.fontSize || 25}px;
-    letter-spacing: 0.03em;
+    letter-spacing: 0.01em;
     line-height: 26px;
     margin: 0;
   }
@@ -22,6 +21,8 @@ export default styled.main`
     align-self: end;
     font-family: DINWeb-CondBold, sans-serif;
     font-size: 19px;
+    display: flex;
+    align-items: center;
   }
 
   .teal {
