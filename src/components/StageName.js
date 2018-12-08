@@ -3,17 +3,18 @@ import styled from 'styled-components'
 
 export const StyledHeadline = styled.h3`
 	align-items: center;
-	color: var(--light);
 	background: var(--purple);
+	color: var(--light);
 	display: flex;
+	flex-grow: 1;
 	font-family: DINWeb-CondBold, sans-serif;
+	font-size: 1.5em;
+	justify-content: center;
 	letter-spacing: 0.01em;
 	margin: 0 7px;
 	min-width: 250px;
-	max-width: 100%;
-	font-size: 1.5em;
 	padding: 5px 20px 0 20px;
-	justify-content: center;
+	word-wrap: break-word;
 
 	:first-child {
 		margin-left: 14px;

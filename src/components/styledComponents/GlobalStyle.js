@@ -1,5 +1,5 @@
 import { createGlobalStyle } from 'styled-components'
-import imgBg from '../images/BG_EF.png'
+import imgBg from '../../images/BG_EF.png'
 export default createGlobalStyle`
 
 * {

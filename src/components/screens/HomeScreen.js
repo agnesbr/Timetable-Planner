@@ -4,8 +4,8 @@ import uid from 'uid'
 
 import Fest from '../Fest'
 import NavBarBottomIcon from '../NavBarBottomIcon'
-import NavBar from '../NavBar'
-import NavBarBottom from '../NavBarBottom'
+import NavBar from '../styledComponents/NavBar'
+import NavBarBottom from '../styledComponents/NavBarBottom'
 import InputSearch from '../InputSearch'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -49,7 +49,7 @@ export default class HomeScreen extends Component {
 		return listOfBookmarkedFests.includes(festId)
 	}
 
-	toggleBookmark = (festId) => {
+	toggleBookmark = festId => {
 		const { listOfBookmarkedFests } = this.state
 
 		const newListOfBookmarkedFests = listOfBookmarkedFests.includes(festId)
@@ -61,7 +61,7 @@ export default class HomeScreen extends Component {
 		})
 	}
 
-	deleteItemFromListOfBookmarkedFests = (festId) => {
+	deleteItemFromListOfBookmarkedFests = festId => {
 		const { listOfBookmarkedFests } = this.state
 		const bookmarkedIndex = listOfBookmarkedFests.indexOf(festId)
 		const newListOfBookmarkedFests = [
@@ -72,7 +72,7 @@ export default class HomeScreen extends Component {
 		return newListOfBookmarkedFests
 	}
 
-	addItemToListOfBookmarkedFests = (festId) => {
+	addItemToListOfBookmarkedFests = festId => {
 		const { listOfBookmarkedFests } = this.state
 		const newListOfBookmarkedFests = listOfBookmarkedFests.includes(festId)
 			? [ ...listOfBookmarkedFests ]
@@ -85,8 +85,8 @@ export default class HomeScreen extends Component {
 		const { bookmarkIconIsActive, sortAlphaIconIsActive, sortByDateIsActive } = this.state
 		const { festivals } = this.props
 		const filteredFestivals = festivals
-			.filter((festival) => festival.festName.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1)
-			.filter((festival) => !bookmarkIconIsActive || this.isFestBookmarked(festival.festId))
+			.filter(festival => festival.festName.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1)
+			.filter(festival => !bookmarkIconIsActive || this.isFestBookmarked(festival.festId))
 		if (sortAlphaIconIsActive) {
 			return filteredFestivals.sort((a, b) => a.festName.localeCompare(b.festName))
 		} else if (sortByDateIsActive) {
@@ -102,13 +102,13 @@ export default class HomeScreen extends Component {
 		return this.getSelectedFestList().map(this.renderSingleFest)
 	}
 
-	updateSearch = (inputValue) => {
+	updateSearch = inputValue => {
 		this.setState({
 			search: inputValue
 		})
 	}
 
-	renderSingleFest = (festival) => {
+	renderSingleFest = festival => {
 		const { festId, festName, festStartDate, festEndDate, festCountry, festCity, ...rest } = festival
 
 		return (

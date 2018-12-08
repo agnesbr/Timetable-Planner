@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import StyledWrapper from './StyledWrapper'
+import StyledWrapper from './styledComponents/StyledWrapper'
+import InfoLine from './styledComponents/InfoLine'
 import styled from 'styled-components'
 import Bookmark from './Bookmark'
 import PropTypes from 'prop-types'
@@ -49,12 +50,7 @@ export default class Act extends Component {
 		return (
 			<StyledWrapper>
 				<Div>
-					<section className="purple">
-						{/* <StyledIcon fontSize="11" mRight="8" height="14">
-              {stageIcon}
-            </StyledIcon> */}
-						{areaName}
-					</section>
+					<InfoLine className="purple">{areaName}</InfoLine>
 					<h2> {actName}</h2>
 					<time className="purple">
 						{/* <StyledIcon fontSize="10" mRight="5" height="12">

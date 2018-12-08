@@ -6,7 +6,6 @@ export const FilterWrapper = styled.nav`
 	display: flex;
 	font-family: DINWeb-CondBold, sans-serif;
 	height: 50px;
-	min-width: 100%;
 	position: sticky;
 	top: 0;
 `

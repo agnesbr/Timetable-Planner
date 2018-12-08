@@ -13,10 +13,10 @@ import {
 	faMapMarkerAlt
 } from '@fortawesome/free-solid-svg-icons'
 
-import NavBar from '../NavBar'
+import NavBar from '../styledComponents/NavBar'
 import Act from '../Act'
 import NavBarBottomIcon from '../NavBarBottomIcon'
-import NavBarBottom from '../NavBarBottom'
+import NavBarBottom from '../styledComponents/NavBarBottom'
 import NavBarFilterTimetable from '../NavBarFilterTimetable'
 import StageName from '../StageName'
 import InputSearch from '../InputSearch'
@@ -43,7 +43,7 @@ export const DisplayContent = styled.main`
 `
 
 export const ContentInner = styled.section`
-	display: flex;
+	display: block;
 	flex-direction: column;
 
 	header {
@@ -55,14 +55,13 @@ export const ContentInner = styled.section`
 	main {
 		display: flex;
 		flex-direction: row;
-		color: red;
 	}
 `
 
 export const InnerColumn = styled.section`
 	min-width: 250px;
-	max-width: 100%;
 	margin: 0 7px;
+	flex-grow: 1;
 
 	:first-child {
 		margin-left: 14px;
