@@ -10,6 +10,7 @@ import { faClock, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons'
 
 const clockIcon = <FontAwesomeIcon className="filter-button" icon={faClock} />
 const stageIcon = <FontAwesomeIcon className="filter-button" icon={faMapMarkerAlt} />
+
 export const Div = styled.div`
 	text-decoration: none;
 	display: grid;

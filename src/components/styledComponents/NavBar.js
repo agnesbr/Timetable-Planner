@@ -8,5 +8,5 @@ export default styled.nav`
 	font-size: 1.5em;
 	justify-content: space-evenly;
 	padding: 0 12px;
-	width: 100vw;
+	width: 99vw;
 `

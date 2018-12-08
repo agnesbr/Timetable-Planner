@@ -1,8 +1,20 @@
 import React, { Component } from 'react'
-import styled from 'styled-components'
 import uid from 'uid'
 import { Link } from 'react-router-dom'
 import { NavLink } from 'react-router-dom'
+
+import Act from '../Act'
+import StageName from '../StageName'
+import InputSearch from '../InputSearch'
+import NavBarBottomIcon from '../NavBarBottomIcon'
+import NavBarFilterTimetable from '../NavBarFilterTimetable'
+
+import styled from 'styled-components'
+import NavBar from '../styledComponents/NavBar'
+import WrapperApp from '../styledComponents/WrapperApp'
+import NavBarBottom from '../styledComponents/NavBarBottom'
+import DisplayMainContent from '../styledComponents/DisplayMainContent'
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
 	faStar,
@@ -13,34 +25,12 @@ import {
 	faMapMarkerAlt
 } from '@fortawesome/free-solid-svg-icons'
 
-import NavBar from '../styledComponents/NavBar'
-import Act from '../Act'
-import NavBarBottomIcon from '../NavBarBottomIcon'
-import NavBarBottom from '../styledComponents/NavBarBottom'
-import NavBarFilterTimetable from '../NavBarFilterTimetable'
-import StageName from '../StageName'
-import InputSearch from '../InputSearch'
-
 const backIcon = <FontAwesomeIcon className="filter-button" icon={faAngleLeft} />
 const starIcon = <FontAwesomeIcon className="filter-button" icon={faStar} />
 const listIcon = <FontAwesomeIcon className="filter-button" icon={faAlignCenter} />
 const sortDownIcon = <FontAwesomeIcon className="filter-button" icon={faSortAlphaDown} />
 const clockIcon = <FontAwesomeIcon className="filter-button" icon={faClock} />
 const stageIcon = <FontAwesomeIcon className="filter-button" icon={faMapMarkerAlt} />
-
-export const Wrapper = styled.section`
-	display: grid;
-	grid-auto-flow: row;
-	grid-template-rows: 120px auto 50px;
-	grid-template-columns: 1fr;
-	height: 100vh;
-`
-
-export const DisplayContent = styled.main`
-	display: block;
-	overflow-y: scroll;
-	width: 100vw;
-`
 
 export const ContentInner = styled.section`
 	display: block;
@@ -193,21 +183,16 @@ export default class TimetableScreen extends Component {
 	}
 
 	divideTimetableIntoStages = festObject => {
-		const { sortByStageIconIsActive } = this.state
 		const timeTable = festObject.timeTable
 		const allStages = timeTable.map(act => act.areaName)
 		const uniqueStages = [ ...new Set(allStages) ]
 
-		// if (sortByStageIconIsActive) {
 		const stageObject = uniqueStages.map(stage => {
 			return timeTable.filter(act => act.areaName === stage)
 		})
 		return stageObject.map(stage => {
 			return <InnerColumn>{this.getSelectedActList(stage).map(act => this.renderSingleAct(act))}</InnerColumn>
 		})
-		// } else {
-		// 	this.createActList(festObject)
-		// }
 	}
 
 	render() {
@@ -218,14 +203,14 @@ export default class TimetableScreen extends Component {
 		const stageNames = this.getUniqueStages(festObject)
 
 		return (
-			<Wrapper>
+			<WrapperApp>
 				<NavBar height="200">
 					{<h1> {this.shortenFestName(headline, 35)}</h1>}
 					<InputSearch placeholder="Search for act name" onChange={this.updateSearch} />
 				</NavBar>
-				<DisplayContent data-cy="ActsList">
+				<React.Fragment>
 					{this.state.sortByStageIconIsActive ? (
-						<React.Fragment>
+						<DisplayMainContent data-cy="ActsList" width="100">
 							<NavBarFilterTimetable stageNames={stageNames} renderStageNames={this.renderStageNames} />
 							<ContentInner>
 								{
@@ -235,11 +220,13 @@ export default class TimetableScreen extends Component {
 									</main>
 								}
 							</ContentInner>
-						</React.Fragment>
+						</DisplayMainContent>
 					) : (
-						<React.Fragment>{this.createActList(festObject)}</React.Fragment>
+						<DisplayMainContent data-cy="ActsList" width="96">
+							{this.createActList(festObject)}
+						</DisplayMainContent>
 					)}
-				</DisplayContent>
+				</React.Fragment>
 				<NavBarBottom className="space-between">
 					<NavLink to="/">
 						<NavBarBottomIcon
@@ -288,7 +275,7 @@ export default class TimetableScreen extends Component {
 						iconIsActive={this.state.bookmarkIconIsActive}
 					/>
 				</NavBarBottom>
-			</Wrapper>
+			</WrapperApp>
 		)
 	}
 	handleToggleButtonBookmarked = () => {

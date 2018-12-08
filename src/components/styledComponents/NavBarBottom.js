@@ -7,7 +7,7 @@ export default styled.nav`
 	flex-direction: row;
 	font-size: 1.5em;
 	padding: 0 20px;
-	width: 100vw;
+	width: 99vw;
 
 	&.space-between {
 		justify-content: space-between;

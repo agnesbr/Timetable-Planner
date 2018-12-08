@@ -1,12 +1,15 @@
 import React, { Component } from 'react'
-import styled from 'styled-components'
 import uid from 'uid'
 
 import Fest from '../Fest'
 import NavBarBottomIcon from '../NavBarBottomIcon'
-import NavBar from '../styledComponents/NavBar'
-import NavBarBottom from '../styledComponents/NavBarBottom'
 import InputSearch from '../InputSearch'
+
+import styled from 'styled-components'
+import NavBar from '../styledComponents/NavBar'
+import WrapperApp from '../styledComponents/WrapperApp'
+import NavBarBottom from '../styledComponents/NavBarBottom'
+import DisplayMainContent from '../styledComponents/DisplayMainContent'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar, faAlignCenter, faSortAlphaDown, faCalendar } from '@fortawesome/free-solid-svg-icons'
@@ -15,22 +18,6 @@ const starIcon = <FontAwesomeIcon className="filter-button" icon={faStar} />
 const listIcon = <FontAwesomeIcon className="filter-button" icon={faAlignCenter} />
 const sortDownIcon = <FontAwesomeIcon className="filter-button" icon={faSortAlphaDown} />
 const calendarIcon = <FontAwesomeIcon className="filter-button" icon={faCalendar} />
-
-export const Wrapper = styled.section`
-	display: grid;
-	grid-auto-flow: row;
-	grid-template-rows: 120px auto 50px;
-	grid-template-columns: 1fr;
-	height: 100vh;
-	width: 100vw;
-	justify-items: center;
-`
-
-export const DisplayContent = styled.section`
-	display: block;
-	overflow-y: scroll;
-	width: 96vw;
-`
 
 export const StyledCounter = styled.h1`
 	& > span {
@@ -140,14 +127,16 @@ export default class HomeScreen extends Component {
 		this.saveFavoriteFests()
 
 		return (
-			<Wrapper>
+			<WrapperApp>
 				<NavBar height="120">
 					<StyledCounter>
 						list of available festivals <span>{this.getSelectedListLength()}</span>
 					</StyledCounter>
 					<InputSearch placeholder="Search for festival name" onChange={this.updateSearch} />
 				</NavBar>
-				<DisplayContent data-cy="FestList">{this.createFestList()}</DisplayContent>
+				<DisplayMainContent data-cy="FestList" width="98">
+					{this.createFestList()}
+				</DisplayMainContent>
 				<NavBarBottom className="center">
 					<NavBarBottomIcon
 						dataCy="sortFestsAlpha"
@@ -177,7 +166,7 @@ export default class HomeScreen extends Component {
 						iconIsActive={this.state.bookmarkIconIsActive}
 					/>
 				</NavBarBottom>
-			</Wrapper>
+			</WrapperApp>
 		)
 	}
 
