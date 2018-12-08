@@ -193,15 +193,21 @@ export default class TimetableScreen extends Component {
 	}
 
 	divideTimetableIntoStages = festObject => {
+		const { sortByStageIconIsActive } = this.state
 		const timeTable = festObject.timeTable
 		const allStages = timeTable.map(act => act.areaName)
 		const uniqueStages = [ ...new Set(allStages) ]
+
+		// if (sortByStageIconIsActive) {
 		const stageObject = uniqueStages.map(stage => {
 			return timeTable.filter(act => act.areaName === stage)
 		})
 		return stageObject.map(stage => {
 			return <InnerColumn>{this.getSelectedActList(stage).map(act => this.renderSingleAct(act))}</InnerColumn>
 		})
+		// } else {
+		// 	this.createActList(festObject)
+		// }
 	}
 
 	render() {
@@ -218,8 +224,21 @@ export default class TimetableScreen extends Component {
 					<InputSearch placeholder="Search for act name" onChange={this.updateSearch} />
 				</NavBar>
 				<DisplayContent data-cy="ActsList">
-					<NavBarFilterTimetable stageNames={stageNames} renderStageNames={this.renderStageNames} />
-					<ContentInner>{<main>{this.divideTimetableIntoStages(festObject)}</main>}</ContentInner>
+					{this.state.sortByStageIconIsActive ? (
+						<React.Fragment>
+							<NavBarFilterTimetable stageNames={stageNames} renderStageNames={this.renderStageNames} />
+							<ContentInner>
+								{
+									<main>
+										{this.state.sortByStageIconIsActive} :
+										{this.divideTimetableIntoStages(festObject)}
+									</main>
+								}
+							</ContentInner>
+						</React.Fragment>
+					) : (
+						<React.Fragment>{this.createActList(festObject)}</React.Fragment>
+					)}
 				</DisplayContent>
 				<NavBarBottom className="space-between">
 					<NavLink to="/">
