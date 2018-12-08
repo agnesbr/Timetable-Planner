@@ -2,42 +2,17 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 
 export const FilterWrapper = styled.nav`
-  display: flex;
-  width: 100%;
-  background: rgba(11, 22, 31, 0.85);
-  position: sticky;
-
-  justify-content: center;
-  flex-direction: column;
-  font-size: 0.7em;
-  width: 100%;
-  font-family: DINWeb-CondBold, sans-serif;
-  padding: 0 20px;
-
-  div {
-    display: flex;
-    justify-content: space-evenly;
-    color: var(--light);
-    margin: 3px 10px;
-  }
+	background: rgba(11, 22, 31, 0.85);
+	display: flex;
+	font-family: DINWeb-CondBold, sans-serif;
+	height: 50px;
+	min-width: 100%;
+	position: sticky;
+	top: 0;
 `
 export default class NavBarFilterTimetable extends Component {
-  render() {
-    return (
-      <FilterWrapper>
-        <div>
-          <span>ALL DAYS</span>
-          <span>24/11</span>
-          <span> 25/11</span>
-          <span>26/11</span>
-        </div>
-        <div>
-          <span>ALL STAGES</span>
-          <span>24/11</span>
-          <span> 25/11</span>
-          <span>26/11</span>
-        </div>
-      </FilterWrapper>
-    )
-  }
+	render() {
+		const { stageNames, renderStageNames } = this.props
+		return <FilterWrapper>{renderStageNames(stageNames)}</FilterWrapper>
+	}
 }
