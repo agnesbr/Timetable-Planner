@@ -22,11 +22,14 @@ export const Wrapper = styled.section`
 	grid-template-rows: 120px auto 50px;
 	grid-template-columns: 1fr;
 	height: 100vh;
+	width: 100vw;
+	justify-items: center;
 `
 
 export const DisplayContent = styled.section`
 	display: block;
 	overflow-y: scroll;
+	width: 96vw;
 `
 
 export const StyledCounter = styled.h1`

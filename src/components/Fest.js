@@ -8,6 +8,7 @@ import PropTypes from 'prop-types'
 
 import StyledWrapper from './styledComponents/StyledWrapper'
 import InfoLine from './styledComponents/InfoLine'
+import DateTimeLine from './styledComponents/DateTimeLine'
 
 export const TimetableLink = styled(Link)`
   text-decoration: none;
@@ -64,15 +65,15 @@ export default class Fest extends Component {
 		return (
 			<StyledWrapper data-cy="festEl">
 				<TimetableLink data-cy="festElLink" to={`/timetable/${festId}`}>
-					<time className="teal" dateTime={festEndDateFormat}>
+					<DateTimeLine className="teal" mT="5" mB="1" dateTime={festEndDateFormat}>
 						{festEndDateFormat == null ? (
 							festStartDateFormat
 						) : (
 							festStartDateFormat + ' – ' + festEndDateFormat
 						)}
-					</time>
+					</DateTimeLine>
 					<h2 data-cy="festName">{festName}</h2>
-					<InfoLine className="teal" mT={10}>
+					<InfoLine className="teal" mT="4" mB="5">
 						{festCountry}
 						<div className="star"> {starIcon}</div>
 						{festCity}

@@ -17,16 +17,6 @@ export default styled.section`
 		margin: 0;
 	}
 
-	time {
-		align-self: end;
-		font-family: DINWeb-CondBold, sans-serif;
-		font-size: 19px;
-		display: flex;
-		align-items: center;
-		margin-top: ${props => props.mT || 3}px;
-		margin-bottom: ${props => props.mB || 3}px;
-	}
-
 	.teal {
 		color: var(--teal);
 	}

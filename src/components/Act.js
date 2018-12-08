@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import StyledWrapper from './styledComponents/StyledWrapper'
 import InfoLine from './styledComponents/InfoLine'
+import DateTimeLine from './styledComponents/DateTimeLine'
 import styled from 'styled-components'
 import Bookmark from './Bookmark'
 import PropTypes from 'prop-types'
@@ -50,14 +51,13 @@ export default class Act extends Component {
 		return (
 			<StyledWrapper>
 				<Div>
-					<InfoLine className="purple">{areaName}</InfoLine>
+					<InfoLine className="purple" mT="9" mB="6">
+						{areaName}
+					</InfoLine>
 					<h2> {actName}</h2>
-					<time className="purple">
-						{/* <StyledIcon fontSize="10" mRight="5" height="12">
-							{clockIcon}
-						</StyledIcon> */}
+					<DateTimeLine className="purple" mT="3" mB="4">
 						{playDay}, {actStartTime} – {actEndTime}
-					</time>
+					</DateTimeLine>
 				</Div>
 				<Bookmark id={actsId} isBookmarked={isBookmarked} toggleBookmark={toggleBookmark} />
 			</StyledWrapper>
