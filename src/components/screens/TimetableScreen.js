@@ -36,7 +36,7 @@ const stageIcon = <FontAwesomeIcon className="filter-button" icon={faMapMarkerAl
 export const Wrapper = styled.section`
 	display: grid;
 	grid-auto-flow: row;
-	grid-template-rows: 120px 60px auto 50px;
+	grid-template-rows: 120px 65px auto 50px;
 	height: 100vh;
 `
 
@@ -84,8 +84,39 @@ export default class TimetableScreen extends Component {
 		sortByTimeIsActive: false,
 		sortByStageIconIsActive: true,
 		search: '',
-		activeStageFilter: [],
-		activeDaysFilter: []
+		stageFilterActive: [],
+		daysFilterActive: [],
+		allStagesFilterActive: true,
+		allDaysFilterActive: true
+	}
+
+	componentWillMount() {
+		const { festivals, festId } = this.props
+		const festObject = this.getFestById(festivals, festId)
+		this.setState({
+			festObject: festObject,
+			stageNames: this.getUniqueStages(festObject),
+			festDays: this.getUniqueDays(festObject)
+		})
+	}
+
+	getUniqueStages = festObject => {
+		const timeTable = festObject.timeTable
+		const allStages = timeTable.map(act => act.areaName)
+		const uniqueStages = [ ...new Set(allStages) ]
+
+		return uniqueStages
+	}
+
+	getUniqueDays = festObject => {
+		const timeTable = festObject.timeTable
+		const allDays = timeTable.map(act =>
+			act.actStartDate.toLocaleDateString('en-GB', {
+				weekday: 'short'
+			})
+		)
+		const uniqueDays = [ ...new Set(allDays) ]
+		return uniqueDays
 	}
 
 	updateSearch = inputValue => {
@@ -130,19 +161,37 @@ export default class TimetableScreen extends Component {
 		return listOfBookmarkedActs.includes(actsId)
 	}
 
+	isStageActive(areaName) {
+		const { stageFilterActive, stageNames } = this.state
+		return stageFilterActive[stageNames.indexOf(areaName)]
+	}
+
+	isDayActive(actStartDate) {
+		const { daysFilterActive, festDays } = this.state
+		return daysFilterActive[
+			festDays.indexOf(
+				actStartDate.toLocaleDateString('en-GB', {
+					weekday: 'short'
+				})
+			)
+		]
+	}
+
 	getSelectedActList = timeTable => {
 		const {
 			bookmarkIconIsActive,
 			sortAlphaIconIsActive,
 			sortByTimeIsActive,
 			sortByStageIconIsActive,
-			activeStageFilter,
-			activeDaysFilter
+			allStagesFilterActive,
+			allDaysFilterActive
 		} = this.state
 
 		const filteredTimeTable = timeTable
 			.filter(act => act.actName.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1)
 			.filter(act => !bookmarkIconIsActive || this.isActBookmarked(act.actsId))
+			.filter(act => allStagesFilterActive || this.isStageActive(act.areaName))
+			.filter(act => allDaysFilterActive || this.isDayActive(act.actStartDate))
 
 		if (sortAlphaIconIsActive) {
 			return filteredTimeTable.sort((a, b) => a.actName.localeCompare(b.actName))
@@ -153,7 +202,8 @@ export default class TimetableScreen extends Component {
 		}
 	}
 
-	createActList(festObject) {
+	createActList() {
+		const { festObject } = this.state
 		return this.getSelectedActList(festObject.timeTable).map(this.renderSingleAct)
 	}
 
@@ -185,59 +235,44 @@ export default class TimetableScreen extends Component {
 		}
 	}
 
-	getUniqueStages = festObject => {
-		const timeTable = festObject.timeTable
-		const allStages = timeTable.map(act => act.areaName)
-		const uniqueStages = [ ...new Set(allStages) ]
-
-		return uniqueStages
-	}
-
-	renderFilterStageNames = stageNames => {
+	renderFilterStageNames = () => {
+		const { stageNames } = this.state
 		return stageNames.map((stageName, index) => {
 			return (
 				<FilterElement
 					key={uid()}
 					onClick={() => this.handleStageFilter(index)}
 					filterName={stageName}
-					isActive={this.state.activeStageFilter[index]}
+					isActive={this.state.stageFilterActive[index]}
 				/>
 			)
 		})
 	}
 
 	handleStageFilter = id => {
-		const activeStages = this.state.activeStageFilter
+		const activeStages = this.state.stageFilterActive
 		activeStages[id] = !activeStages[id]
 		this.setState({
-			activeStageFilter: activeStages
+			stageFilterActive: activeStages,
+			allStagesFilterActive: false
 		})
 	}
 
-	clearActiveStageFilter = () => {
+	clearStageFilterActive = () => {
 		this.setState({
-			activeStageFilter: []
+			stageFilterActive: [],
+			allStagesFilterActive: true
 		})
 	}
 
-	getUniqueDays = festObject => {
-		const timeTable = festObject.timeTable
-		const allDays = timeTable.map(act =>
-			act.actStartDate.toLocaleDateString('en-GB', {
-				weekday: 'short'
-			})
-		)
-		const uniqueDays = [ ...new Set(allDays) ]
-		return uniqueDays
-	}
-
-	renderFilterFestDays = festDays => {
+	renderFilterFestDays = () => {
+		const { festDays } = this.state
 		return festDays.map((festDay, index) => {
 			return (
 				<FilterElement
 					key={uid()}
 					onClick={() => this.handleDaysFilter(index)}
-					isActive={this.state.activeDaysFilter[index]}
+					isActive={this.state.daysFilterActive[index]}
 					filterName={festDay}
 				/>
 			)
@@ -245,26 +280,30 @@ export default class TimetableScreen extends Component {
 	}
 
 	handleDaysFilter = id => {
-		const activeDays = this.state.activeDaysFilter
+		const activeDays = this.state.daysFilterActive
 		activeDays[id] = !activeDays[id]
 		this.setState({
-			activeDaysFilter: activeDays
+			daysFilterActive: activeDays,
+			allDaysFilterActive: false
 		})
 	}
 
-	clearActiveDaysFilter = () => {
+	clearDaysFilterActive = () => {
 		this.setState({
-			activeDaysFilter: []
+			daysFilterActive: [],
+			allDaysFilterActive: true
 		})
 	}
 
-	renderStageNames = stageNames => {
+	renderStageNames = () => {
+		const { stageNames } = this.state
 		return stageNames.map(stageName => {
 			return <StageName key={uid()} stageName={stageName} />
 		})
 	}
 
-	divideTimetableIntoStages = festObject => {
+	divideTimetableIntoStages = () => {
+		const { festObject } = this.state
 		const uniqueStages = this.getUniqueStages(festObject)
 
 		const stageObject = uniqueStages.map(stage => {
@@ -281,11 +320,8 @@ export default class TimetableScreen extends Component {
 
 	render() {
 		this.saveFavoriteActs()
-		const { festivals, festId } = this.props
-		const festObject = this.getFestById(festivals, festId)
-		const headline = festObject.festName
-		const stageNames = this.getUniqueStages(festObject)
-		const festDays = this.getUniqueDays(festObject)
+		const headline = this.state.festObject.festName
+
 		return (
 			<Wrapper>
 				<NavBar height="200">
@@ -293,30 +329,35 @@ export default class TimetableScreen extends Component {
 					<InputSearch placeholder="Search for act name" onChange={this.updateSearch} />
 				</NavBar>
 				<FilterElementsContainer
-					onClickClearStages={() => this.clearActiveStageFilter()}
-					onClickClearDays={() => this.clearActiveDaysFilter()}
-					stageNames={stageNames}
-					festDays={festDays}
+					onClickClearStages={() => this.clearStageFilterActive()}
+					onClickClearDays={() => this.clearDaysFilterActive()}
+					stageNames={this.state.stageNames}
+					festDays={this.state.festDays}
 					renderFilterStageNames={this.renderFilterStageNames}
 					renderFilterFestDays={this.renderFilterFestDays}
 					height="50"
+					allStagesFilterActive={this.state.allStagesFilterActive}
+					allDaysFilterActive={this.state.allDaysFilterActive}
 				/>
 				<React.Fragment>
 					{this.state.sortByStageIconIsActive ? (
 						<DisplayMainContent data-cy="ActsList" width="100">
-							<StageNamesContainer stageNames={stageNames} renderStageNames={this.renderStageNames} />
+							<StageNamesContainer
+								stageNames={this.state.stageNames}
+								renderStageNames={this.renderStageNames}
+							/>
 							<ContentInner>
 								{
 									<main>
 										{this.state.sortByStageIconIsActive}
-										{this.divideTimetableIntoStages(festObject)}
+										{this.divideTimetableIntoStages(this.state.festObject)}
 									</main>
 								}
 							</ContentInner>
 						</DisplayMainContent>
 					) : (
 						<DisplayMainContent data-cy="ActsList" width="96">
-							{this.createActList(festObject)}
+							{this.createActList(this.state.festObject)}
 						</DisplayMainContent>
 					)}
 				</React.Fragment>

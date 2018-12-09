@@ -28,16 +28,28 @@ export default class FilterElementsContainer extends Component {
 			renderFilterStageNames,
 			renderFilterFestDays,
 			onClickClearStages,
-			onClickClearDays
+			onClickClearDays,
+			onToggleAllStages,
+			allStagesFilterActive,
+			allDaysFilterActive
 		} = this.props
 		return (
 			<FilterContainer>
 				<WrapperFilter height="25">
-					<FilterElement filterName="All Stages" onClick={onClickClearStages} />
+					<FilterElement
+						filterName="All Stages"
+						isActive={allStagesFilterActive}
+						onClick={onClickClearStages}
+					/>
 					{renderFilterStageNames(stageNames)}
 				</WrapperFilter>
 				<WrapperFilter height="25">
-					<FilterElement filterName="All Days" onClick={onClickClearDays} /> {renderFilterFestDays(festDays)}
+					<FilterElement
+						filterName="All Days"
+						isActive={allDaysFilterActive}
+						onClick={onClickClearDays}
+					/>{' '}
+					{renderFilterFestDays(festDays)}
 				</WrapperFilter>
 			</FilterContainer>
 		)
