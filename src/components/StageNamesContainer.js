@@ -1,18 +1,19 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 
-export const FilterWrapper = styled.nav`
+export const WrapperStagenames = styled.nav`
 	background: rgba(11, 22, 31, 0.85);
 	display: flex;
 	font-family: DINWeb-CondBold, sans-serif;
-	height: 50px;
+	height: ${props => props.height || 50}px;
 	width: 100vw;
 	position: sticky;
 	top: 0;
 `
-export default class NavBarFilterTimetable extends Component {
+
+export default class StageNamesContainer extends Component {
 	render() {
 		const { stageNames, renderStageNames } = this.props
-		return <FilterWrapper>{renderStageNames(stageNames)}</FilterWrapper>
+		return <WrapperStagenames height="40">{renderStageNames(stageNames)}</WrapperStagenames>
 	}
 }

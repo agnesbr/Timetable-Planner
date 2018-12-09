@@ -5,11 +5,6 @@ import DateTimeLine from './styledComponents/DateTimeLine'
 import styled from 'styled-components'
 import Bookmark from './Bookmark'
 import PropTypes from 'prop-types'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faClock, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons'
-
-const clockIcon = <FontAwesomeIcon className="filter-button" icon={faClock} />
-const stageIcon = <FontAwesomeIcon className="filter-button" icon={faMapMarkerAlt} />
 
 export const Div = styled.div`
 	text-decoration: none;

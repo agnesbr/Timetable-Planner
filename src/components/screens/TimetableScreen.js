@@ -6,12 +6,13 @@ import { NavLink } from 'react-router-dom'
 import Act from '../Act'
 import StageName from '../StageName'
 import InputSearch from '../InputSearch'
+import FilterElement from '../FilterElement'
 import NavBarBottomIcon from '../NavBarBottomIcon'
-import NavBarFilterTimetable from '../NavBarFilterTimetable'
+import StageNamesContainer from '../StageNamesContainer'
+import FilterElementsContainer from '../FilterElementsContainer'
 
 import styled from 'styled-components'
 import NavBar from '../styledComponents/NavBar'
-import WrapperApp from '../styledComponents/WrapperApp'
 import NavBarBottom from '../styledComponents/NavBarBottom'
 import DisplayMainContent from '../styledComponents/DisplayMainContent'
 
@@ -31,6 +32,13 @@ const listIcon = <FontAwesomeIcon className="filter-button" icon={faAlignCenter}
 const sortDownIcon = <FontAwesomeIcon className="filter-button" icon={faSortAlphaDown} />
 const clockIcon = <FontAwesomeIcon className="filter-button" icon={faClock} />
 const stageIcon = <FontAwesomeIcon className="filter-button" icon={faMapMarkerAlt} />
+
+export const Wrapper = styled.section`
+	display: grid;
+	grid-auto-flow: row;
+	grid-template-rows: 120px 60px auto 50px;
+	height: 100vh;
+`
 
 export const ContentInner = styled.section`
 	display: block;
@@ -69,13 +77,15 @@ export const Homelink = styled(Link)`
 
 export default class TimetableScreen extends Component {
 	state = {
+		listOfBookmarkedActs: this.loadFavoriteActs(),
 		bookmarkIconIsActive: false,
 		backIconIsActive: false,
 		sortAlphaIconIsActive: false,
 		sortByTimeIsActive: false,
 		sortByStageIconIsActive: true,
-		listOfBookmarkedActs: this.loadFavoriteActs(),
-		search: ''
+		search: '',
+		activeStageFilter: [],
+		activeDaysFilter: []
 	}
 
 	updateSearch = inputValue => {
@@ -121,7 +131,14 @@ export default class TimetableScreen extends Component {
 	}
 
 	getSelectedActList = timeTable => {
-		const { bookmarkIconIsActive, sortAlphaIconIsActive, sortByTimeIsActive, sortByStageIconIsActive } = this.state
+		const {
+			bookmarkIconIsActive,
+			sortAlphaIconIsActive,
+			sortByTimeIsActive,
+			sortByStageIconIsActive,
+			activeStageFilter,
+			activeDaysFilter
+		} = this.state
 
 		const filteredTimeTable = timeTable
 			.filter(act => act.actName.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1)
@@ -176,23 +193,89 @@ export default class TimetableScreen extends Component {
 		return uniqueStages
 	}
 
+	renderFilterStageNames = stageNames => {
+		return stageNames.map((stageName, index) => {
+			return (
+				<FilterElement
+					key={uid()}
+					onClick={() => this.handleStageFilter(index)}
+					filterName={stageName}
+					isActive={this.state.activeStageFilter[index]}
+				/>
+			)
+		})
+	}
+
+	handleStageFilter = id => {
+		const activeStages = this.state.activeStageFilter
+		activeStages[id] = !activeStages[id]
+		this.setState({
+			activeStageFilter: activeStages
+		})
+	}
+
+	clearActiveStageFilter = () => {
+		this.setState({
+			activeStageFilter: []
+		})
+	}
+
+	getUniqueDays = festObject => {
+		const timeTable = festObject.timeTable
+		const allDays = timeTable.map(act =>
+			act.actStartDate.toLocaleDateString('en-GB', {
+				weekday: 'short'
+			})
+		)
+		const uniqueDays = [ ...new Set(allDays) ]
+		return uniqueDays
+	}
+
+	renderFilterFestDays = festDays => {
+		return festDays.map((festDay, index) => {
+			return (
+				<FilterElement
+					key={uid()}
+					onClick={() => this.handleDaysFilter(index)}
+					isActive={this.state.activeDaysFilter[index]}
+					filterName={festDay}
+				/>
+			)
+		})
+	}
+
+	handleDaysFilter = id => {
+		const activeDays = this.state.activeDaysFilter
+		activeDays[id] = !activeDays[id]
+		this.setState({
+			activeDaysFilter: activeDays
+		})
+	}
+
+	clearActiveDaysFilter = () => {
+		this.setState({
+			activeDaysFilter: []
+		})
+	}
+
 	renderStageNames = stageNames => {
 		return stageNames.map(stageName => {
-			console.log(stageName)
-			return <StageName stageName={stageName} />
+			return <StageName key={uid()} stageName={stageName} />
 		})
 	}
 
 	divideTimetableIntoStages = festObject => {
-		const timeTable = festObject.timeTable
-		const allStages = timeTable.map(act => act.areaName)
-		const uniqueStages = [ ...new Set(allStages) ]
+		const uniqueStages = this.getUniqueStages(festObject)
 
 		const stageObject = uniqueStages.map(stage => {
-			return timeTable.filter(act => act.areaName === stage)
+			return festObject.timeTable.filter(act => act.areaName === stage)
 		})
 		return stageObject.map(stage => {
-			return <InnerColumn>{this.getSelectedActList(stage).map(act => this.renderSingleAct(act))}</InnerColumn>
+			return (
+				<InnerColumn key={uid()}>
+					{this.getSelectedActList(stage).map(act => this.renderSingleAct(act))}
+				</InnerColumn>
+			)
 		})
 	}
 
@@ -202,17 +285,26 @@ export default class TimetableScreen extends Component {
 		const festObject = this.getFestById(festivals, festId)
 		const headline = festObject.festName
 		const stageNames = this.getUniqueStages(festObject)
-
+		const festDays = this.getUniqueDays(festObject)
 		return (
-			<WrapperApp>
+			<Wrapper>
 				<NavBar height="200">
 					{<h1> {this.shortenFestName(headline, 35)}</h1>}
 					<InputSearch placeholder="Search for act name" onChange={this.updateSearch} />
 				</NavBar>
+				<FilterElementsContainer
+					onClickClearStages={() => this.clearActiveStageFilter()}
+					onClickClearDays={() => this.clearActiveDaysFilter()}
+					stageNames={stageNames}
+					festDays={festDays}
+					renderFilterStageNames={this.renderFilterStageNames}
+					renderFilterFestDays={this.renderFilterFestDays}
+					height="50"
+				/>
 				<React.Fragment>
 					{this.state.sortByStageIconIsActive ? (
 						<DisplayMainContent data-cy="ActsList" width="100">
-							<NavBarFilterTimetable stageNames={stageNames} renderStageNames={this.renderStageNames} />
+							<StageNamesContainer stageNames={stageNames} renderStageNames={this.renderStageNames} />
 							<ContentInner>
 								{
 									<main>
@@ -276,7 +368,7 @@ export default class TimetableScreen extends Component {
 						iconIsActive={this.state.bookmarkIconIsActive}
 					/>
 				</NavBarBottom>
-			</WrapperApp>
+			</Wrapper>
 		)
 	}
 	handleToggleButtonBookmarked = () => {
