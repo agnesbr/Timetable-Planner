@@ -11,17 +11,17 @@ export const StyledHeadline = styled.h3`
 	font-size: 1.5em;
 	justify-content: center;
 	letter-spacing: 0.01em;
-	margin: 0 7px;
+	margin: 0 3px;
 	min-width: 250px;
 	padding: 5px 20px 0 20px;
 	word-wrap: break-word;
 
 	:first-child {
-		margin-left: 14px;
+		margin-left: 7px;
 	}
 
 	:last-child {
-		margin-right: 14px;
+		margin-right: 7px;
 	}
 `
 

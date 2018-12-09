@@ -134,7 +134,7 @@ export default class HomeScreen extends Component {
 					</StyledCounter>
 					<InputSearch placeholder="Search for festival name" onChange={this.updateSearch} />
 				</NavBar>
-				<DisplayMainContent data-cy="FestList" width="98">
+				<DisplayMainContent data-cy="FestList" width="96">
 					{this.createFestList()}
 				</DisplayMainContent>
 				<NavBarBottom className="center">

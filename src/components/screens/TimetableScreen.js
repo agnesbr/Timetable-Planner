@@ -45,20 +45,21 @@ export const ContentInner = styled.section`
 	main {
 		display: flex;
 		flex-direction: row;
+		justify-content: flex-start;
 	}
 `
 
 export const InnerColumn = styled.section`
 	min-width: 250px;
-	margin: 0 7px;
+	margin: 0 3px;
 	flex-grow: 1;
 
 	:first-child {
-		margin-left: 14px;
+		margin-left: 7px;
 	}
 
 	:last-child {
-		margin-right: 14px;
+		margin-right: 7px;
 	}
 `
 
@@ -215,7 +216,7 @@ export default class TimetableScreen extends Component {
 							<ContentInner>
 								{
 									<main>
-										{this.state.sortByStageIconIsActive} :
+										{this.state.sortByStageIconIsActive}
 										{this.divideTimetableIntoStages(festObject)}
 									</main>
 								}
