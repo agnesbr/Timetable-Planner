@@ -22,65 +22,61 @@ export const TimetableLink = styled(Link)`
 const starIcon = <FontAwesomeIcon className="filter-button" icon={faStar} />
 
 export default class Fest extends Component {
-	static propTypes = {
-		festId: PropTypes.number.isRequired,
-		festName: PropTypes.string.isRequired,
-		festStartDate: PropTypes.instanceOf(Date),
-		festEndDate: PropTypes.instanceOf(Date),
-		festCountry: PropTypes.string.isRequired,
-		festCity: PropTypes.string.isRequired,
-		isBookmarked: PropTypes.bool,
-		toggleBookmark: PropTypes.func
-	}
+  static propTypes = {
+    festId: PropTypes.number.isRequired,
+    festName: PropTypes.string.isRequired,
+    festStartDate: PropTypes.instanceOf(Date),
+    festEndDate: PropTypes.instanceOf(Date),
+    festCountry: PropTypes.string.isRequired,
+    festCity: PropTypes.string.isRequired,
+    isBookmarked: PropTypes.bool,
+    toggleBookmark: PropTypes.func,
+  }
 
-	render() {
-		const {
-			festId,
-			festName,
-			festStartDate,
-			festEndDate,
-			festCountry,
-			festCity,
-			isBookmarked,
-			toggleBookmark
-		} = this.props
+  render() {
+    const {
+      festId,
+      festName,
+      festStartDate,
+      festEndDate,
+      festCountry,
+      festCity,
+      isBookmarked,
+      toggleBookmark,
+    } = this.props
 
-		const festStartDateFormat = festStartDate.toLocaleDateString('en-GB', {
-			day: 'numeric',
-			month: '2-digit',
-			year: '2-digit'
-		})
+    const festStartDateFormat = festStartDate.toLocaleDateString('en-GB', {
+      day: 'numeric',
+      month: '2-digit',
+      year: '2-digit',
+    })
 
-		let festEndDateFormat
-		if (festEndDate == null) {
-			festEndDateFormat = null
-		} else {
-			festEndDateFormat = festEndDate.toLocaleDateString('en-GB', {
-				day: 'numeric',
-				month: '2-digit',
-				year: '2-digit'
-			})
-		}
+    let festEndDateFormat
+    if (festEndDate == null) {
+      festEndDateFormat = null
+    } else {
+      festEndDateFormat = festEndDate.toLocaleDateString('en-GB', {
+        day: 'numeric',
+        month: '2-digit',
+        year: '2-digit',
+      })
+    }
 
-		return (
-			<StyledWrapper data-cy="festEl">
-				<TimetableLink data-cy="festElLink" to={`/timetable/${festId}`}>
-					<DateTimeLine className="teal" mT="5" mB="1" dateTime={festEndDateFormat}>
-						{festEndDateFormat == null ? (
-							festStartDateFormat
-						) : (
-							festStartDateFormat + ' – ' + festEndDateFormat
-						)}
-					</DateTimeLine>
-					<h2 data-cy="festName">{festName}</h2>
-					<InfoLine className="teal" mT="4" mB="5">
-						{festCountry}
-						<div className="star"> {starIcon}</div>
-						{festCity}
-					</InfoLine>
-				</TimetableLink>
-				<Bookmark id={festId} isBookmarked={isBookmarked} toggleBookmark={toggleBookmark} />
-			</StyledWrapper>
-		)
-	}
+    return (
+      <StyledWrapper data-cy="festEl">
+        <TimetableLink data-cy="festElLink" to={`/timetable/${festId}`}>
+          <DateTimeLine className="teal" mT="5" mB="1" dateTime={festEndDateFormat}>
+            {festEndDateFormat ? festStartDateFormat + ' – ' + festEndDateFormat : festStartDateFormat}
+          </DateTimeLine>
+          <h2 data-cy="festName">{festName}</h2>
+          <InfoLine className="teal" mT="4" mB="5">
+            {festCountry}
+            <div className="star"> {starIcon}</div>
+            {festCity}
+          </InfoLine>
+        </TimetableLink>
+        <Bookmark id={festId} isBookmarked={isBookmarked} toggleBookmark={toggleBookmark} />
+      </StyledWrapper>
+    )
+  }
 }

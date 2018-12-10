@@ -23,9 +23,12 @@ export default class FilterElement extends Component {
 	render() {
 		const { filterName, isActive, onClick } = this.props
 		return (
-			<FilterEl className={isActive ? 'filter-active' : null} onClick={() => onClick()}>
+			<FilterEl className={isActive && 'filter-active'} onClick={() => onClick()}>
 				{filterName}
 			</FilterEl>
 		)
 	}
 }
+// isActive ? 'filter-active' : null
+
+// isActive && 'filter-active'

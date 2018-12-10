@@ -13,7 +13,7 @@ export const WrapperStagenames = styled.nav`
 
 export default class StageNamesContainer extends Component {
 	render() {
-		const { stageNames, renderStageNames } = this.props
-		return <WrapperStagenames height="40">{renderStageNames(stageNames)}</WrapperStagenames>
+		const { renderStageNames } = this.props
+		return <WrapperStagenames height="40">{renderStageNames(22)}</WrapperStagenames>
 	}
 }
