@@ -72,13 +72,13 @@ a{
 
 /* first for IE 4–8 */
 @font-face {
-  font-family: DINWeb-CondBold;
+  font-family: "DINWeb-CondBold";
   src: url("../../webfonts/webfonts/DINWeb-CondBold.eot");
 }
 
 /* then for WOFF-capable browsers */
 @font-face {
-  font-family: DINWeb-CondBold;
+  font-family: "DINWeb-CondBold";
   src: url("../../webfonts/DINWeb-CondBold.woff") format("woff");
 }
 

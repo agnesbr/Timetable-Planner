@@ -65,11 +65,11 @@ export default class Fest extends Component {
     return (
       <StyledWrapper data-cy="festEl">
         <TimetableLink data-cy="festElLink" to={`/timetable/${festId}`}>
-          <DateTimeLine className="teal" mT="5" mB="1" dateTime={festEndDateFormat}>
+          <DateTimeLine className="teal" mt="5" mb="1" dateTime={festEndDateFormat}>
             {festEndDateFormat ? festStartDateFormat + ' – ' + festEndDateFormat : festStartDateFormat}
           </DateTimeLine>
           <h2 data-cy="festName">{festName}</h2>
-          <InfoLine className="teal" mT="4" mB="5">
+          <InfoLine className="teal" mt="4" mb="5">
             {festCountry}
             <div className="star"> {starIcon}</div>
             {festCity}

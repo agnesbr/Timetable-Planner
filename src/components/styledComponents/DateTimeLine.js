@@ -6,6 +6,6 @@ export default styled.time`
   font-size: 19px;
   display: flex;
   align-items: center;
-  margin-top: ${props => props.mT || 3}px;
-  margin-bottom: ${props => props.mB || 3}px;
+  margin-top: ${props => props.mt || 3}px;
+  margin-bottom: ${props => props.mb || 3}px;
 `

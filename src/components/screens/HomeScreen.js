@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import uid from 'uid'
 
 import Fest from '../Fest'
 import NavBarBottomIcon from '../NavBarBottomIcon'
@@ -76,14 +75,16 @@ export default class HomeScreen extends Component {
     const { festivals } = this.props
 
     const showAllFestivals = !bookmarkIconIsActive
-    const isKeyInList = festival => festival.festName.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
-    const isBookmarked = festival => this.isFestBookmarked(festival.festId)
+    const searchKeyInList = festival => festival.festName.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
+    const searchFestInBookmarked = festival => this.isFestBookmarked(festival.festId)
 
-    const someFilter = item => {
-      return showAllFestivals ? isKeyInList(item) : isKeyInList(item) && isBookmarked(item)
+    const selectedFestivals = festival => {
+      return showAllFestivals
+        ? searchKeyInList(festival)
+        : searchKeyInList(festival) && searchFestInBookmarked(festival)
     }
 
-    const filteredFestivals = festivals.filter(someFilter)
+    const filteredFestivals = festivals.filter(selectedFestivals)
 
     if (sortAlphaIconIsActive) {
       return filteredFestivals.sort((a, b) => a.festName.localeCompare(b.festName))

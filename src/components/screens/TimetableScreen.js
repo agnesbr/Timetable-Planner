@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import uid from 'uid'
 import { Link } from 'react-router-dom'
 import { NavLink } from 'react-router-dom'
 
@@ -208,7 +207,7 @@ export default class TimetableScreen extends Component {
     const { actEndDate, actName, actStartDate, actsId, areaName } = act
     return (
       <Act
-        key={uid()}
+        key={actsId}
         actEndDate={actEndDate}
         actName={actName}
         actStartDate={actStartDate}
@@ -224,18 +223,18 @@ export default class TimetableScreen extends Component {
     return festivals.find(festival => festival.festId.toString() === festId)
   }
 
-  shortenFestName = (headline, num) => {
-    if (headline.length > num) {
-      return headline.slice(0, num - 3) + '...'
+  shortenString = (string, num) => {
+    if (string.length > num) {
+      return string.slice(0, num - 1) + ' …'
     }
-    return headline
+    return string
   }
 
   renderFilterStageNames = () => {
     const { stageNames } = this.state
     return stageNames.map((stageName, index) => (
       <FilterElement
-        key={uid()}
+        key={index}
         onClick={() => this.handleStageFilter(index)}
         filterName={stageName}
         isActive={this.state.stageFilterActive[index]}
@@ -291,12 +290,9 @@ export default class TimetableScreen extends Component {
     const { stageNames } = this.state
     return stageNames
       .map(stageName => {
-        if (stageName.length > num) {
-          return stageName.slice(0, num - 3) + '...'
-        }
-        return stageName
+        return this.shortenString(stageName, num)
       })
-      .map(stageName => <StageName key={uid()} stageName={stageName} />)
+      .map((stageName, index) => <StageName key={index} stageName={stageName} />)
   }
 
   divideTimetableIntoStages = () => {
@@ -304,8 +300,8 @@ export default class TimetableScreen extends Component {
     const uniqueStages = this.getUniqueStages(festObject)
 
     const stageObject = uniqueStages.map(stage => festObject.timeTable.filter(act => act.areaName === stage))
-    return stageObject.map(stage => (
-      <InnerColumn key={uid()}>{this.getSelectedActList(stage).map(act => this.renderSingleAct(act))}</InnerColumn>
+    return stageObject.map((stage, index) => (
+      <InnerColumn key={index}>{this.getSelectedActList(stage).map(act => this.renderSingleAct(act))}</InnerColumn>
     ))
   }
 
@@ -316,7 +312,7 @@ export default class TimetableScreen extends Component {
     return (
       <Wrapper>
         <NavBar height="200">
-          <h1>{this.shortenFestName(headline, 30)}</h1>
+          <h1>{this.shortenString(headline, 30)}</h1>
           <InputSearch placeholder="Search for act name" onChange={this.updateSearch} />
         </NavBar>
         <FilterElementsContainer
