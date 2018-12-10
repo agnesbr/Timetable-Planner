@@ -325,7 +325,7 @@ export default class TimetableScreen extends Component {
 		return (
 			<Wrapper>
 				<NavBar height="200">
-					{<h1> {this.shortenFestName(headline, 35)}</h1>}
+					{<h1> {this.shortenFestName(headline, 30)}</h1>}
 					<InputSearch placeholder="Search for act name" onChange={this.updateSearch} />
 				</NavBar>
 				<FilterElementsContainer

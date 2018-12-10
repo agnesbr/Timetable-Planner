@@ -47,11 +47,11 @@ export default class Act extends Component {
 		return (
 			<StyledWrapper>
 				<Div>
-					<InfoLine className="purple" mT="9" mB="6">
+					<InfoLine className="purple" mT="3" mB="2">
 						{areaName}
 					</InfoLine>
 					<h2> {actName}</h2>
-					<DateTimeLine className="purple" mT="3" mB="4">
+					<DateTimeLine className="purple" mT="1" mB="1">
 						{playDay}, {actStartTime} – {actEndTime}
 					</DateTimeLine>
 				</Div>
