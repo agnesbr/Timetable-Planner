@@ -230,23 +230,20 @@ export default class TimetableScreen extends Component {
 	shortenFestName = (headline, num) => {
 		if (headline.length > num) {
 			return headline.slice(0, num - 3) + '...'
-		} else {
-			return headline
 		}
+		return headline
 	}
 
 	renderFilterStageNames = () => {
 		const { stageNames } = this.state
-		return stageNames.map((stageName, index) => {
-			return (
-				<FilterElement
-					key={uid()}
-					onClick={() => this.handleStageFilter(index)}
-					filterName={stageName}
-					isActive={this.state.stageFilterActive[index]}
-				/>
-			)
-		})
+		return stageNames.map((stageName, index) => (
+			<FilterElement
+				key={uid()}
+				onClick={() => this.handleStageFilter(index)}
+				filterName={stageName}
+				isActive={this.state.stageFilterActive[index]}
+			/>
+		))
 	}
 
 	handleStageFilter = id => {
@@ -267,16 +264,14 @@ export default class TimetableScreen extends Component {
 
 	renderFilterFestDays = () => {
 		const { festDays } = this.state
-		return festDays.map((festDay, index) => {
-			return (
-				<FilterElement
-					key={uid()}
-					onClick={() => this.handleDaysFilter(index)}
-					isActive={this.state.daysFilterActive[index]}
-					filterName={festDay}
-				/>
-			)
-		})
+		return festDays.map((festDay, index) => (
+			<FilterElement
+				key={uid()}
+				onClick={() => this.handleDaysFilter(index)}
+				isActive={this.state.daysFilterActive[index]}
+				filterName={festDay}
+			/>
+		))
 	}
 
 	handleDaysFilter = id => {
@@ -297,25 +292,19 @@ export default class TimetableScreen extends Component {
 
 	renderStageNames = () => {
 		const { stageNames } = this.state
-		return stageNames.map(stageName => {
-			return <StageName key={uid()} stageName={stageName} />
-		})
+		return stageNames.map(stageName => <StageName key={uid()} stageName={stageName} />)
 	}
 
 	divideTimetableIntoStages = () => {
 		const { festObject } = this.state
 		const uniqueStages = this.getUniqueStages(festObject)
 
-		const stageObject = uniqueStages.map(stage => {
-			return festObject.timeTable.filter(act => act.areaName === stage)
-		})
-		return stageObject.map(stage => {
-			return (
-				<InnerColumn key={uid()}>
-					{this.getSelectedActList(stage).map(act => this.renderSingleAct(act))}
-				</InnerColumn>
-			)
-		})
+		const stageObject = uniqueStages.map(stage => festObject.timeTable.filter(act => act.areaName === stage))
+		return stageObject.map(stage => (
+			<InnerColumn key={uid()}>
+				{this.getSelectedActList(stage).map(act => this.renderSingleAct(act))}
+			</InnerColumn>
+		))
 	}
 
 	render() {
