@@ -23,7 +23,7 @@ const starIcon = <FontAwesomeIcon className="filter-button" icon={faStar} />
 
 export default class Fest extends Component {
   static propTypes = {
-    festId: PropTypes.number.isRequired,
+    festId: PropTypes.string.isRequired,
     festName: PropTypes.string.isRequired,
     festStartDate: PropTypes.instanceOf(Date),
     festEndDate: PropTypes.instanceOf(Date),

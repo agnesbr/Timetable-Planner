@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { NavLink } from 'react-router-dom'
+import uid from 'uid'
 
 import Act from '../Act'
 import StageName from '../StageName'
@@ -201,7 +202,7 @@ export default class TimetableScreen extends Component {
     const { actEndDate, actName, actStartDate, actsId, areaName } = act
     return (
       <Act
-        key={actsId}
+        key={uid()}
         actEndDate={actEndDate}
         actName={actName}
         actStartDate={actStartDate}
@@ -313,6 +314,15 @@ export default class TimetableScreen extends Component {
     })
   }
 
+  renderStageNames = num => {
+    const { stageNames } = this.state
+    return stageNames
+      .map(stageName => {
+        return this.shortenString(stageName, num)
+      })
+      .map((stageName, index) => <StageName key={index} stageName={stageName} />)
+  }
+
   render() {
     this.saveFavoriteActs()
     const headline = this.state.festObject.festName
@@ -320,12 +330,12 @@ export default class TimetableScreen extends Component {
     return (
       <Wrapper>
         <NavBar height="200">
-          <h1>{this.shortenString(headline, 30)}</h1>
+          <h1>{this.shortenString(headline, 28)}</h1>
           <InputSearch placeholder="Search for act name" onChange={this.updateSearch} />
         </NavBar>
         <FilterElementsContainer
-          onClickClearStages={() => this.clearStageFilterActive()}
-          onClickClearDays={() => this.clearDaysFilterActive()}
+          onClickClearStages={this.clearStageFilterActive}
+          onClickClearDays={this.clearDaysFilterActive}
           stageNames={this.state.stageNames}
           festDays={this.state.festDays}
           renderFilterStageNames={this.renderFilterStageNames}
