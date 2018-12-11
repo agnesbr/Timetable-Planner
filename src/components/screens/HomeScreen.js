@@ -76,12 +76,10 @@ export default class HomeScreen extends Component {
 
     const showAllFestivals = !bookmarkIconIsActive
     const searchKeyInList = festival => festival.festName.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
-    const searchFestInBookmarked = festival => this.isFestBookmarked(festival.festId)
+    const getFestInBookmarked = festival => this.isFestBookmarked(festival.festId)
 
     const selectedFestivals = festival => {
-      return showAllFestivals
-        ? searchKeyInList(festival)
-        : searchKeyInList(festival) && searchFestInBookmarked(festival)
+      return showAllFestivals ? searchKeyInList(festival) : searchKeyInList(festival) && getFestInBookmarked(festival)
     }
 
     const filteredFestivals = festivals.filter(selectedFestivals)
@@ -132,6 +130,13 @@ export default class HomeScreen extends Component {
     })
   }
 
+  handleButtonSort = name => {
+    this.setState({
+      sortAlphaIconIsActive: name === 'alpha',
+      sortByDateIsActive: name === 'date',
+    })
+  }
+
   render() {
     this.saveFavoriteFests()
 
@@ -151,18 +156,20 @@ export default class HomeScreen extends Component {
             dataCy="sortFestsAlpha"
             fontSize="26"
             width="75"
+            name="alpha"
             defaultIcon={sortDownIcon}
             activeIcon={sortDownIcon}
-            onClick={this.handleButtonSortAlpha}
+            onClick={() => this.handleButtonSort('alpha')}
             iconIsActive={this.state.sortAlphaIconIsActive}
           />
           <NavBarBottomIcon
             dataCy="sortFestsDate"
             fontSize="24"
             width="75"
+            name="date"
             defaultIcon={calendarIcon}
             activeIcon={calendarIcon}
-            onClick={this.handleButtonSortDate}
+            onClick={() => this.handleButtonSort('date')}
             iconIsActive={this.state.sortByDateIsActive}
           />
           <NavBarBottomIcon
@@ -177,19 +184,6 @@ export default class HomeScreen extends Component {
         </NavBarBottom>
       </WrapperApp>
     )
-  }
-
-  handleButtonSortAlpha = () => {
-    this.setState({
-      sortAlphaIconIsActive: true,
-      sortByDateIsActive: false,
-    })
-  }
-  handleButtonSortDate = () => {
-    this.setState({
-      sortAlphaIconIsActive: false,
-      sortByDateIsActive: true,
-    })
   }
 
   saveFavoriteFests() {

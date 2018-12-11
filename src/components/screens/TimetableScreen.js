@@ -43,12 +43,6 @@ export const ContentInner = styled.section`
   display: block;
   flex-direction: column;
 
-  header {
-    display: flex;
-    background: rgba(11, 22, 31, 0.85);
-    position: sticky;
-  }
-
   main {
     display: flex;
     flex-direction: row;
@@ -305,6 +299,20 @@ export default class TimetableScreen extends Component {
     ))
   }
 
+  handleToggleButtonBookmarked = () => {
+    this.setState({
+      bookmarkIconIsActive: !this.state.bookmarkIconIsActive,
+    })
+  }
+
+  handleButtonSort = name => {
+    this.setState({
+      sortAlphaIconIsActive: name === 'alpha',
+      sortByTimeIsActive: name === 'time',
+      sortByStageIconIsActive: name === 'stage',
+    })
+  }
+
   render() {
     this.saveFavoriteActs()
     const headline = this.state.festObject.festName
@@ -358,27 +366,30 @@ export default class TimetableScreen extends Component {
             dataCy="sortActsAlpha"
             fontSize="26"
             width="40"
+            name="alpha"
             defaultIcon={sortDownIcon}
             activeIcon={sortDownIcon}
-            onClick={() => this.handleButtonSortAlpha('alpha')}
+            onClick={() => this.handleButtonSort('alpha')}
             iconIsActive={this.state.sortAlphaIconIsActive}
           />
           <NavBarBottomIcon
             dataCy="sortActsByTime"
             fontSize="25"
             width="40"
+            name="time"
             defaultIcon={clockIcon}
             activeIcon={clockIcon}
-            onClick={() => this.handleButtonSortAlpha('time')}
+            onClick={() => this.handleButtonSort('time')}
             iconIsActive={this.state.sortByTimeIsActive}
           />
           <NavBarBottomIcon
             dataCy="sortActsByStageIcon"
             fontSize="25"
             width="40"
+            name="stage"
             defaultIcon={stageIcon}
             activeIcon={stageIcon}
-            onClick={() => this.handleButtonSortAlpha('stage')}
+            onClick={() => this.handleButtonSort('stage')}
             iconIsActive={this.state.sortByStageIconIsActive}
           />
           <NavBarBottomIcon
@@ -393,34 +404,6 @@ export default class TimetableScreen extends Component {
         </NavBarBottom>
       </Wrapper>
     )
-  }
-  handleToggleButtonBookmarked = () => {
-    this.setState({
-      bookmarkIconIsActive: !this.state.bookmarkIconIsActive,
-    })
-  }
-
-  handleButtonSortAlpha = name => {
-    this.setState({
-      sortAlphaIconIsActive: name === 'alpha',
-      sortByTimeIsActive: name === 'time',
-      sortByStageIconIsActive: name === 'stage',
-    })
-  }
-
-  handleButtonSortTime = () => {
-    this.setState({
-      sortAlphaIconIsActive: false,
-      sortByTimeIsActive: true,
-      sortByStageIconIsActive: false,
-    })
-  }
-  handleButtonSortStage = () => {
-    this.setState({
-      sortAlphaIconIsActive: false,
-      sortByTimeIsActive: false,
-      sortByStageIconIsActive: true,
-    })
   }
 
   saveFavoriteActs() {

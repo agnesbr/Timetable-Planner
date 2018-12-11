@@ -29,6 +29,3 @@ export default class FilterElement extends Component {
     )
   }
 }
-// isActive ? 'filter-active' : null
-
-// isActive && 'filter-active'
