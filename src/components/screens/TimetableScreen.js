@@ -282,8 +282,10 @@ export default class TimetableScreen extends Component {
   }
 
   renderStageNames = num => {
-    const { stageNames } = this.state
+    const { stageNames, stageFilterActive, allStagesFilterActive } = this.state
+    console.log(stageFilterActive)
     return stageNames
+      .filter((stageName, index) => allStagesFilterActive || stageFilterActive[index])
       .map(stageName => {
         return this.shortenString(stageName, num)
       })
@@ -291,13 +293,15 @@ export default class TimetableScreen extends Component {
   }
 
   divideTimetableIntoStages = () => {
-    const { festObject } = this.state
+    const { festObject, stageFilterActive, allStagesFilterActive } = this.state
     const uniqueStages = this.getUniqueStages(festObject)
 
     const stageObject = uniqueStages.map(stage => festObject.timeTable.filter(act => act.areaName === stage))
-    return stageObject.map((stage, index) => (
-      <InnerColumn key={index}>{this.getSelectedActList(stage).map(act => this.renderSingleAct(act))}</InnerColumn>
-    ))
+    return stageObject
+      .filter((stage, index) => allStagesFilterActive || stageFilterActive[index])
+      .map((stage, index) => (
+        <InnerColumn key={index}>{this.getSelectedActList(stage).map(act => this.renderSingleAct(act))}</InnerColumn>
+      ))
   }
 
   handleToggleButtonBookmarked = () => {
@@ -312,15 +316,6 @@ export default class TimetableScreen extends Component {
       sortByTimeIsActive: name === 'time',
       sortByStageIconIsActive: name === 'stage',
     })
-  }
-
-  renderStageNames = num => {
-    const { stageNames } = this.state
-    return stageNames
-      .map(stageName => {
-        return this.shortenString(stageName, num)
-      })
-      .map((stageName, index) => <StageName key={index} stageName={stageName} />)
   }
 
   render() {
