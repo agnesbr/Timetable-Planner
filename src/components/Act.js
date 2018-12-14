@@ -4,15 +4,24 @@ import InfoLine from './styledComponents/InfoLine'
 import DateTimeLine from './styledComponents/DateTimeLine'
 import styled from 'styled-components'
 import Bookmark from './Bookmark'
+import Warning from './Warning'
 import PropTypes from 'prop-types'
 
-export const Div = styled.div`
+export const ActsContainer = styled.div`
   text-decoration: none;
   display: grid;
   grid-auto-rows: auto;
   grid-gap: 5px;
   width: 100%;
 `
+
+export const IconContainer = styled.section`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 80px;
+`
+
 export const StyledIcon = styled.span`
   font-size: ${props => props.fontSize}px;
   margin-right: ${props => props.mRight}px;
@@ -28,7 +37,16 @@ export default class Act extends Component {
   }
 
   render() {
-    const { actsId, areaName, actName, actStartDate, actEndDate, isBookmarked, toggleBookmark } = this.props
+    const {
+      actsId,
+      areaName,
+      actName,
+      actStartDate,
+      actEndDate,
+      isBookmarked,
+      toggleBookmark,
+      isTimeOverlapping,
+    } = this.props
 
     const playDay = actStartDate.toLocaleDateString('en-GB', {
       weekday: 'short',
@@ -46,7 +64,7 @@ export default class Act extends Component {
 
     return (
       <StyledWrapper>
-        <Div>
+        <ActsContainer>
           <InfoLine className="purple" mt="3" mb="2">
             {areaName}
           </InfoLine>
@@ -54,8 +72,11 @@ export default class Act extends Component {
           <DateTimeLine className="purple" mt="1" mb="1">
             {playDay}, {actStartTime} – {actEndTime}
           </DateTimeLine>
-        </Div>
-        <Bookmark id={actsId} isBookmarked={isBookmarked} toggleBookmark={toggleBookmark} />
+        </ActsContainer>
+        <IconContainer>
+          <Bookmark id={actsId} isBookmarked={isBookmarked} toggleBookmark={toggleBookmark} />
+          <Warning id={actsId} isTimeOverlapping={isTimeOverlapping} />
+        </IconContainer>
       </StyledWrapper>
     )
   }

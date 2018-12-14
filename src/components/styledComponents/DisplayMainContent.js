@@ -5,4 +5,8 @@ export default styled.main`
   overflow-y: scroll;
   width: ${props => props.width || 100}vw;
   justify-self: center;
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
 `

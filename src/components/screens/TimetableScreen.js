@@ -82,6 +82,7 @@ export default class TimetableScreen extends Component {
     daysFilterActive: [],
     allStagesFilterActive: true,
     allDaysFilterActive: true,
+    listOfOverlappingTimes: [],
   }
 
   componentWillMount() {
@@ -125,6 +126,8 @@ export default class TimetableScreen extends Component {
     this.setState({
       listOfBookmarkedActs: newListOfBookmarkedActs,
     })
+
+    this.getOverlappingTimes(newListOfBookmarkedActs)
   }
 
   deleteItemFromActIsBookmarked = actsId => {
@@ -210,6 +213,7 @@ export default class TimetableScreen extends Component {
         areaName={areaName}
         isBookmarked={this.isActBookmarked(actsId)}
         toggleBookmark={this.toggleBookmark}
+        isTimeOverlapping={this.isTimeOverlapping(act)}
       />
     )
   }
@@ -283,7 +287,7 @@ export default class TimetableScreen extends Component {
 
   renderStageNames = num => {
     const { stageNames, stageFilterActive, allStagesFilterActive } = this.state
-    console.log(stageFilterActive)
+
     return stageNames
       .filter((stageName, index) => allStagesFilterActive || stageFilterActive[index])
       .map(stageName => {
@@ -304,6 +308,29 @@ export default class TimetableScreen extends Component {
       ))
   }
 
+  getOverlappingTimes = newListOfBookmarkedActs => {
+    const { festObject } = this.state
+    const bookmarkedObjects = festObject.timeTable.filter(act => newListOfBookmarkedActs.includes(act.actsId))
+    const overlappingTimes = bookmarkedObjects.filter(act1 =>
+      bookmarkedObjects.some(act2 => {
+        return (
+          act1.actsId !== act2.actsId &&
+          ((act1.actStartDate >= act2.actStartDate && act1.actStartDate < act2.actEndDate) ||
+            (act1.actEndDate > act2.actStartDate && act1.actEndDate <= act2.actEndDate))
+        )
+      })
+    )
+
+    this.setState({
+      listOfOverlappingTimes: overlappingTimes,
+    })
+  }
+
+  isTimeOverlapping = act => {
+    const { listOfOverlappingTimes } = this.state
+    return listOfOverlappingTimes.includes(act)
+  }
+
   handleToggleButtonBookmarked = () => {
     this.setState({
       bookmarkIconIsActive: !this.state.bookmarkIconIsActive,
@@ -319,9 +346,8 @@ export default class TimetableScreen extends Component {
   }
 
   render() {
-    this.saveFavoriteActs()
+    this.saveToLocalStorage()
     const headline = this.state.festObject.festName
-
     return (
       <Wrapper>
         <NavBar height="200">
@@ -411,7 +437,7 @@ export default class TimetableScreen extends Component {
     )
   }
 
-  saveFavoriteActs() {
+  saveToLocalStorage() {
     localStorage.setItem('TimeTable--listOfBookmarkedActs', JSON.stringify(this.state.listOfBookmarkedActs))
   }
 

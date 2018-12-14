@@ -7,6 +7,10 @@ export const FilterContainer = styled.nav`
   overflow-x: scroll;
   height: 80px;
   width: 100vw;
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
 `
 
 export const WrapperFilter = styled.section`
@@ -18,6 +22,10 @@ export const WrapperFilter = styled.section`
   margin-bottom: ${props => props.mB || 0}px;
   overflow-x: scroll;
   overflow-y: hidden;
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
 `
 
 export default class FilterElementsContainer extends Component {
