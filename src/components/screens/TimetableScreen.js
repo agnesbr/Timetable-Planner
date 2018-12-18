@@ -88,7 +88,7 @@ export default class TimetableScreen extends Component {
   componentWillMount() {
     const { festivals, festId } = this.props
     const festObject = this.getFestById(festivals, festId)
-    this.setState({
+    this.setState ({
       festObject: festObject,
       stageNames: this.getUniqueStages(festObject),
       festDays: this.getUniqueDays(festObject),
@@ -308,6 +308,11 @@ export default class TimetableScreen extends Component {
       ))
   }
 
+  isTimeOverlapping = act => {
+    const { listOfOverlappingTimes } = this.state
+    return listOfOverlappingTimes.includes(act)
+  }
+
   getOverlappingTimes = newListOfBookmarkedActs => {
     const { festObject } = this.state
     const bookmarkedObjects = festObject.timeTable.filter(act => newListOfBookmarkedActs.includes(act.actsId))
@@ -326,10 +331,7 @@ export default class TimetableScreen extends Component {
     })
   }
 
-  isTimeOverlapping = act => {
-    const { listOfOverlappingTimes } = this.state
-    return listOfOverlappingTimes.includes(act)
-  }
+  
 
   handleToggleButtonBookmarked = () => {
     this.setState({
