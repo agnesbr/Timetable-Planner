@@ -85,6 +85,7 @@ export default class TimetableScreen extends Component {
     listOfOverlappingTimes: [],
   }
 
+
   componentWillMount() {
     const { festivals, festId } = this.props
     const festObject = this.getFestById(festivals, festId)
@@ -95,11 +96,18 @@ export default class TimetableScreen extends Component {
     })
   }
 
+
+  getFestById = (festivals, festId) => {
+    return festivals.find(festival => festival.festId.toString() === festId)
+  }
+
+
   getUniqueStages = festObject => {
     const timeTable = festObject.timeTable
     const allStages = timeTable.map(act => act.areaName)
     return [ ...new Set(allStages) ]
   }
+
 
   getUniqueDays = festObject => {
     const timeTable = festObject.timeTable
@@ -111,10 +119,231 @@ export default class TimetableScreen extends Component {
     return [ ...new Set(allDays) ]
   }
 
+
+  render() {
+    this.saveActsToLocalStorage()
+    const headline = this.state.festObject.festName
+    return (
+      <Wrapper>
+        <NavBar height="200">
+          <h1>{this.shortenString(headline, 28)}</h1>
+          <InputSearch placeholder="Search for act name" onChange={this.updateSearch} />
+        </NavBar>
+        <FilterElementsContainer
+          onClickClearStages={this.clearStageFilterActive}
+          onClickClearDays={this.clearDaysFilterActive}
+          stageNames={this.state.stageNames}
+          festDays={this.state.festDays}
+          renderFilterStageNames={this.renderFilterStageNames}
+          renderFilterFestDays={this.renderFilterFestDays}
+          height="50"
+          allStagesFilterActive={this.state.allStagesFilterActive}
+          allDaysFilterActive={this.state.allDaysFilterActive}
+        />
+        {this.state.sortByStageIconIsActive ? (
+          <DisplayMainContent data-cy="ActsList" width="100">
+            <StageNamesContainer stageNames={this.state.stageNames} renderStageNames={this.renderStageNames} />
+            <ContentInner>
+              {
+                <main>
+                  {this.divideTimetableIntoStages(this.state.festObject)}
+                </main>
+              }
+            </ContentInner>
+          </DisplayMainContent>
+        ) : (
+          <DisplayMainContent data-cy="ActsList" width="96">
+            {this.createActList(this.state.festObject)}
+          </DisplayMainContent>
+        )}
+        <NavBarBottom className="space-between">
+          <NavLink to="/">
+            <NavBarBottomIcon
+              dataCy="backToHomepage"
+              fontSize="32"
+              width="40"
+              defaultIcon={backIcon}
+              activeIcon={backIcon}
+              iconIsActive={this.state.backIconIsActive}
+            />
+          </NavLink>
+          <NavBarBottomIcon
+            dataCy="sortActsAlpha"
+            fontSize="26"
+            width="40"
+            name="alpha"
+            defaultIcon={sortDownIcon}
+            activeIcon={sortDownIcon}
+            onClick={() => this.handleButtonSortAlpha()}
+            iconIsActive={this.state.sortAlphaIconIsActive}
+          />
+          <NavBarBottomIcon
+            dataCy="sortActsByTime"
+            fontSize="25"
+            width="40"
+            name="time"
+            defaultIcon={clockIcon}
+            activeIcon={clockIcon}
+            onClick={() => this.handleButtonSortTime()}
+            iconIsActive={this.state.sortByTimeIsActive}
+          />
+          <NavBarBottomIcon
+            dataCy="sortActsByStageIcon"
+            fontSize="25"
+            width="40"
+            name="stage"
+            defaultIcon={stageIcon}
+            activeIcon={stageIcon}
+            onClick={() => this.handleButtonSortStage()}
+            iconIsActive={this.state.sortByStageIconIsActive}
+          />
+          <NavBarBottomIcon
+            dataCy="showBookmarkedActsList"
+            fontSize="25"
+            width="40"
+            defaultIcon={starIcon}
+            activeIcon={listIcon}
+            onClick={() => this.handleToggleButtonBookmarked()}
+            iconIsActive={this.state.bookmarkIconIsActive}
+          />
+        </NavBarBottom>
+      </Wrapper>
+    )
+  }
+
+
+
+  loadFavoriteActs() {
+    try {
+      return JSON.parse(localStorage.getItem('TimeTable--listOfBookmarkedActs')) || []
+    } catch (err) {
+      return []
+    }
+  }
+
+  
+  saveActsToLocalStorage() {
+    localStorage.setItem('TimeTable--listOfBookmarkedActs', JSON.stringify(this.state.listOfBookmarkedActs))
+  }
+
+  shortenString = (string, num) => {
+    if (string.length > num) {
+      return string.slice(0, num - 1) + ' …'
+    }
+    return string
+  }
+
   updateSearch = inputValue => {
     this.setState({
       search: inputValue,
     })
+  }
+
+  clearStageFilterActive = () => {
+    this.setState({
+      stageFilterActive: [],
+      allStagesFilterActive: true,
+    })
+  }
+
+
+  clearDaysFilterActive = () => {
+    this.setState({
+      daysFilterActive: [],
+      allDaysFilterActive: true,
+    })
+  }
+
+  renderStageNames = num => {
+    const { stageNames, stageFilterActive, allStagesFilterActive } = this.state
+
+    return stageNames
+      .filter((stageName, index) => allStagesFilterActive || stageFilterActive[index])
+      .map(stageName => {
+        return this.shortenString(stageName, num)
+      })
+      .map((stageName, index) => <StageName key={index} stageName={stageName} />)
+  }
+
+
+  renderFilterStageNames = () => {
+    const { stageNames } = this.state
+    return stageNames.map((stageName, index) => (
+      <FilterElement
+        key={index}
+        onClick={() => this.handleStageFilter(index)}
+        filterName={stageName}
+        isActive={this.state.stageFilterActive[index]}
+      />
+    ))
+  }
+
+
+  handleStageFilter = id => {
+    const activeStages = this.state.stageFilterActive
+    activeStages[id] = !activeStages[id]
+    this.setState({
+      stageFilterActive: activeStages,
+      allStagesFilterActive: false,
+    })
+  }
+
+
+  renderFilterFestDays = () => {
+    const { festDays } = this.state
+    return festDays.map((festDay, index) => (
+      <FilterElement
+        key={index}
+        onClick={() => this.handleDaysFilter(index)}
+        isActive={this.state.daysFilterActive[index]}
+        filterName={festDay}
+      />
+    ))
+  }
+
+
+  handleDaysFilter = id => {
+    const activeDays = this.state.daysFilterActive
+    activeDays[id] = !activeDays[id]
+    this.setState({
+      daysFilterActive: activeDays,
+      allDaysFilterActive: false,
+    })
+  }
+
+
+  divideTimetableIntoStages = () => {
+    const { festObject, stageFilterActive, allStagesFilterActive, stageNames} = this.state
+
+    const stageObjects = stageNames.map(stage => festObject.timeTable.filter(act => act.areaName === stage))
+    return stageObjects
+      .filter((stage, index) => allStagesFilterActive || stageFilterActive[index])
+      .map((stage, index) => (
+        <InnerColumn key={index}>{this.getSelectedActList(stage).map(act => this.renderSingleAct(act))}</InnerColumn>
+      ))
+  }
+
+
+  renderSingleAct = act => {
+    const { actEndDate, actName, actStartDate, actsId, areaName } = act
+    return (
+      <Act
+        key={uid()}
+        actEndDate={actEndDate}
+        actName={actName}
+        actStartDate={actStartDate}
+        actsId={actsId}
+        areaName={areaName}
+        isBookmarked={this.isActBookmarked(actsId)}
+        toggleBookmark={this.toggleBookmark}
+        isTimeOverlapping={this.isTimeOverlapping(act)}
+      />
+    )
+  }
+
+  isTimeOverlapping = act => {
+    const { listOfOverlappingTimes } = this.state
+    return listOfOverlappingTimes.includes(act)
   }
 
   toggleBookmark = actsId => {
@@ -150,168 +379,6 @@ export default class TimetableScreen extends Component {
     return newListOfBookmarkedActs
   }
 
-  isActBookmarked(actsId) {
-    const { listOfBookmarkedActs } = this.state
-    return listOfBookmarkedActs.includes(actsId)
-  }
-
-  isStageActive(areaName) {
-    const { stageFilterActive, stageNames } = this.state
-    return stageFilterActive[stageNames.indexOf(areaName)]
-  }
-
-  isDayActive(actStartDate) {
-    const { daysFilterActive, festDays } = this.state
-    return daysFilterActive[
-      festDays.indexOf(
-        actStartDate.toLocaleDateString('en-GB', {
-          weekday: 'short',
-        })
-      )
-    ]
-  }
-
-  getSelectedActList = timeTable => {
-    const {
-      bookmarkIconIsActive,
-      sortAlphaIconIsActive,
-      sortByTimeIsActive,
-      sortByStageIconIsActive,
-      allStagesFilterActive,
-      allDaysFilterActive,
-    } = this.state
-
-    const filteredTimeTable = timeTable
-      .filter(act => act.actName.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1)
-      .filter(act => !bookmarkIconIsActive || this.isActBookmarked(act.actsId))
-      .filter(act => allStagesFilterActive || this.isStageActive(act.areaName))
-      .filter(act => allDaysFilterActive || this.isDayActive(act.actStartDate))
-
-    if (sortAlphaIconIsActive) {
-      return filteredTimeTable.sort((a, b) => a.actName.localeCompare(b.actName))
-    } else if (sortByTimeIsActive) {
-      return filteredTimeTable.sort((a, b) => a.actStartDate - b.actStartDate)
-    } else if (sortByStageIconIsActive) {
-      return filteredTimeTable.sort((a, b) => a.areaName.localeCompare(b.areaName))
-    }
-  }
-
-  createActList() {
-    const { festObject } = this.state
-    return this.getSelectedActList(festObject.timeTable).map(this.renderSingleAct)
-  }
-
-  renderSingleAct = act => {
-    const { actEndDate, actName, actStartDate, actsId, areaName } = act
-    return (
-      <Act
-        key={uid()}
-        actEndDate={actEndDate}
-        actName={actName}
-        actStartDate={actStartDate}
-        actsId={actsId}
-        areaName={areaName}
-        isBookmarked={this.isActBookmarked(actsId)}
-        toggleBookmark={this.toggleBookmark}
-        isTimeOverlapping={this.isTimeOverlapping(act)}
-      />
-    )
-  }
-
-  getFestById = (festivals, festId) => {
-    return festivals.find(festival => festival.festId.toString() === festId)
-  }
-
-  shortenString = (string, num) => {
-    if (string.length > num) {
-      return string.slice(0, num - 1) + ' …'
-    }
-    return string
-  }
-
-  renderFilterStageNames = () => {
-    const { stageNames } = this.state
-    return stageNames.map((stageName, index) => (
-      <FilterElement
-        key={index}
-        onClick={() => this.handleStageFilter(index)}
-        filterName={stageName}
-        isActive={this.state.stageFilterActive[index]}
-      />
-    ))
-  }
-
-  handleStageFilter = id => {
-    const activeStages = this.state.stageFilterActive
-    activeStages[id] = !activeStages[id]
-    this.setState({
-      stageFilterActive: activeStages,
-      allStagesFilterActive: false,
-    })
-  }
-
-  clearStageFilterActive = () => {
-    this.setState({
-      stageFilterActive: [],
-      allStagesFilterActive: true,
-    })
-  }
-
-  renderFilterFestDays = () => {
-    const { festDays } = this.state
-    return festDays.map((festDay, index) => (
-      <FilterElement
-        key={index}
-        onClick={() => this.handleDaysFilter(index)}
-        isActive={this.state.daysFilterActive[index]}
-        filterName={festDay}
-      />
-    ))
-  }
-
-  handleDaysFilter = id => {
-    const activeDays = this.state.daysFilterActive
-    activeDays[id] = !activeDays[id]
-    this.setState({
-      daysFilterActive: activeDays,
-      allDaysFilterActive: false,
-    })
-  }
-
-  clearDaysFilterActive = () => {
-    this.setState({
-      daysFilterActive: [],
-      allDaysFilterActive: true,
-    })
-  }
-
-  renderStageNames = num => {
-    const { stageNames, stageFilterActive, allStagesFilterActive } = this.state
-
-    return stageNames
-      .filter((stageName, index) => allStagesFilterActive || stageFilterActive[index])
-      .map(stageName => {
-        return this.shortenString(stageName, num)
-      })
-      .map((stageName, index) => <StageName key={index} stageName={stageName} />)
-  }
-
-  divideTimetableIntoStages = () => {
-    const { festObject, stageFilterActive, allStagesFilterActive } = this.state
-    const uniqueStages = this.getUniqueStages(festObject)
-
-    const stageObject = uniqueStages.map(stage => festObject.timeTable.filter(act => act.areaName === stage))
-    return stageObject
-      .filter((stage, index) => allStagesFilterActive || stageFilterActive[index])
-      .map((stage, index) => (
-        <InnerColumn key={index}>{this.getSelectedActList(stage).map(act => this.renderSingleAct(act))}</InnerColumn>
-      ))
-  }
-
-  isTimeOverlapping = act => {
-    const { listOfOverlappingTimes } = this.state
-    return listOfOverlappingTimes.includes(act)
-  }
 
   getOverlappingTimes = newListOfBookmarkedActs => {
     const { festObject } = this.state
@@ -331,123 +398,92 @@ export default class TimetableScreen extends Component {
     })
   }
 
+
+  createActList() {
+    const { festObject } = this.state
+    return this.getSelectedActList(festObject.timeTable).map(this.renderSingleAct)
+  }
+
+
+  getSelectedActList = timeTable => {
+    const {
+      bookmarkIconIsActive,
+      sortAlphaIconIsActive,
+      sortByTimeIsActive,
+      sortByStageIconIsActive,
+      allStagesFilterActive,
+      allDaysFilterActive,
+    } = this.state
+
+  const filteredTimeTable = timeTable
+  .filter(act => act.actName.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1)
+  .filter(act => {
+    return (
+      (!bookmarkIconIsActive || this.isActBookmarked(act.actsId)) &&
+      (allStagesFilterActive || this.isStageActive(act.areaName)) &&
+      (allDaysFilterActive || this.isDayActive(act.actStartDate))
+    )
+  })
+    if (sortAlphaIconIsActive) {
+      return filteredTimeTable.sort((a, b) => a.actName.localeCompare(b.actName))
+    } else if (sortByTimeIsActive) {
+      return filteredTimeTable.sort((a, b) => a.actStartDate - b.actStartDate)
+    } else if (sortByStageIconIsActive) {
+      return filteredTimeTable.sort((a, b) => a.areaName.localeCompare(b.areaName))
+    }
+  }
+
+  isActBookmarked(actsId) {
+    const { listOfBookmarkedActs } = this.state
+    return listOfBookmarkedActs.includes(actsId)
+  }
+
+  isStageActive(areaName) {
+    const { stageFilterActive, stageNames } = this.state
+    return stageFilterActive[stageNames.indexOf(areaName)]
+  }
+
+  isDayActive(actStartDate) {
+    const { daysFilterActive, festDays } = this.state
+    return daysFilterActive[
+      festDays.indexOf(  
+        actStartDate.toLocaleDateString('en-GB', {
+          weekday: 'short',
+        })
+      )
+    ]
+  }
+
+  handleButtonSortAlpha = () => {
+    this.setState({
+      sortAlphaIconIsDefault: false,
+      sortByTimeIsDefault: true,
+      sortByStageIconIsDefault: true
+    })
+  }
+
+
+  handleButtonSortTime = () => {
+    this.setState({
+      sortAlphaIconIsDefault: true,
+      sortByTimeIsDefault: false,
+      sortByStageIconIsDefault: true
+    })
+  }
+
   
+  handleButtonSortStage = () => {
+    this.setState({
+      sortAlphaIconIsDefault: true,
+      sortByTimeIsDefault: true,
+      sortByStageIconIsDefault: false
+    })
+  }
+
 
   handleToggleButtonBookmarked = () => {
     this.setState({
       bookmarkIconIsActive: !this.state.bookmarkIconIsActive,
     })
-  }
-
-  handleButtonSort = name => {
-    this.setState({
-      sortAlphaIconIsActive: name === 'alpha',
-      sortByTimeIsActive: name === 'time',
-      sortByStageIconIsActive: name === 'stage',
-    })
-  }
-
-  render() {
-    this.saveToLocalStorage()
-    const headline = this.state.festObject.festName
-    return (
-      <Wrapper>
-        <NavBar height="200">
-          <h1>{this.shortenString(headline, 28)}</h1>
-          <InputSearch placeholder="Search for act name" onChange={this.updateSearch} />
-        </NavBar>
-        <FilterElementsContainer
-          onClickClearStages={this.clearStageFilterActive}
-          onClickClearDays={this.clearDaysFilterActive}
-          stageNames={this.state.stageNames}
-          festDays={this.state.festDays}
-          renderFilterStageNames={this.renderFilterStageNames}
-          renderFilterFestDays={this.renderFilterFestDays}
-          height="50"
-          allStagesFilterActive={this.state.allStagesFilterActive}
-          allDaysFilterActive={this.state.allDaysFilterActive}
-        />
-        {this.state.sortByStageIconIsActive ? (
-          <DisplayMainContent data-cy="ActsList" width="100">
-            <StageNamesContainer stageNames={this.state.stageNames} renderStageNames={this.renderStageNames} />
-            <ContentInner>
-              {
-                <main>
-                  {this.state.sortByStageIconIsActive}
-                  {this.divideTimetableIntoStages(this.state.festObject)}
-                </main>
-              }
-            </ContentInner>
-          </DisplayMainContent>
-        ) : (
-          <DisplayMainContent data-cy="ActsList" width="96">
-            {this.createActList(this.state.festObject)}
-          </DisplayMainContent>
-        )}
-        <NavBarBottom className="space-between">
-          <NavLink to="/">
-            <NavBarBottomIcon
-              dataCy="backToHomepage"
-              fontSize="32"
-              width="40"
-              defaultIcon={backIcon}
-              activeIcon={backIcon}
-              iconIsActive={this.state.backIconIsActive}
-            />
-          </NavLink>
-          <NavBarBottomIcon
-            dataCy="sortActsAlpha"
-            fontSize="26"
-            width="40"
-            name="alpha"
-            defaultIcon={sortDownIcon}
-            activeIcon={sortDownIcon}
-            onClick={() => this.handleButtonSort('alpha')}
-            iconIsActive={this.state.sortAlphaIconIsActive}
-          />
-          <NavBarBottomIcon
-            dataCy="sortActsByTime"
-            fontSize="25"
-            width="40"
-            name="time"
-            defaultIcon={clockIcon}
-            activeIcon={clockIcon}
-            onClick={() => this.handleButtonSort('time')}
-            iconIsActive={this.state.sortByTimeIsActive}
-          />
-          <NavBarBottomIcon
-            dataCy="sortActsByStageIcon"
-            fontSize="25"
-            width="40"
-            name="stage"
-            defaultIcon={stageIcon}
-            activeIcon={stageIcon}
-            onClick={() => this.handleButtonSort('stage')}
-            iconIsActive={this.state.sortByStageIconIsActive}
-          />
-          <NavBarBottomIcon
-            dataCy="showBookmarkedActsList"
-            fontSize="25"
-            width="40"
-            defaultIcon={starIcon}
-            activeIcon={listIcon}
-            onClick={() => this.handleToggleButtonBookmarked()}
-            iconIsActive={this.state.bookmarkIconIsActive}
-          />
-        </NavBarBottom>
-      </Wrapper>
-    )
-  }
-
-  saveToLocalStorage() {
-    localStorage.setItem('TimeTable--listOfBookmarkedActs', JSON.stringify(this.state.listOfBookmarkedActs))
-  }
-
-  loadFavoriteActs() {
-    try {
-      return JSON.parse(localStorage.getItem('TimeTable--listOfBookmarkedActs')) || []
-    } catch (err) {
-      return []
-    }
   }
 }

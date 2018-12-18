@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
+import React, { Component } from 'react'
 import HomeScreen from './screens/HomeScreen'
 import TimetableScreen from './screens/TimetableScreen'
 import festRawData from '../data/ef_data.json'

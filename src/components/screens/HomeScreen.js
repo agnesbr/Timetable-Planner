@@ -33,110 +33,6 @@ export default class HomeScreen extends Component {
     sortByDateIsActive: true,
   }
 
-  isFestBookmarked(festId) {
-    const { listOfBookmarkedFests } = this.state
-    return listOfBookmarkedFests.includes(festId)
-  }
-
-  toggleBookmark = festId => {
-    const { listOfBookmarkedFests } = this.state
-
-    const newListOfBookmarkedFests = listOfBookmarkedFests.includes(festId)
-      ? this.deleteItemFromListOfBookmarkedFests(festId)
-      : this.addItemToListOfBookmarkedFests(festId)
-
-    this.setState({
-      listOfBookmarkedFests: newListOfBookmarkedFests,
-    })
-  }
-
-  deleteItemFromListOfBookmarkedFests = festId => {
-    const { listOfBookmarkedFests } = this.state
-    const bookmarkedIndex = listOfBookmarkedFests.indexOf(festId)
-    const newListOfBookmarkedFests = [
-      ...listOfBookmarkedFests.slice(0, bookmarkedIndex),
-      ...listOfBookmarkedFests.slice(bookmarkedIndex + 1),
-    ]
-
-    return newListOfBookmarkedFests
-  }
-
-  addItemToListOfBookmarkedFests = festId => {
-    const { listOfBookmarkedFests } = this.state
-    const newListOfBookmarkedFests = listOfBookmarkedFests.includes(festId)
-      ? [ ...listOfBookmarkedFests ]
-      : [ ...listOfBookmarkedFests, festId ]
-
-    return newListOfBookmarkedFests
-  }
-
-  getSelectedFestList = () => {
-    const { bookmarkIconIsActive, sortAlphaIconIsActive, sortByDateIsActive } = this.state
-    const { festivals } = this.props
-
-    const showAllFestivals = !bookmarkIconIsActive
-    const searchKeyInList = festival => festival.festName.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
-    const getFestInBookmarked = festival => this.isFestBookmarked(festival.festId)
-
-    const selectedFestivals = festival => {
-      return showAllFestivals ? searchKeyInList(festival) : searchKeyInList(festival) && getFestInBookmarked(festival)
-    }
-
-    const filteredFestivals = festivals.filter(selectedFestivals)
-
-    if (sortAlphaIconIsActive) {
-      return filteredFestivals.sort((a, b) => a.festName.localeCompare(b.festName))
-    } else if (sortByDateIsActive) {
-      return filteredFestivals.sort((a, b) => a.festStartDate - b.festStartDate)
-    }
-  }
-
-  getSelectedListLength = () => {
-    return this.getSelectedFestList().length
-  }
-
-  createFestList() {
-    return this.getSelectedFestList().map(this.renderSingleFest)
-  }
-
-  updateSearch = inputValue => {
-    this.setState({
-      search: inputValue,
-    })
-  }
-
-  renderSingleFest = festival => {
-    const { festId, festName, festStartDate, festEndDate, festCountry, festCity, ...act } = festival
-
-    return (
-      <Fest
-        key={festId}
-        festId={festId}
-        festName={festName}
-        festStartDate={festStartDate}
-        festEndDate={festEndDate}
-        festCountry={festCountry}
-        festCity={festCity}
-        isBookmarked={this.isFestBookmarked(festId)}
-        toggleBookmark={this.toggleBookmark}
-        rest={act}
-      />
-    )
-  }
-
-  handleToggleButtonBookmarked = () => {
-    this.setState({
-      bookmarkIconIsActive: !this.state.bookmarkIconIsActive,
-    })
-  }
-
-  handleButtonSort = name => {
-    this.setState({
-      sortAlphaIconIsActive: name === 'alpha',
-      sortByDateIsActive: name === 'date',
-    })
-  }
-
   render() {
     this.saveFavoriteFests()
 
@@ -159,7 +55,7 @@ export default class HomeScreen extends Component {
             name="alpha"
             defaultIcon={sortDownIcon}
             activeIcon={sortDownIcon}
-            onClick={() => this.handleButtonSort('alpha')}
+            onClick={() => this.handleButtonSortAlpha()}
             iconIsActive={this.state.sortAlphaIconIsActive}
           />
           <NavBarBottomIcon
@@ -169,7 +65,7 @@ export default class HomeScreen extends Component {
             name="date"
             defaultIcon={calendarIcon}
             activeIcon={calendarIcon}
-            onClick={() => this.handleButtonSort('date')}
+            onClick={() => this.handleButtonSortDate()}
             iconIsActive={this.state.sortByDateIsActive}
           />
           <NavBarBottomIcon
@@ -186,10 +82,6 @@ export default class HomeScreen extends Component {
     )
   }
 
-  saveFavoriteFests() {
-    localStorage.setItem('TimeTable--listOfBookmarkedFests', JSON.stringify(this.state.listOfBookmarkedFests))
-  }
-
   loadFavoriteFests() {
     try {
       return JSON.parse(localStorage.getItem('TimeTable--listOfBookmarkedFests')) || []
@@ -197,4 +89,126 @@ export default class HomeScreen extends Component {
       return []
     }
   }
+  
+
+  saveFavoriteFests() {
+    localStorage.setItem('TimeTable--listOfBookmarkedFests', JSON.stringify(this.state.listOfBookmarkedFests))
+  }
+
+
+  getSelectedListLength = () => {
+    return this.getSelectedFestList().length
+  }
+
+
+	getSelectedFestList = () => {
+    const { bookmarkIconIsActive, sortAlphaIconIsActive, sortByDateIsActive } = this.state
+    const { festivals } = this.props
+    const filteredFestivals = festivals
+      .filter(festival => festival.festName.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1)
+      .filter(festival => !bookmarkIconIsActive || this.isFestBookmarked(festival.festId))
+   
+      if (sortAlphaIconIsActive) {
+      return filteredFestivals.sort((a, b) => a.festName.localeCompare(b.festName))
+    } else if (sortByDateIsActive) {
+      return filteredFestivals.sort((a, b) => a.festStartDate - b.festStartDate)
+    }
+  }
+
+
+  isFestBookmarked(festId) {
+    const { listOfBookmarkedFests } = this.state
+    return listOfBookmarkedFests.includes(festId)
+  }
+
+
+  updateSearch = inputValue => {
+    this.setState({
+      search: inputValue,
+    })
+  }
+
+
+  createFestList() {
+    return this.getSelectedFestList().map(this.renderSingleFest)
+  }
+
+
+  renderSingleFest = festival => {
+    const { festId, festName, festStartDate, festEndDate, festCountry, festCity, ...act } = festival
+
+    return (
+      <Fest
+        key={festId}
+        festId={festId}
+        festName={festName}
+        festStartDate={festStartDate}
+        festEndDate={festEndDate}
+        festCountry={festCountry}
+        festCity={festCity}
+        isBookmarked={this.isFestBookmarked(festId)}
+        toggleBookmark={this.toggleBookmark}
+        rest={act}
+      />
+    )
+  }
+
+  
+  handleButtonSortAlpha = () => {
+    this.setState({
+      sortAlphaIconIsActive: true,
+      sortByDateIsActive: false
+    })
+  }
+
+
+  handleButtonSortDate = () => {
+    this.setState({
+      sortAlphaIconIsActive: false,
+      sortByDateIsActive: true
+    })
+  }
+
+
+  handleToggleButtonBookmarked = () => {
+    this.setState({
+      bookmarkIconIsActive: !this.state.bookmarkIconIsActive,
+    })
+  }
+
+
+  toggleBookmark = festId => {
+    const { listOfBookmarkedFests } = this.state
+
+    const newListOfBookmarkedFests = listOfBookmarkedFests.includes(festId)
+      ? this.deleteItemFromListOfBookmarkedFests(festId)
+      : this.addItemToListOfBookmarkedFests(festId)
+
+    this.setState({
+      listOfBookmarkedFests: newListOfBookmarkedFests,
+    })
+  }
+
+
+  deleteItemFromListOfBookmarkedFests = festId => {
+    const { listOfBookmarkedFests } = this.state
+    const bookmarkedIndex = listOfBookmarkedFests.indexOf(festId)
+    const newListOfBookmarkedFests = [
+      ...listOfBookmarkedFests.slice(0, bookmarkedIndex),
+      ...listOfBookmarkedFests.slice(bookmarkedIndex + 1),
+    ]
+
+    return newListOfBookmarkedFests
+  }
+
+
+  addItemToListOfBookmarkedFests = festId => {
+    const { listOfBookmarkedFests } = this.state
+    const newListOfBookmarkedFests = listOfBookmarkedFests.includes(festId)
+      ? [ ...listOfBookmarkedFests ]
+      : [ ...listOfBookmarkedFests, festId ]
+
+    return newListOfBookmarkedFests
+  }
+
 }
