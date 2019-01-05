@@ -55,7 +55,7 @@ export default class HomeScreen extends Component {
             name="alpha"
             defaultIcon={sortDownIcon}
             activeIcon={sortDownIcon}
-            onClick={() => this.handleButtonSortAlpha()}
+            onClick={this.handleButtonSortAlpha}
             iconIsActive={this.state.sortAlphaIconIsActive}
           />
           <NavBarBottomIcon
@@ -65,7 +65,7 @@ export default class HomeScreen extends Component {
             name="date"
             defaultIcon={calendarIcon}
             activeIcon={calendarIcon}
-            onClick={() => this.handleButtonSortDate()}
+            onClick={this.handleButtonSortDate}
             iconIsActive={this.state.sortByDateIsActive}
           />
           <NavBarBottomIcon
@@ -74,7 +74,7 @@ export default class HomeScreen extends Component {
             width="75"
             defaultIcon={starIcon}
             activeIcon={listIcon}
-            onClick={() => this.handleToggleButtonBookmarked()}
+            onClick={this.handleToggleButtonBookmarked}
             iconIsActive={this.state.bookmarkIconIsActive}
           />
         </NavBarBottom>

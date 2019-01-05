@@ -174,7 +174,7 @@ export default class TimetableScreen extends Component {
             name="alpha"
             defaultIcon={sortDownIcon}
             activeIcon={sortDownIcon}
-            onClick={() => this.handleButtonSortAlpha()}
+            onClick={this.handleButtonSortAlpha}
             iconIsActive={this.state.sortAlphaIconIsActive}
           />
           <NavBarBottomIcon
@@ -184,7 +184,7 @@ export default class TimetableScreen extends Component {
             name="time"
             defaultIcon={clockIcon}
             activeIcon={clockIcon}
-            onClick={() => this.handleButtonSortTime()}
+            onClick={this.handleButtonSortTime}
             iconIsActive={this.state.sortByTimeIsActive}
           />
           <NavBarBottomIcon
@@ -194,7 +194,7 @@ export default class TimetableScreen extends Component {
             name="stage"
             defaultIcon={stageIcon}
             activeIcon={stageIcon}
-            onClick={() => this.handleButtonSortStage()}
+            onClick={this.handleButtonSortStage}
             iconIsActive={this.state.sortByStageIconIsActive}
           />
           <NavBarBottomIcon
@@ -203,7 +203,7 @@ export default class TimetableScreen extends Component {
             width="40"
             defaultIcon={starIcon}
             activeIcon={listIcon}
-            onClick={() => this.handleToggleButtonBookmarked()}
+            onClick={this.handleToggleButtonBookmarked}
             iconIsActive={this.state.bookmarkIconIsActive}
           />
         </NavBarBottom>
@@ -456,27 +456,25 @@ export default class TimetableScreen extends Component {
 
   handleButtonSortAlpha = () => {
     this.setState({
-      sortAlphaIconIsDefault: false,
-      sortByTimeIsDefault: true,
-      sortByStageIconIsDefault: true
+      sortAlphaIconIsActive: true,
+      sortByTimeIsActive: false,
+      sortByStageIconIsActive: false
     })
   }
-
 
   handleButtonSortTime = () => {
     this.setState({
-      sortAlphaIconIsDefault: true,
-      sortByTimeIsDefault: false,
-      sortByStageIconIsDefault: true
+      sortAlphaIconIsActive: false,
+      sortByTimeIsActive: true,
+      sortByStageIconIsActive: false
     })
   }
 
-  
   handleButtonSortStage = () => {
     this.setState({
-      sortAlphaIconIsDefault: true,
-      sortByTimeIsDefault: true,
-      sortByStageIconIsDefault: false
+      sortAlphaIconIsActive: false,
+      sortByTimeIsActive: false,
+      sortByStageIconIsActive: true
     })
   }
 

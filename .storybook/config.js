@@ -87,7 +87,7 @@ addDecorator(
 )
 
 addDecorator(story => (
-	<StyleBox p="20px 25%" m="0 0 20px 0" bg="rgba(0, 0, 0, 0.5">
+	<StyleBox h="100%" w="800px" p="20px 25%" m="0 0 20px 0" bg="rgba(0, 0, 0, 0.5">
 		{story()}
 		<GlobalStyle />
 	</StyleBox>
