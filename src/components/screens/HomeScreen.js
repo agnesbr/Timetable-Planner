@@ -35,7 +35,6 @@ export default class HomeScreen extends Component {
 
   render() {
     this.saveFavoriteFests()
-
     return (
       <WrapperApp>
         <NavBar>
