@@ -20,10 +20,6 @@ import Bookmark from '../components/Bookmark'
 import NavBarBottomIcon from '../components/NavBarBottomIcon'
 import NavBarBottom from '../components/styledComponents/NavBarBottom'
 import Act from '../components/Act'
-import FilterElementsContainer from '../components/FilterElementsContainer'
-import FilterElement from '../components/FilterElement'
-import StageName from '../components/StageName'
-import StageNamesContainer from '../components/StageNamesContainer'
 import { StyleWrapper } from './StyleWrapper'
 import  StyleBox from './StyleBox'
 
@@ -55,8 +51,8 @@ storiesOf('Fest', module)
       <Fest
         festId={number('Festival id', 12345)}
         festName={text('Festival name', 'Festivalname')}
-        festStartDate={dateKnob('festStartTime', new Date('2019.10.01'))}
-        festEndDate={dateKnob('festEndTime', new Date('2019.10.01'))}
+        festStartDate={dateKnob('festStartTime', new Date('2019/10/01'))}
+        festEndDate={dateKnob('festEndTime', new Date('2019/10/01'))}
         festCountry={text('Country', 'Country')}
         festCity={text('City', 'City')}
         isBookmarked={boolean('Icon: isBookmarked', false)}
@@ -70,8 +66,8 @@ storiesOf('Fest', module)
       <Act
         areaName={text('Area name', 'Honolulu')}
         actName={text('Acts name', 'Max Mustermann')}
-        actStartDate={dateKnob('actStartTime', new Date('21:00 2019-10-21'))}
-        actEndDate={dateKnob('actEndTime', new Date('22:00 2019-10-21'))}
+        actStartDate={dateKnob('actStartTime', new Date('2019/10/21 21:00'))}
+        actEndDate={dateKnob('actEndTime', new Date('2019/10/21 22:00'))}
         isBookmarked={boolean('Icon: isBookmarked', false)}
         toggleBookmark={action('onToggle')}
       />
