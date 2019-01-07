@@ -105,7 +105,7 @@ export default class TimetableScreen extends Component {
   getUniqueStages = festObject => {
     const timeTable = festObject.timeTable
     const allStages = timeTable.map(act => act.areaName)
-    return [ ...new Set(allStages) ]
+    return [ ...new Set(allStages)]
   }
 
 
@@ -153,7 +153,7 @@ export default class TimetableScreen extends Component {
           </DisplayMainContent>
         ) : (
           <DisplayMainContent data-cy="ActsList" width="96">
-            {this.createActList(this.state.festObject)}
+            {this.renderActList(this.state.festObject)}
           </DisplayMainContent>
         )}
         <NavBarBottom className="space-between">
@@ -279,11 +279,11 @@ export default class TimetableScreen extends Component {
   }
 
 
-  handleStageFilter = id => {
-    const activeStages = this.state.stageFilterActive
-    activeStages[id] = !activeStages[id]
+  handleStageFilter = index => {
+    const stageFilterActive = this.state.stageFilterActive
+    stageFilterActive[index] = !stageFilterActive[index]
     this.setState({
-      stageFilterActive: activeStages,
+      stageFilterActive: stageFilterActive,
       allStagesFilterActive: false,
     })
   }
@@ -302,11 +302,11 @@ export default class TimetableScreen extends Component {
   }
 
 
-  handleDaysFilter = id => {
-    const activeDays = this.state.daysFilterActive
-    activeDays[id] = !activeDays[id]
+  handleDaysFilter = index => {
+    const daysFilterActive = this.state.daysFilterActive
+    daysFilterActive[index] = !daysFilterActive[index]
     this.setState({
-      daysFilterActive: activeDays,
+      daysFilterActive: daysFilterActive,
       allDaysFilterActive: false,
     })
   }
@@ -350,7 +350,7 @@ export default class TimetableScreen extends Component {
     const { listOfBookmarkedActs } = this.state
     const newListOfBookmarkedActs = listOfBookmarkedActs.includes(actsId)
       ? this.deleteItemFromActIsBookmarked(actsId)
-      : this.addItemToListOfBookmarkedActs(actsId)
+      : [ ...listOfBookmarkedActs, actsId ]
 
     this.setState({
       listOfBookmarkedActs: newListOfBookmarkedActs,
@@ -366,15 +366,6 @@ export default class TimetableScreen extends Component {
       ...listOfBookmarkedActs.slice(0, bookmarkedIndex),
       ...listOfBookmarkedActs.slice(bookmarkedIndex + 1),
     ]
-
-    return newListOfBookmarkedActs
-  }
-
-  addItemToListOfBookmarkedActs = actsId => {
-    const { listOfBookmarkedActs } = this.state
-    const newListOfBookmarkedActs = listOfBookmarkedActs.includes(actsId)
-      ? [ ...listOfBookmarkedActs ]
-      : [ ...listOfBookmarkedActs, actsId ]
 
     return newListOfBookmarkedActs
   }
@@ -398,8 +389,7 @@ export default class TimetableScreen extends Component {
     })
   }
 
-
-  createActList() {
+  renderActList() {
     const { festObject } = this.state
     return this.getSelectedActList(festObject.timeTable).map(this.renderSingleAct)
   }

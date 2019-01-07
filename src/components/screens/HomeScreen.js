@@ -181,7 +181,7 @@ export default class HomeScreen extends Component {
 
     const newListOfBookmarkedFests = listOfBookmarkedFests.includes(festId)
       ? this.deleteItemFromListOfBookmarkedFests(festId)
-      : this.addItemToListOfBookmarkedFests(festId)
+      : [ ...listOfBookmarkedFests, festId ]
 
     this.setState({
       listOfBookmarkedFests: newListOfBookmarkedFests,
@@ -200,14 +200,5 @@ export default class HomeScreen extends Component {
     return newListOfBookmarkedFests
   }
 
-
-  addItemToListOfBookmarkedFests = festId => {
-    const { listOfBookmarkedFests } = this.state
-    const newListOfBookmarkedFests = listOfBookmarkedFests.includes(festId)
-      ? [ ...listOfBookmarkedFests ]
-      : [ ...listOfBookmarkedFests, festId ]
-
-    return newListOfBookmarkedFests
-  }
 
 }

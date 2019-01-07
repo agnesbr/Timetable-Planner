@@ -2,8 +2,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import React, { Component } from 'react'
 import HomeScreen from './screens/HomeScreen'
 import TimetableScreen from './screens/TimetableScreen'
-//import festRawData from '../data/ef_data.json'
-import reformatData from '../data/reformatData'
+import reformatData from '../functions/reformatData'
 
 export default class App extends Component {
     state = {
@@ -16,15 +15,13 @@ export default class App extends Component {
   
     fetchData() {
       fetch('https://www.electronic-festivals.com/DEV1/ajax/latest-content2.json')
-        .then(res => {
-          return res.json()
-        })
+      .then(res => res.json())
       .then(parsedJSON => this.setState ({festivals: reformatData(parsedJSON)}))
+      .catch(error => console.log('parsing failed', error))
     }
  
 
   render() {
-    console.log(this.state.festivals)
     return (
       <Router>
         <React.Fragment>
