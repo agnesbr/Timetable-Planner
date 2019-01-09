@@ -63,12 +63,12 @@ export default class Act extends Component {
     })
 
     return (
-      <StyledWrapper>
-        <ActsContainer>
+      <StyledWrapper >
+        <ActsContainer data-cy="actEl">
           <InfoLine className="purple" mt="3" mb="2">
             {areaName}
           </InfoLine>
-          <h2> {actName}</h2>
+          <h2 data-cy="actName"> {actName}</h2>
           <DateTimeLine className="purple" mt="1" mb="1">
             {playDay}, {actStartTime} – {actEndTime}
           </DateTimeLine>

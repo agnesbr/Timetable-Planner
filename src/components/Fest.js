@@ -65,7 +65,7 @@ export default class Fest extends Component {
     return (
       <StyledWrapper data-cy="festEl">
         <TimetableLink data-cy="festElLink" to={`/timetable/${festId}`}>
-          <DateTimeLine className="teal" mt="5" mb="1" dateTime={festEndDateFormat}>
+          <DateTimeLine data-cy="festDateTimeLine" className="teal" mt="5" mb="1" dateTime={festEndDateFormat}>
             {festEndDateFormat ? festStartDateFormat + ' – ' + festEndDateFormat : festStartDateFormat}
           </DateTimeLine>
           <h2 data-cy="festName">{festName}</h2>

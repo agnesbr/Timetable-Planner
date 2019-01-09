@@ -319,7 +319,7 @@ export default class TimetableScreen extends Component {
     return stageObjects
       .filter((stage, index) => allStagesFilterActive || stageFilterActive[index])
       .map((stage, index) => (
-        <InnerColumn key={index}>{this.getSelectedActList(stage).map(act => this.renderSingleAct(act))}</InnerColumn>
+        <InnerColumn data-cy="innerColumn" key={index}>{this.getSelectedActList(stage).map(act => this.renderSingleAct(act))}</InnerColumn>
       ))
   }
 
@@ -339,11 +339,6 @@ export default class TimetableScreen extends Component {
         isTimeOverlapping={this.isTimeOverlapping(act)}
       />
     )
-  }
-
-  isTimeOverlapping = act => {
-    const { listOfOverlappingTimes } = this.state
-    return listOfOverlappingTimes.includes(act)
   }
 
   toggleBookmark = actsId => {
@@ -370,6 +365,10 @@ export default class TimetableScreen extends Component {
     return newListOfBookmarkedActs
   }
 
+  isTimeOverlapping = act => {
+    const { listOfOverlappingTimes } = this.state
+    return listOfOverlappingTimes.includes(act)
+  }
 
   getOverlappingTimes = newListOfBookmarkedActs => {
     const { festObject } = this.state

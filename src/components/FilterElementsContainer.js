@@ -42,12 +42,12 @@ export default class FilterElementsContainer extends Component {
     } = this.props
     return (
       <FilterContainer>
-        <WrapperFilter height="25">
-          <FilterElement filterName="All Stages" isActive={allStagesFilterActive} onClick={onClickClearStages} />
+        <WrapperFilter  data-cy="filterStages" height="25">
+          <FilterElement  filterName="All Stages" isActive={allStagesFilterActive} onClick={onClickClearStages} />
           {renderFilterStageNames(stageNames)}
         </WrapperFilter>
-        <WrapperFilter height="25">
-          <FilterElement filterName="All Days" isActive={allDaysFilterActive} onClick={onClickClearDays} />{' '}
+        <WrapperFilter data-cy="filterDays" height="25">
+          <FilterElement  filterName="All Days" isActive={allDaysFilterActive} onClick={onClickClearDays} />{' '}
           {renderFilterFestDays(festDays)}
         </WrapperFilter>
       </FilterContainer>
